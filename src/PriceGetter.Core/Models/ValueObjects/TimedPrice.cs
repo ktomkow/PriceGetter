@@ -1,16 +1,23 @@
-﻿using PriceGetter.Core.ValueObjects;
+﻿using PriceGetter.Core.BaseClasses.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PriceGetter.Core.Models.ValueObjects
 {
-    public class TimedPrice : TimedPriceBase
+    public class TimedPrice : ValueObjectBase
     {
-        protected TimedPrice() : base(){ }
+        public Price Value { get; }
+        public DateTime At { get; }
 
-        public TimedPrice(PriceBase price) : base(price, DateTime.Now) { }
+        protected TimedPrice() { }
 
-        public TimedPrice(PriceBase price, DateTime at) : base(price, at) { }
+        public TimedPrice(Price price) : this(price, DateTime.Now) { }
+
+        public TimedPrice(Price price, DateTime at)
+        {
+            this.Value = price;
+            this.At = at;
+        }
     }
 }

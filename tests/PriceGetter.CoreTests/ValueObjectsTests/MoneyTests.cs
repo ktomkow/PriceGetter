@@ -9,7 +9,7 @@ using Xunit;
 
 namespace PriceGetter.CoreTests.ValueObjectsTests
 {
-    public class PriceTests
+    public class MoneyTests
     {
         [Fact]
         public void WhenPrice9p99_Then_Value9p99()
@@ -17,7 +17,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal originalPrice = 9.99m;
             decimal expectedPrice = 9.99m;
 
-            Price price = new Price(originalPrice);
+            Money price = new Money(originalPrice);
             decimal obtainedPrice = price.Value;
 
             obtainedPrice.Should().Be(expectedPrice);
@@ -29,7 +29,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal originalPrice = 9.9900m;
             decimal expectedPrice = 9.99m;
 
-            Price price = new Price(originalPrice);
+            Money price = new Money(originalPrice);
             decimal obtainedPrice = price.Value;
 
             obtainedPrice.Should().Be(expectedPrice);
@@ -53,7 +53,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal originalPrice = 0m;
             decimal expectedPrice = 0.00m;
 
-            Price price = new Price(originalPrice);
+            Money price = new Money(originalPrice);
             decimal obtainedPrice = price.Value;
 
             obtainedPrice.Should().Be(expectedPrice);
@@ -66,7 +66,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
 
             Action act = () =>
             {
-                Price price = new Price(originalPrice);
+                Money price = new Money(originalPrice);
             };
 
             act.Should().Throw<ArgumentException>();
@@ -78,8 +78,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [MemberData(nameof(Data))]
         public void Construct_WhenMoreThan4Digits_ThenRound_CompareValues(decimal original, decimal expected)
         {
-            Price price = new Price(original);
-            Price expectedPrice = new Price(expected);
+            Money price = new Money(original);
+            Money expectedPrice = new Money(expected);
 
             bool result = price.Value == expectedPrice.Value;
 
@@ -90,8 +90,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [MemberData(nameof(Data))]
         public void Construct_WhenMoreThan4Digits_ThenRound_ComparePrices(decimal original, decimal expected)
         {
-            Price price = new Price(original);
-            Price expectedPrice = new Price(expected);
+            Money price = new Money(original);
+            Money expectedPrice = new Money(expected);
 
             bool result = price == expectedPrice;
 
@@ -105,8 +105,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void Equals_WhenTwoPrices9p99_Then_True()
         {
-            Price onePrice = new Price(9.99m);
-            Price twoPrice = new Price(9.99m);
+            Money onePrice = new Money(9.99m);
+            Money twoPrice = new Money(9.99m);
 
             bool result = onePrice.Equals(twoPrice);
 
@@ -116,8 +116,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void EqualsOperator_WhenTwoPrices9p99_Then_True()
         {
-            Price onePrice = new Price(9.99m);
-            Price twoPrice = new Price(9.99m);
+            Money onePrice = new Money(9.99m);
+            Money twoPrice = new Money(9.99m);
 
             bool result = onePrice == twoPrice;
 
@@ -127,8 +127,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void EqualsOperatorNegation_WhenTwoPrices9p99_Then_False()
         {
-            Price onePrice = new Price(9.99m);
-            Price twoPrice = new Price(9.99m);
+            Money onePrice = new Money(9.99m);
+            Money twoPrice = new Money(9.99m);
 
             bool result = onePrice != twoPrice;
 
@@ -138,8 +138,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void Equals_When9p99_And_9p98_Then_False()
         {
-            Price onePrice = new Price(9.99m);
-            Price twoPrice = new Price(9.98m);
+            Money onePrice = new Money(9.99m);
+            Money twoPrice = new Money(9.98m);
 
             bool result = onePrice.Equals(twoPrice);
 
@@ -149,8 +149,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void EqualsOperator_When9p99_And_9p98_Then_False()
         {
-            Price onePrice = new Price(9.99m);
-            Price twoPrice = new Price(9.98m);
+            Money onePrice = new Money(9.99m);
+            Money twoPrice = new Money(9.98m);
 
             bool result = onePrice == twoPrice;
 
@@ -166,8 +166,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterOperator_When_10_5_Then_True()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(5.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(5.0m);
 
             bool result = leftPrice > rightPrice;
 
@@ -177,8 +177,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterOperator_When_5_10_Then_False()
         {
-            Price leftPrice = new Price(5.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(5.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice > rightPrice;
 
@@ -188,8 +188,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterOperator_When_10_10_Then_False()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice > rightPrice;
 
@@ -203,8 +203,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerOperator_When_10_5_Then_False()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(5.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(5.0m);
 
             bool result = leftPrice < rightPrice;
 
@@ -214,8 +214,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerOperator_When_5_10_Then_True()
         {
-            Price leftPrice = new Price(5.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(5.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice < rightPrice;
 
@@ -225,8 +225,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerOperator_When_10_10_Then_False()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice < rightPrice;
 
@@ -240,8 +240,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterEqualOperator_When_10_5_Then_True()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(5.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(5.0m);
 
             bool result = leftPrice >= rightPrice;
 
@@ -251,8 +251,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterEqualOperator_When_5_10_Then_False()
         {
-            Price leftPrice = new Price(5.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(5.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice >= rightPrice;
 
@@ -262,8 +262,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GreaterEqualOperator_When_10_10_Then_True()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice >= rightPrice;
 
@@ -277,8 +277,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerEqualOperator_When_10_5_Then_False()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(5.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(5.0m);
 
             bool result = leftPrice <= rightPrice;
 
@@ -288,8 +288,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerEqualOperator_When_5_10_Then_True()
         {
-            Price leftPrice = new Price(5.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(5.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice <= rightPrice;
 
@@ -299,8 +299,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void LowerEqualOperator_When_10_10_Then_True()
         {
-            Price leftPrice = new Price(10.0m);
-            Price rightPrice = new Price(10.0m);
+            Money leftPrice = new Money(10.0m);
+            Money rightPrice = new Money(10.0m);
 
             bool result = leftPrice <= rightPrice;
 
@@ -314,11 +314,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void AddOperator_When_9p90_And_10p9_Then_20p8()
         {
-            Price leftPrice = new Price(9.90m);
-            Price rightPrice = new Price(10.9m);
-            Price sum = new Price(20.8m);
+            Money leftPrice = new Money(9.90m);
+            Money rightPrice = new Money(10.9m);
+            Money sum = new Money(20.8m);
 
-            Price result = leftPrice + rightPrice;
+            Money result = leftPrice + rightPrice;
 
             result.Should().Be(sum);
         }
@@ -330,11 +330,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void SubtractOperator_When_19p90_And_10p9_Then_9()
         {
-            Price leftPrice = new Price(19.90m);
-            Price rightPrice = new Price(10.9m);
-            Price sum = new Price(9m);
+            Money leftPrice = new Money(19.90m);
+            Money rightPrice = new Money(10.9m);
+            Money sum = new Money(9m);
 
-            Price result = leftPrice - rightPrice;
+            Money result = leftPrice - rightPrice;
 
             result.Should().Be(sum);
         }
@@ -342,11 +342,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void SubtractOperator_When_19p90_And_20p9_Then_0()
         {
-            Price leftPrice = new Price(19.90m);
-            Price rightPrice = new Price(20.9m);
-            Price sum = new Price(0m);
+            Money leftPrice = new Money(19.90m);
+            Money rightPrice = new Money(20.9m);
+            Money sum = new Money(0m);
 
-            Price result = leftPrice - rightPrice;
+            Money result = leftPrice - rightPrice;
 
             result.Should().Be(sum);
         }
@@ -358,11 +358,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void DivideOperator_When_9p90_And_Divider_2_Then_4p95()
         {
-            Price price = new Price(9.90m);
-            Price expectedPrice = new Price(4.95m);
+            Money price = new Money(9.90m);
+            Money expectedPrice = new Money(4.95m);
             int divider = 2;
 
-            Price result = price / divider;
+            Money result = price / divider;
 
             result.Should().Be(expectedPrice);
         }
@@ -370,11 +370,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void DivideOperator_When_9p90_And_Divider_Negative2_Then_4p95()
         {
-            Price price = new Price(9.90m);
-            Price expectedPrice = new Price(4.95m);
+            Money price = new Money(9.90m);
+            Money expectedPrice = new Money(4.95m);
             int divider = -2;
 
-            Price result = price / divider;
+            Money result = price / divider;
 
             result.Should().Be(expectedPrice);
         }
@@ -382,12 +382,12 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void DivideOperator_When_9p90_And_Divider_0_Then_InvalidOperationException()
         {
-            Price price = new Price(9.90m);
+            Money price = new Money(9.90m);
             int divider = 0;
 
             Action act = () =>
             {
-                Price result = price / divider;
+                Money result = price / divider;
             };
 
             act.Should().ThrowExactly<InvalidOperationException>();
@@ -396,11 +396,11 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void DivideOperator_When_10_And_Divider_3_Then_3p3333()
         {
-            Price price = new Price(10m);
-            Price expectedPrice = new Price(3.3333m);
+            Money price = new Money(10m);
+            Money expectedPrice = new Money(3.3333m);
             int divider = 3;
 
-            Price result = price / divider;
+            Money result = price / divider;
 
             result.Should().Be(expectedPrice);
         }

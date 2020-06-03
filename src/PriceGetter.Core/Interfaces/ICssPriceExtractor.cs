@@ -8,6 +8,6 @@ namespace PriceGetter.Core.Interfaces
 {
     public interface ICssPriceExtractor
     {
-        Price Extract(string html, string cssClass);
+        Money Extract(string html, string cssClass);
     }   
 }

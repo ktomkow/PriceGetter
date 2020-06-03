@@ -12,8 +12,8 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void WhenPrice9p99_Then_Value9p99()
         {
-            Price originalPrice = new Price(9.99m);
-            Price expectedPrice = new Price(9.99m);
+            Money originalPrice = new Money(9.99m);
+            Money expectedPrice = new Money(9.99m);
 
             TimedPrice timedPrice = new TimedPrice(originalPrice);
 

@@ -5,15 +5,15 @@ using System.Text;
 
 namespace PriceGetter.Core.Models.ValueObjects
 {
-    public class Price : ValueObjectBase
+    public class Money : ValueObjectBase
     {
         private static readonly int decimalPlaces = 4;
 
         public decimal Value { get; }
 
-        protected Price() { }
+        protected Money() { }
 
-        public Price(decimal price)
+        public Money(decimal price)
         {
             if (this.IsPriceValid(price))
             {
@@ -43,14 +43,14 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public override bool Equals(object obj)
         {
-            bool typeMatch = base.EqualsType<Price>(obj);
+            bool typeMatch = base.EqualsType<Money>(obj);
 
             if (typeMatch == false)
             {
                 return false;
             }
 
-            Price instance = obj as Price;
+            Money instance = obj as Money;
 
             return this.Value == instance.Value;
         }
@@ -62,48 +62,48 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         #region Operators
 
-        public static bool operator ==(Price leftPrice, Price rightPrice)
+        public static bool operator ==(Money leftPrice, Money rightPrice)
         {
             return leftPrice.Equals(rightPrice);
         }
 
-        public static bool operator !=(Price leftPrice, Price rightPrice)
+        public static bool operator !=(Money leftPrice, Money rightPrice)
         {
             return !leftPrice.Equals(rightPrice);
         }
 
-        public static bool operator >(Price leftPrice, Price rightPrice)
+        public static bool operator >(Money leftPrice, Money rightPrice)
         {
             bool result = leftPrice.Value > rightPrice.Value;
             return result;
         }
 
-        public static bool operator <(Price leftPrice, Price rightPrice)
+        public static bool operator <(Money leftPrice, Money rightPrice)
         {
             bool result = leftPrice.Value < rightPrice.Value;
             return result;
         }
 
-        public static bool operator >=(Price leftPrice, Price rightPrice)
+        public static bool operator >=(Money leftPrice, Money rightPrice)
         {
             bool result = leftPrice.Value >= rightPrice.Value;
             return result;
         }
 
-        public static bool operator <=(Price leftPrice, Price rightPrice)
+        public static bool operator <=(Money leftPrice, Money rightPrice)
         {
             bool result = leftPrice.Value <= rightPrice.Value;
             return result;
         }
 
-        public static Price operator +(Price leftPrice, Price rightPrice)
+        public static Money operator +(Money leftPrice, Money rightPrice)
         {
             decimal sum = leftPrice.Value + rightPrice.Value;
-            Price result = new Price(sum);
+            Money result = new Money(sum);
             return result;
         }
 
-        public static Price operator -(Price leftPrice, Price rightPrice)
+        public static Money operator -(Money leftPrice, Money rightPrice)
         {
             decimal difference = leftPrice.Value - rightPrice.Value;
 
@@ -112,11 +112,11 @@ namespace PriceGetter.Core.Models.ValueObjects
                 difference = 0m;
             }
 
-            Price result = new Price(difference);
+            Money result = new Money(difference);
             return result;
         }
 
-        public static Price operator /(Price price, int divider)
+        public static Money operator /(Money price, int divider)
         {
             if(divider == 0)
             {
@@ -129,7 +129,7 @@ namespace PriceGetter.Core.Models.ValueObjects
             }
 
             decimal mathResult = price.Value / divider;
-            Price result = new Price(mathResult);
+            Money result = new Money(mathResult);
 
             return result;
         }

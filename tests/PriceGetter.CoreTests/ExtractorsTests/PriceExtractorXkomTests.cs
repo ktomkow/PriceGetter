@@ -17,11 +17,11 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         {
             this.priceExtractor = new PriceExtractorXkom();
         }
-        
+
         [Fact]
-        public void Extract_When_3299p0_Then_3299p0()
+        public void Extract_When_3299p00_Then_3299p0()
         {
-            string source = "<meta property=\"product: price: amount\" content=\"3299.00\" data-react-helmet=\"true\" />";
+            string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">3 299,00 zł</div></div>";
             Money expectedPrice = new Money(3299.0m);
 
             Money obtainedMoney = this.priceExtractor.Extract(source);
@@ -30,9 +30,9 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         }
 
         [Fact]
-        public void Extract_When_599p0_Then_599p0()
+        public void Extract_When_599p00_Then_599p0()
         {
-            string source = "<meta property=\"product: price: amount\" content=\"599.00\" data-react-helmet=\"true\" />";
+            string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">599,00 zł</div></div>";
             Money expectedPrice = new Money(599.0m);
 
             Money obtainedMoney = this.priceExtractor.Extract(source);
@@ -43,7 +43,7 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         [Fact]
         public void Extract_When_1000p50_Then_1000p50()
         {
-            string source = "<meta property=\"product: price: amount\" content=\"1000.50\" data-react-helmet=\"true\" />";
+            string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">1000,50 zł</div></div>";
             Money expectedPrice = new Money(1000.50m);
 
             Money obtainedMoney = this.priceExtractor.Extract(source);

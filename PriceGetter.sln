@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67DE0A3E-E48
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B187AF94-40CF-40C8-88A0-3DF3F39B3425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Core", "src\PriceGetter.Core\PriceGetter.Core.csproj", "{146CF1F5-EFCE-45F9-B41D-2A7AC9DEC3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Core", "src\PriceGetter.Core\PriceGetter.Core.csproj", "{146CF1F5-EFCE-45F9-B41D-2A7AC9DEC3FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.CoreTests", "tests\PriceGetter.CoreTests\PriceGetter.CoreTests.csproj", "{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.CoreTests", "tests\PriceGetter.CoreTests\PriceGetter.CoreTests.csproj", "{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +31,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{146CF1F5-EFCE-45F9-B41D-2A7AC9DEC3FF} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
+		{BDAB0F68-71C2-4B6D-8358-7CAE814A3651} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

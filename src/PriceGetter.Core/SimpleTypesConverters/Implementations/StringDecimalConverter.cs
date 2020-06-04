@@ -67,7 +67,7 @@ namespace PriceGetter.Core.SimpleTypesConverters.Implementations
             catch (FormatException)
             {
                 value = value.Replace('.', ',');
-                decimal result = Convert.ToDecimal(value);
+                decimal result = decimal.Parse(value, NumberStyles.Any, new CultureInfo("pl"));
                 return result;
             }
         }

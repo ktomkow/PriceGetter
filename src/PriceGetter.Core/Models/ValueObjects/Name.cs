@@ -15,16 +15,18 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public Name(string name)
         {
-            this.EnsureNameIsValid(name);
+            this.EnsureHasValue(name);
 
             name = this.Format(name);
+
+            this.EnsureNameIsValid(name);
 
             this.Value = name;
         }
 
         public override int GetHashCode()
         {
-            return this.Value.GetHashCode();
+            throw new NotImplementedException();
         }
 
         public override bool Equals(object obj)
@@ -41,6 +43,14 @@ namespace PriceGetter.Core.Models.ValueObjects
             return this.Value == instance.Value;
         }
 
+        private void EnsureHasValue(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException($"Name {name}, cannot be null or empty");
+            }
+        }
+
         private void EnsureNameIsValid(string name)
         {
             string errorMessage = string.Empty;
@@ -49,13 +59,12 @@ namespace PriceGetter.Core.Models.ValueObjects
             {
                 errorMessage += $"Name {name} is too short, minimal name length: {minLength}";
             }
-
-            if (name.Length > maxLength)
+            else if (name.Length > maxLength)
             {
                 errorMessage += $"Name {name} is too short, minimal name length: {minLength}";
             }
 
-            if (string.IsNullOrWhiteSpace(errorMessage))
+            if (string.IsNullOrWhiteSpace(errorMessage) == false)
             {
                 throw new ArgumentException(errorMessage);
             }

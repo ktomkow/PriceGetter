@@ -12,7 +12,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         protected TimedPrice() { }
 
-        public TimedPrice(Money price) : this(price, DateTime.Now) { }
+        public TimedPrice(Money price) : this(price, DateTime.UtcNow) { }
 
         public TimedPrice(Money price, DateTime at)
         {

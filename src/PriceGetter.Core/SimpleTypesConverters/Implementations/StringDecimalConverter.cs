@@ -1,6 +1,7 @@
 ﻿using PriceGetter.Core.SimpleTypesConverters.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -60,7 +61,7 @@ namespace PriceGetter.Core.SimpleTypesConverters.Implementations
         {
             try
             {
-                decimal result = Convert.ToDecimal(value);
+                decimal result = decimal.Parse(value, NumberStyles.Any, new CultureInfo("pl"));
                 return result;
             }
             catch (FormatException)

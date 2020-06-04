@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Core", "src\Pri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.CoreTests", "tests\PriceGetter.CoreTests\PriceGetter.CoreTests.csproj", "{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Client", "src\PriceGetter.Client\PriceGetter.Client.csproj", "{640A8E06-63E6-4A5D-AA6B-5B78DF7D252E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDAB0F68-71C2-4B6D-8358-7CAE814A3651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640A8E06-63E6-4A5D-AA6B-5B78DF7D252E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640A8E06-63E6-4A5D-AA6B-5B78DF7D252E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640A8E06-63E6-4A5D-AA6B-5B78DF7D252E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640A8E06-63E6-4A5D-AA6B-5B78DF7D252E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

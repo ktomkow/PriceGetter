@@ -17,17 +17,31 @@ namespace PriceGetter.Core.Models.ValueObjects
         public TimedPrice(Money price, DateTime at)
         {
             this.Amount = price;
-            this.At = at;
+            this.At = new DateTime(at.Year, at.Month, at.Day, at.Hour, at.Minute, 0);
         }
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            unchecked
+            {
+                int hash = 1827809;
+
+                hash = hash * 382883 + this.Amount.GetHashCode();
+                hash = hash * 382883 + this.At.GetHashCode();
+
+                return hash;
+            }
         }
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            TimedPrice instance = obj as TimedPrice;
+            if (instance is null)
+            {
+                return false;
+            }
+
+            return this.Amount == instance.Amount && this.At == instance.At;
         }
     }
 }

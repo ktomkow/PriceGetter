@@ -7,7 +7,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 {
     public class TimedPrice : ValueObjectBase
     {
-        public Money Value { get; }
+        public Money Amount { get; }
         public DateTime At { get; }
 
         protected TimedPrice() { }
@@ -16,8 +16,18 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public TimedPrice(Money price, DateTime at)
         {
-            this.Value = price;
+            this.Amount = price;
             this.At = at;
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Equals(object obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -88,6 +88,32 @@ namespace PriceGetter.ContentProvidersTests.CssProviders
             result.Should().Be(content);
         }
 
+        [Fact]
+        public void WhenFoundElementHasPlus_Then_ReturnContent()
+        {
+            string wantedCssClass = "wanted-class";
+            string content = "Some text+";
+            Html html = new Html($"<div class=\"{wantedCssClass}\">{content}</div>");
+            CssClass css = new CssClass(wantedCssClass);
+
+            string result = this.extractor.Extract(html, css);
+
+            result.Should().Be(content);
+        }
+
+        //[Fact] // Extractor stucks
+        public void WhenFoundStrangeXiaomiPhoneName_Then_ReturnContent()
+        {
+            string wantedCssClass = "wanted-class";
+            string content = "Xiaomi Redmi Note 9 Pro 6/128GB Grey + Mi Band 4";
+            Html html = new Html($"<div class=\"{wantedCssClass}\">{content}</div>");
+            CssClass css = new CssClass(wantedCssClass);
+
+            string result = this.extractor.Extract(html, css);
+
+            result.Should().Be(content);
+        }
+
         [Theory]
         [InlineData("<div class=\"wanted-class\">Text</div>")]
         public void WhenFoundElement_Then_ReturnContent_Theory(string rawHtml)

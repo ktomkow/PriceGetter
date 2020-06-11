@@ -10,19 +10,20 @@ namespace PriceGetter.ContentProvider.PriceExtractors
 {
     public class PriceExtractorXkom : IPriceExtractor
     {
-        public Money Extract(Html html)
+        private readonly ICssPriceExtractor cssExtractor;
+
+        public PriceExtractorXkom(ICssPriceExtractor cssPriceExtractor)
         {
-            string regex = "iVazGO.>.+ zł<\\/div>";
-            string dirtyValue = Regex.Match(html.RawContent, regex).Value;
-            dirtyValue = dirtyValue.RemoveChar(' ');
+            this.cssExtractor = cssPriceExtractor;
+        }
 
-            string priceString = Regex.Match(dirtyValue, @"\d{1,10},\d{2}").Value.Replace(',', '.');
+        public Money Extract(Html html) 
+        {
+            CssClass cssClass = new CssClass("u7xnnm-4 iVazGO");
 
-            decimal priceDecimal = priceString.ToDecimal(priceString);
+            Money productPrice = this.cssExtractor.Extract(html, cssClass);
 
-            Money price = new Money(priceDecimal);
-
-            return price;
+            return productPrice;
         }
     }
 }

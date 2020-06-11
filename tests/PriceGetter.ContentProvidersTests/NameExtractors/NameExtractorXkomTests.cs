@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using PriceGetter.ContentProvider.CssExtractors;
 using PriceGetter.ContentProvider.NameExtractors;
+using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -14,19 +16,20 @@ namespace PriceGetter.ContentProvidersTests.NameExtractors
 
         public NameExtractorXkomTests()
         {
-            this.extractor = new NameExtractorXkom();
+            ICssContentExtractor cssContentExtractor = new BasicCssExtractor();
+            this.extractor = new NameExtractorXkom(cssContentExtractor);
         }
 
-        [Fact]
-        public void a()
-        {
-            Name expectedName = new Name("Switch Mario Kart 8 Deluxe");
-            string rawHtml = "";
-            Html html = new Html(rawHtml);
+        //[Fact]
+        //public void a()
+        //{
+        //    Name expectedName = new Name("Switch Mario Kart 8 Deluxe");
+        //    string rawHtml = "";
+        //    Html html = new Html(rawHtml);
 
-            Name name = extractor.Extract(html);
+        //    Name name = extractor.Extract(html);
 
-            name.Should().Be(expectedName);
-        }
+        //    name.Should().Be(expectedName);
+        //}
     }
 }

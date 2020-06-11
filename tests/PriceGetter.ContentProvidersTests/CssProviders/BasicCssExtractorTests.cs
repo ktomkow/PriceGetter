@@ -141,5 +141,20 @@ namespace PriceGetter.ContentProvidersTests.CssProviders
 
             result.Should().Be(content1);
         }
+
+        [Fact]
+        public void WhenXKomPriceToFind_Then_FindIt()
+        {
+            string wantedCssClass = "u7xnnm-4 iVazGO";
+            string content = "1 399,00 zł";
+            string rawHtml = "<div class=\"u7xnnm-4 iVazGO\">1 399,00 zł</div>";
+            Html html = new Html(rawHtml);
+            CssClass css = new CssClass(wantedCssClass);
+
+
+            string result = this.extractor.Extract(html, css);
+
+            result.Should().Be(content);
+        }
     }
 }

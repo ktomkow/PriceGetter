@@ -17,7 +17,6 @@ namespace PriceGetter.ContentProvider.CssExtractors
             }
 
             Regex outerRegex = new Regex($"class\\s*=\\s*\"{cssClass.Value}\"\\s*>(\\s*\\w+[+-=/]*\\s*)*<");
-            outerRegex = new Regex(@"class\s*=\s*" + "\"" + cssClass.Value + "\"" + @"\s*>(\s*\w+[+-=/]*\s*)*<");
 
             Regex innerRegex = new Regex(">.*<");
 

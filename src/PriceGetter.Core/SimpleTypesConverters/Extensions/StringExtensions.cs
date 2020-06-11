@@ -11,7 +11,7 @@ namespace PriceGetter.Core.SimpleTypesConverters.Extensions
         private static readonly IStringDecimalConverter stringDecimalConverter = new StringDecimalConverter();
         private static readonly ICharRemover charRemover = new CharRemover();
 
-        public static decimal ToDecimal(this string text, string priceString)
+        public static decimal ToDecimal(this string text)
         {
             decimal result = stringDecimalConverter.ToDecimal(text);
             return result;

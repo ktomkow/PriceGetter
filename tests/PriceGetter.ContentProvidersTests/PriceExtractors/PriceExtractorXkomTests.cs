@@ -11,7 +11,7 @@ namespace PriceGetter.ContentProvider.PriceExtractors
 {
     public class PriceExtractorXkomTests
     {
-        private readonly IPriceExtractor priceExtractor;
+        private readonly PriceExtractorXkom priceExtractor;
 
         public PriceExtractorXkomTests()
         {

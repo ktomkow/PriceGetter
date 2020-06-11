@@ -108,7 +108,7 @@ namespace PriceGetter.ContentProvidersTests.CssProviders
             string wantedCssClass = "wanted-class";
             string content1 = "Some text";
             string content2 = "Some other text";
-            Html html = new Html($"<html><div class=\"{wantedCssClass}\">{content1}</div><div class=\"{wantedCssClass}\">{content2}</div>");
+            Html html = new Html($"<html><div class=\"{wantedCssClass}\">{content1}</div><div class=\"{wantedCssClass}\">{content2}</div></html>");
             CssClass css = new CssClass(wantedCssClass);
 
             string result = this.extractor.Extract(html, css);

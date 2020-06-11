@@ -16,7 +16,7 @@ namespace PriceGetter.ContentProvider.CssExtractors
                 return string.Empty;
             }
 
-            Regex outerRegex = new Regex($"class\\s*=\\s*\"{cssClass.Value}\"\\s*>.+<");
+            Regex outerRegex = new Regex($"class\\s*=\\s*\"{cssClass.Value}\"\\s*>(\\s*\\w+-*\\s*)*<");
             Regex innerRegex = new Regex(">.*<");
 
             Match outerMatch = outerRegex.Match(html.RawContent);
@@ -26,7 +26,7 @@ namespace PriceGetter.ContentProvider.CssExtractors
                 return string.Empty;
             }
 
-            Match innerMatch = innerRegex.Match(outerMatch.Value);
+            Match innerMatch = innerRegex.Match(outerMatch.Groups[0].Value);
 
             if (innerMatch.Success == false)
             {

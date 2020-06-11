@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using PriceGetter.Core.Implementations;
+using PriceGetter.ContentProvider.PriceExtractors;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace PriceGetter.CoreTests.ExtractorsTests
+namespace PriceGetter.ContentProvider.PriceExtractors
 {
     public class PriceExtractorXkomTests
     {
@@ -23,8 +23,9 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         {
             string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">3 299,00 zł</div></div>";
             Money expectedPrice = new Money(3299.0m);
+            Html html = new Html(source);
 
-            Money obtainedMoney = this.priceExtractor.Extract(source);
+            Money obtainedMoney = this.priceExtractor.Extract(html);
 
             obtainedMoney.Should().Be(expectedPrice);
         }
@@ -34,8 +35,9 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         {
             string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">599,00 zł</div></div>";
             Money expectedPrice = new Money(599.0m);
+            Html html = new Html(source);
 
-            Money obtainedMoney = this.priceExtractor.Extract(source);
+            Money obtainedMoney = this.priceExtractor.Extract(html);
 
             obtainedMoney.Should().Be(expectedPrice);
         }
@@ -45,8 +47,9 @@ namespace PriceGetter.CoreTests.ExtractorsTests
         {
             string source = "<div class=\"u7xnnm - 1 gIldPo\"><div class=\"u7xnnm - 4 iVazGO\">1000,50 zł</div></div>";
             Money expectedPrice = new Money(1000.50m);
+            Html html = new Html(source);
 
-            Money obtainedMoney = this.priceExtractor.Extract(source);
+            Money obtainedMoney = this.priceExtractor.Extract(html);
 
             obtainedMoney.Should().Be(expectedPrice);
         }

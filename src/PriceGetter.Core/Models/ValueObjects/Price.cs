@@ -5,16 +5,16 @@ using System.Text;
 
 namespace PriceGetter.Core.Models.ValueObjects
 {
-    public class TimedPrice : ValueObjectBase
+    public class Price : ValueObjectBase
     {
         public Money Amount { get; }
         public DateTime At { get; }
 
-        protected TimedPrice() { }
+        protected Price() { }
 
-        public TimedPrice(Money price) : this(price, DateTime.UtcNow) { }
+        public Price(Money price) : this(price, DateTime.UtcNow) { }
 
-        public TimedPrice(Money price, DateTime at)
+        public Price(Money price, DateTime at)
         {
             this.Amount = price;
             this.At = new DateTime(at.Year, at.Month, at.Day, at.Hour, at.Minute, 0);
@@ -35,7 +35,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public override bool Equals(object obj)
         {
-            TimedPrice instance = obj as TimedPrice;
+            Price instance = obj as Price;
             if (instance is null)
             {
                 return false;

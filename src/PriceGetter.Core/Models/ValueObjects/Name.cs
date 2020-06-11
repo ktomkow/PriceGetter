@@ -47,7 +47,7 @@ namespace PriceGetter.Core.Models.ValueObjects
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException($"Name {name}, cannot be null or empty");
+                throw new ArgumentException($"Name cannot be null or empty");
             }
         }
 

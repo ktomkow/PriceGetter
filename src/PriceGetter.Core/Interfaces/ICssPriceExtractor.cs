@@ -6,8 +6,8 @@ using System.Text;
 
 namespace PriceGetter.Core.Interfaces
 {
-    public interface ICssPriceExtractor
+    public interface ICssPriceExtractor : IExtractor
     {
-        Money Extract(string html, string cssClass);
+        Money Extract(Html html, string cssClass);
     }   
 }

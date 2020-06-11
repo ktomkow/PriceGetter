@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace PriceGetter.Core.Implementations
+namespace PriceGetter.ContentProvider.PriceExtractors
 {
     public class PriceExtractorXkom : IPriceExtractor
     {
-        public Money Extract(string html)
+        public Money Extract(Html html)
         {
             string regex = "iVazGO.>.+ zł<\\/div>";
-            string dirtyValue = Regex.Match(html, regex).Value;
+            string dirtyValue = Regex.Match(html.RawContent, regex).Value;
             dirtyValue = dirtyValue.RemoveChar(' ');
 
             string priceString = Regex.Match(dirtyValue, @"\d{1,10},\d{2}").Value.Replace(',', '.');

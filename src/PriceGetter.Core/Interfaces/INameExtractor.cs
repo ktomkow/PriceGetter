@@ -5,8 +5,8 @@ using System.Text;
 
 namespace PriceGetter.Core.Interfaces
 {
-    public interface IPriceExtractor : IExtractor
+    public interface INameExtractor : IExtractor
     {
-        Money Extract(Html html);
+        Name Extract(Html html);
     }
 }

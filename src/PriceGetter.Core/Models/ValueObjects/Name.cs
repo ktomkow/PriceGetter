@@ -26,7 +26,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return this.Value.GetHashCode();
         }
 
         public override bool Equals(object obj)

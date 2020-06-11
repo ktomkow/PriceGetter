@@ -7,6 +7,6 @@ namespace PriceGetter.Core.Interfaces
 {
     public interface ICssContentExtractor : IExtractor
     {
-        string Extract(Html html, string cssClass);
+        string Extract(Html html, CssClass cssClass);
     }
 }

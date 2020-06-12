@@ -17,7 +17,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders
             this.factory = specificDetailsProviderFactory;
         }
 
-        public async Task<SellerSpecificDetails> GetAsync(string url)
+        public async Task<SellerSpecificDetailsDto> GetAsync(string url)
         {
             ISpecificDetailsProvider provider = this.factory.Get(url);
 

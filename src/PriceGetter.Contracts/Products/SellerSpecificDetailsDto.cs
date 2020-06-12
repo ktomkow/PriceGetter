@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PriceGetter.Contracts.Products
 {
-    public class SellerSpecificDetails
+    public class SellerSpecificDetailsDto
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }

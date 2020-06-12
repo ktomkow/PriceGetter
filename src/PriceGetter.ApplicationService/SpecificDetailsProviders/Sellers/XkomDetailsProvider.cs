@@ -19,7 +19,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             this.htmlGetter = htmlGetter;
         }
 
-        public async Task<SellerSpecificDetails> GetAsync(Url url)
+        public async Task<SellerSpecificDetailsDto> GetAsync(Url url)
         {
             Html content = await this.htmlGetter.GetAsync(url);
 

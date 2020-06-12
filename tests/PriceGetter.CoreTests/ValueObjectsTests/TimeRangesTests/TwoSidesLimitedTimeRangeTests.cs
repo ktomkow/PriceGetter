@@ -25,5 +25,39 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.TimeRangesTests
 
             result.Should().BeTrue();
         }
+
+        [Fact]
+        public void WhenDateOutOfRangeTooLateRange_Then_ReturnFalse()
+        {
+            DateTime dateTimeFrom = new DateTime(1970, 1, 1);
+            DateTime dateTimeTo = new DateTime(1970, 10, 30);
+            DateTime checkedDatetime = new DateTime(1980, 5, 10);
+            TimeRange range = TimeRange
+                .GetBuilder()
+                .From(dateTimeFrom)
+                .To(dateTimeTo)
+                .Build();
+
+            bool result = range.IsInRange(checkedDatetime);
+
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void WhenDateOutOfRangeTooSoonRange_Then_ReturnFalse()
+        {
+            DateTime dateTimeFrom = new DateTime(1970, 1, 1);
+            DateTime dateTimeTo = new DateTime(1970, 10, 30);
+            DateTime checkedDatetime = new DateTime(1960, 5, 10);
+            TimeRange range = TimeRange
+                .GetBuilder()
+                .From(dateTimeFrom)
+                .To(dateTimeTo)
+                .Build();
+
+            bool result = range.IsInRange(checkedDatetime);
+
+            result.Should().BeFalse();
+        }
     }
 }

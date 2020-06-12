@@ -13,17 +13,17 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
             this.minDateTime = dateTime;
         }
 
+        public override bool IsInRange(DateTime dateTime)
+        {
+            return dateTime > this.minDateTime;
+        }
+
         public override bool Equals(object obj)
         {
             throw new NotImplementedException();
         }
 
         public override int GetHashCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsInRange(DateTime dateTime)
         {
             throw new NotImplementedException();
         }

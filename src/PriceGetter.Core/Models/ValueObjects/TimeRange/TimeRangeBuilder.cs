@@ -36,7 +36,7 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
             return new TwoSidesLimitedTimeRange(from.Value, to.Value);
         }
 
-        public TimeRangeBuilder From(DateTime dateTime)
+        public TimeRangeBuilder From(DateTime? dateTime)
         {
             this.from = dateTime;
             return this;
@@ -48,7 +48,7 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
             return this;
         }
 
-        public TimeRangeBuilder To(DateTime datetime)
+        public TimeRangeBuilder To(DateTime? datetime)
         {
             this.to = datetime;
             return this;

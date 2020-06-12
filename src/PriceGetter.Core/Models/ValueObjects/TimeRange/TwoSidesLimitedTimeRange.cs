@@ -6,13 +6,18 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
 {
     internal class TwoSidesLimitedTimeRange : TimeRange
     {
-        private readonly DateTime minDatetime;
-        private readonly DateTime maxDatetime;
+        private readonly LeftSideLimitedTimeRange leftSideLimitedRange;
+        private readonly RightSideLimitedTimeRange rightSideLimitedTime;
 
         internal TwoSidesLimitedTimeRange(DateTime minDatetime, DateTime maxDatetime)
         {
-            this.minDatetime = minDatetime;
-            this.maxDatetime = maxDatetime;
+            this.leftSideLimitedRange = new LeftSideLimitedTimeRange(minDatetime);
+            this.rightSideLimitedTime = new RightSideLimitedTimeRange(maxDatetime);
+        }
+
+        public override bool IsInRange(DateTime dateTime)
+        {
+            return this.leftSideLimitedRange.IsInRange(dateTime) && this.rightSideLimitedTime.IsInRange(dateTime);
         }
 
         public override bool Equals(object obj)
@@ -21,11 +26,6 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
         }
 
         public override int GetHashCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsInRange(DateTime dateTime)
         {
             throw new NotImplementedException();
         }

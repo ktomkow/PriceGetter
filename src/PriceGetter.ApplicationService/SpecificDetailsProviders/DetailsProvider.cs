@@ -23,7 +23,9 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders
 
             Url productUrl = new Url(url);
 
-            return await provider.GetAsync(productUrl);
+            SellerSpecificDetailsDto specificDetailsDto = await provider.GetAsync(productUrl);
+
+            return specificDetailsDto;
         }
     }
 }

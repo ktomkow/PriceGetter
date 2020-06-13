@@ -9,16 +9,15 @@ namespace PriceGetter.Web.Controllers
 {
     public class WeatherForecastController : AbstractController
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        public string[] Summaries => this.weatherProvider.Get();
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IWeatherProvider weatherProvider;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherProvider weatherProvider)
         {
             _logger = logger;
+            this.weatherProvider = weatherProvider;
         }
 
         [HttpGet]

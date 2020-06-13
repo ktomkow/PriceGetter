@@ -52,12 +52,33 @@ namespace PriceGetter.Core.Models.Entities
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            bool typeMatch = base.EqualsType<Product>(obj);
+
+            if (typeMatch == false)
+            {
+                return false;
+            }
+
+            Product instance = obj as Product;
+
+            bool isNameSame = this.Name == instance.Name;
+            bool isIdSame = this.Id == instance.Id;
+
+            return isNameSame && isIdSame;
         }
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            unchecked
+            {
+                int hash = 8627;
+
+                hash = hash * 12413 + this.Id.GetHashCode();
+                hash = hash * 12413 + this.Name.GetHashCode();
+                hash = hash * 12413 + this.PriceHistory.GetHashCode();
+
+                return hash;
+            }
         }
     }
 }

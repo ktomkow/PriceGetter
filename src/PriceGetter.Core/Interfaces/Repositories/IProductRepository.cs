@@ -8,6 +8,7 @@ namespace PriceGetter.Core.Interfaces.Repositories
 {
     public interface IProductRepository : IRepository
     {
+        Task<IEnumerable<Product>> Get();
         Task<Product> Get(Guid productId);
         Task Save(Product product);
     }

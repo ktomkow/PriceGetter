@@ -17,6 +17,11 @@ namespace PriceGetter.Persistence.Repositories
             this.products = new List<Product>();
         }
 
+        public async Task<IEnumerable<Product>> Get()
+        {
+            return await Task.FromResult(this.products.ToList());
+        }
+
         public async Task<Product> Get(Guid productId)
         {
             return await Task.FromResult(this.products.Single(x => x.Id == productId));

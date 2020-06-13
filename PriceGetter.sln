@@ -13,15 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.CoreTests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ContentProvider", "src\PriceGetter.ContentProvider\PriceGetter.ContentProvider.csproj", "{E2E45802-48E7-4F98-A3B5-D680E07D7D15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.ApplicationServices", "src\PriceGetter.ApplicationService\PriceGetter.ApplicationServices.csproj", "{D4F303F2-08F1-4E7B-8AD4-7869BE850610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ApplicationServices", "src\PriceGetter.ApplicationService\PriceGetter.ApplicationServices.csproj", "{D4F303F2-08F1-4E7B-8AD4-7869BE850610}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Contracts", "src\PriceGetter.Contracts\PriceGetter.Contracts.csproj", "{A384254D-B156-4A9F-AA31-FCC1C326785A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Contracts", "src\PriceGetter.Contracts\PriceGetter.Contracts.csproj", "{A384254D-B156-4A9F-AA31-FCC1C326785A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.WebClients", "src\PriceGetter.WebClients\PriceGetter.WebClients.csproj", "{E97476D8-50CD-4832-8067-4E508FA8EBB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebClients", "src\PriceGetter.WebClients\PriceGetter.WebClients.csproj", "{E97476D8-50CD-4832-8067-4E508FA8EBB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.WebClientsTests", "PriceGetter.WebClientsTests\PriceGetter.WebClientsTests.csproj", "{D698D96B-B211-45C8-8C3F-6729FCACB194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebClientsTests", "PriceGetter.WebClientsTests\PriceGetter.WebClientsTests.csproj", "{D698D96B-B211-45C8-8C3F-6729FCACB194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.ContentProvidersTests", "tests\PriceGetter.ContentProvidersTests\PriceGetter.ContentProvidersTests.csproj", "{B3B67913-0876-4152-84F0-762B1D0F7534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ContentProvidersTests", "tests\PriceGetter.ContentProvidersTests\PriceGetter.ContentProvidersTests.csproj", "{B3B67913-0876-4152-84F0-762B1D0F7534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Persistence", "src\PriceGetter.Persistence\PriceGetter.Persistence.csproj", "{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{B3B67913-0876-4152-84F0-762B1D0F7534}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B67913-0876-4152-84F0-762B1D0F7534}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B67913-0876-4152-84F0-762B1D0F7534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{E97476D8-50CD-4832-8067-4E508FA8EBB1} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{D698D96B-B211-45C8-8C3F-6729FCACB194} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
 		{B3B67913-0876-4152-84F0-762B1D0F7534} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
+		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

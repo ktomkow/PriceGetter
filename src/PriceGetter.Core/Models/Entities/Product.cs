@@ -38,15 +38,16 @@ namespace PriceGetter.Core.Models.Entities
             this.Name = name;
         }
 
-        public void AddPrice(Money price)
+        public void AddPrice(Money price, Guid sellerId)
         {
-            Price timedPrice = new Price(price);
-            this.AddPrice(timedPrice);
+            Price timedPrice = new Price(price, this.Id, sellerId, DateTime.UtcNow);
+            this.prices.Add(timedPrice);
         }
 
-        public void AddPrice(Price price)
+        public void AddPrice(Money price, Guid sellerId, DateTime dateTime)
         {
-            this.prices.Add(price);
+            Price timedPrice = new Price(price, this.Id, sellerId, dateTime);
+            this.prices.Add(timedPrice);
         }
 
         public override bool Equals(object obj)

@@ -10,14 +10,15 @@ namespace PriceGetter.Core.Models.ValueObjects
         public Money Amount { get; }
         public DateTime At { get; }
         public Guid SellerId { get; }
+        public Guid ProductId { get; }
 
         protected Price() { }
 
-        public Price(Money price) : this(price, DateTime.UtcNow) { }
-
-        public Price(Money price, DateTime at)
+        public Price(Money price, Guid productId, Guid sellerId, DateTime at)
         {
             this.Amount = price;
+            this.ProductId = productId;
+            this.SellerId = sellerId;
             this.At = new DateTime(at.Year, at.Month, at.Day, at.Hour, at.Minute, 0);
         }
 
@@ -29,6 +30,8 @@ namespace PriceGetter.Core.Models.ValueObjects
 
                 hash = hash * 382883 + this.Amount.GetHashCode();
                 hash = hash * 382883 + this.At.GetHashCode();
+                hash = hash * 382883 + this.SellerId.GetHashCode();
+                hash = hash * 382883 + this.ProductId.GetHashCode();
 
                 return hash;
             }
@@ -42,7 +45,12 @@ namespace PriceGetter.Core.Models.ValueObjects
                 return false;
             }
 
-            return this.Amount == instance.Amount && this.At == instance.At;
+            bool isSameAmount = this.Amount == instance.Amount;
+            bool isSameTime = this.At == instance.At;
+            bool isSameProduct = this.ProductId == instance.ProductId;
+            bool isSameSeller = this.SellerId == instance.SellerId;
+
+            return isSameAmount && isSameAmount && isSameProduct && isSameSeller;
         }
     }
 }

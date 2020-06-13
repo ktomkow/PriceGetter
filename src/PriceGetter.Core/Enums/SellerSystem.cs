@@ -4,7 +4,8 @@ using System.Text;
 
 namespace PriceGetter.Core.Enums
 {
-    public enum DataProvider
+    public enum SellerSystem
     {
+        xkom
     }
 }

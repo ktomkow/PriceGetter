@@ -12,15 +12,19 @@ namespace PriceGetter.Core.Entities
     {
         public Name Name { get; protected set; }
         public Url HomePage { get; protected set; }
-        public DataProvider Provider { get; protected set; } // todo: czy to ta powinno być zrealizowane? jak określić do którego sprzedawcy używany jest który obiekt dostarczający ceny?
+        public SellerSystem SellerSystem { get; } 
 
-        public Seller(Name name, Guid guid) : base(guid)
+        protected Seller() : base() { }
+
+        public Seller(Name name, SellerSystem sellerSystem, Guid guid) : base(guid)
         {
+            this.SellerSystem = sellerSystem;
             this.Rename(name);
         }
 
-        public Seller(Name name)
+        public Seller(Name name, SellerSystem sellerSystem)
         {
+            this.SellerSystem = sellerSystem;
             this.Rename(name);
         }
 

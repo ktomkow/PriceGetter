@@ -11,6 +11,8 @@ namespace PriceGetter.Core.Models.Entities
         public Guid SellerId { get; }
         public bool IsActive { get; protected set; }
 
+        protected ProductFollow() : base() { }
+
         public ProductFollow(Guid productId, Guid sellerId) : base()
         {
             this.ProductId = productId;

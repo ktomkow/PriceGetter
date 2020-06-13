@@ -9,6 +9,7 @@ namespace PriceGetter.Core.Models.ValueObjects
     {
         public Money Amount { get; }
         public DateTime At { get; }
+        public Guid SellerId { get; }
 
         protected Price() { }
 

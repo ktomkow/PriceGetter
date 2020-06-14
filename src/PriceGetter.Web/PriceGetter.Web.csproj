@@ -12,5 +12,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PriceGetter.ApplicationService\PriceGetter.ApplicationServices.csproj" />
+    <ProjectReference Include="..\PriceGetter.ContentProvider\PriceGetter.ContentProvider.csproj" />
+    <ProjectReference Include="..\PriceGetter.Contracts\PriceGetter.Contracts.csproj" />
+    <ProjectReference Include="..\PriceGetter.Core\PriceGetter.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

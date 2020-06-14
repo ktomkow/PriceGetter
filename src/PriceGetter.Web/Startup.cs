@@ -14,6 +14,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PriceGetter.ApplicationServices.SpecificDetailsProviders;
+using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
+using PriceGetter.ContentProvider.CssExtractors;
+using PriceGetter.ContentProvider.ImagesUrlExtractors;
+using PriceGetter.ContentProvider.Interfaces;
+using PriceGetter.ContentProvider.NameExtractors;
+using PriceGetter.ContentProvider.PriceExtractors;
+using PriceGetter.Core.Interfaces;
+using PriceGetter.Web.Tools.Unbaser;
+using PriceGetter.WebClients;
 
 namespace PriceGetter.Web
 {
@@ -21,7 +31,6 @@ namespace PriceGetter.Web
     {
         public Startup(IWebHostEnvironment env)
         {
-            // In ASP.NET Core 3.0 `env` will be an IWebHostEnvironment, not IHostingEnvironment.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -34,12 +43,9 @@ namespace PriceGetter.Web
 
         public ILifetimeScope AutofacContainer { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            //services.AddTransient<IWeatherProvider, WeatherProvider>();
 
             services.AddSwaggerGen(c =>
             {
@@ -52,10 +58,18 @@ namespace PriceGetter.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<WeatherProvider>().As<IWeatherProvider>().InstancePerLifetimeScope();
+            builder.RegisterType<DetailsProvider>().As<IDetailsProvider>().InstancePerLifetimeScope();
+            builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<BasicCssExtractor>().As<ICssContentExtractor>().InstancePerLifetimeScope();
+            builder.RegisterType<CssPriceExtractor>().As<ICssPriceExtractor>().InstancePerLifetimeScope();
+            builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
+            builder.RegisterType<PriceExtractorXkom>();
+            builder.RegisterType<NameExtractorXkom>();
+            builder.RegisterType<MainImageExtractorXkom>();
+
+            builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();

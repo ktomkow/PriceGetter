@@ -16,8 +16,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders
         private readonly IHtmlContentGetter htmlGetter;
         private readonly PriceExtractorXkom xkomPriceExtractor;
         private readonly NameExtractorXkom xkomNameExtractor;
-
-        public MainImageExtractorXkom mainImageExtractorXkom { get; }
+        private readonly MainImageExtractorXkom mainImageExtractorXkom;
 
         public SpecificDetailsProviderFactory(
             IHtmlContentGetter htmlGetter

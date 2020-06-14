@@ -122,5 +122,26 @@ namespace PriceGetter.CoreTests.SimpleTypesConvertersTests
                 new object[] { "49,749.99", 49749.99m },
                 new object[] { "1,999,999.99", 1999999.99m },
             };
+
+        [Theory]
+        [MemberData(nameof(Data_ContainsCurrency_DecimalDigitsDotSeparation))]
+        public void ToDecimal_ContainsCurrency_ThenConvert(string value, decimal expectedResult)
+        {
+            decimal result = this.converter.ToDecimal(value);
+            result.Should().Be(expectedResult);
+        }
+
+        public static IEnumerable<object[]> Data_ContainsCurrency_DecimalDigitsDotSeparation =>
+            new List<object[]>
+            {
+                new object[] { "3299,00 zł",  3299.00m },
+                new object[] { "3299.00 zł",  3299.00m },
+                new object[] { "3 299,00 zł", 3299.00m },
+                new object[] { "3 299.00 zł", 3299.00m },
+                new object[] { "3299,00 usd",  3299.00m },
+                new object[] { "3299.00 usd",  3299.00m },
+                new object[] { "3 299,00 usd", 3299.00m },
+                new object[] { "3 299.00 usd", 3299.00m }
+            };
     }
 }

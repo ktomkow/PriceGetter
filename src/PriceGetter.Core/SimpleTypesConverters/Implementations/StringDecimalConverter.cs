@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PriceGetter.Core.SimpleTypesConverters.Implementations
 {
@@ -11,6 +12,8 @@ namespace PriceGetter.Core.SimpleTypesConverters.Implementations
     {
         public decimal ToDecimal(string value)
         {
+            value = this.RemoveCurrency(value);
+
             int dotsCount = value.Count(x => x == '.');
             int commaCount = value.Count(x => x == ',');
 
@@ -20,6 +23,13 @@ namespace PriceGetter.Core.SimpleTypesConverters.Implementations
             }
 
             return this.ToDecimalHasThousandsSeparator(value);
+        }
+
+        private string RemoveCurrency(string value)
+        {
+            value = Regex.Replace(value, "\\p{L}", "");
+            value = value.Trim();
+            return value;
         }
 
         private decimal ToDecimalHasThousandsSeparator(string value)

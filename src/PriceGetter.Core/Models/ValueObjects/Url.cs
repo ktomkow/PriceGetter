@@ -20,12 +20,21 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return this.Value.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            bool typeMatch = base.EqualsType<Url>(obj);
+
+            if (typeMatch == false)
+            {
+                return false;
+            }
+
+            Url instance = obj as Url;
+
+            return this.Value == instance.Value;
         }
 
         private string Format(string url)

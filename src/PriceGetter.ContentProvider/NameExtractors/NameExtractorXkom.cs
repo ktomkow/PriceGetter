@@ -17,7 +17,7 @@ namespace PriceGetter.ContentProvider.NameExtractors
 
         public Name Extract(Html html)
         {
-            CssClass cssClass = new CssClass("s");
+            CssClass cssClass = new CssClass("sc-1x6crnh-5 gOwOoL");
 
             string rawName = this.cssContentExtractor.Extract(html, cssClass);
 

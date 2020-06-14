@@ -20,16 +20,28 @@ namespace PriceGetter.ContentProvidersTests.NameExtractors
             this.extractor = new NameExtractorXkom(cssContentExtractor);
         }
 
-        //[Fact]
-        //public void a()
-        //{
-        //    Name expectedName = new Name("Switch Mario Kart 8 Deluxe");
-        //    string rawHtml = "";
-        //    Html html = new Html(rawHtml);
+        [Fact]
+        public void ExtractFromSingleElement()
+        {
+            Name expectedName = new Name("Switch Mario Kart 8 Deluxe");
+            string rawHtml = "<h1 class=\"sc-1x6crnh-5 gOwOoL\">Switch Mario Kart 8 Deluxe</h1>";
+            Html html = new Html(rawHtml);
 
-        //    Name name = extractor.Extract(html);
+            Name name = extractor.Extract(html);
 
-        //    name.Should().Be(expectedName);
-        //}
+            name.Should().Be(expectedName);
+        }
+
+        [Fact]
+        public void ExtractFromNestedElement()
+        {
+            Name expectedName = new Name("Switch Mario Kart 8 Deluxe");
+            string rawHtml = "<div class=\"sc-1x6crnh-13 fXjZNH\"><h1 class=\"sc-1x6crnh-5 gOwOoL\">Switch Mario Kart 8 Deluxe</h1></div>";
+            Html html = new Html(rawHtml);
+
+            Name name = extractor.Extract(html);
+
+            name.Should().Be(expectedName);
+        }
     }
 }

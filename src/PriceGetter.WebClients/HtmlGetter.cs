@@ -18,6 +18,12 @@ namespace PriceGetter.WebClients
 
             string responseContent = await response.Content.ReadAsStringAsync();
 
+            Console.WriteLine(DateTime.UtcNow.ToString());
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Dupa dupa dupa");
+            }
+
             Html html = new Html(responseContent);
 
             return html;

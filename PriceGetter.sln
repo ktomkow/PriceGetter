@@ -23,11 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebClientsTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ContentProvidersTests", "tests\PriceGetter.ContentProvidersTests\PriceGetter.ContentProvidersTests.csproj", "{B3B67913-0876-4152-84F0-762B1D0F7534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Persistence", "src\PriceGetter.Persistence\PriceGetter.Persistence.csproj", "{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Persistence", "src\PriceGetter.Persistence\PriceGetter.Persistence.csproj", "{9FB0BFA8-1E71-4C44-AA91-7C47A160841B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Web", "src\PriceGetter.Web\PriceGetter.Web.csproj", "{B9A9418E-E979-4AE3-8F34-C046060D97C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Web", "src\PriceGetter.Web\PriceGetter.Web.csproj", "{B9A9418E-E979-4AE3-8F34-C046060D97C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.WebTests", "tests\PriceGetter.WebTests\PriceGetter.WebTests.csproj", "{D614B942-5044-4B7C-9501-94AFFF0607C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebTests", "tests\PriceGetter.WebTests\PriceGetter.WebTests.csproj", "{D614B942-5044-4B7C-9501-94AFFF0607C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Infrastructure", "PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj", "{89B00129-EA46-423A-9834-5E64D016923C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{D614B942-5044-4B7C-9501-94AFFF0607C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D614B942-5044-4B7C-9501-94AFFF0607C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D614B942-5044-4B7C-9501-94AFFF0607C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89B00129-EA46-423A-9834-5E64D016923C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B00129-EA46-423A-9834-5E64D016923C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B00129-EA46-423A-9834-5E64D016923C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B00129-EA46-423A-9834-5E64D016923C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{9FB0BFA8-1E71-4C44-AA91-7C47A160841B} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{B9A9418E-E979-4AE3-8F34-C046060D97C0} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{D614B942-5044-4B7C-9501-94AFFF0607C7} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
+		{89B00129-EA46-423A-9834-5E64D016923C} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

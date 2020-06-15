@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Web", "src\Pric
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebTests", "tests\PriceGetter.WebTests\PriceGetter.WebTests.csproj", "{D614B942-5044-4B7C-9501-94AFFF0607C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Infrastructure", "PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj", "{89B00129-EA46-423A-9834-5E64D016923C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Infrastructure", "PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj", "{89B00129-EA46-423A-9834-5E64D016923C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.InfrastructureTests", "tests\PriceGetter.InfrastructureTests\PriceGetter.InfrastructureTests.csproj", "{3D46112D-2688-4C51-A192-18B72BD7118E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{89B00129-EA46-423A-9834-5E64D016923C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89B00129-EA46-423A-9834-5E64D016923C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89B00129-EA46-423A-9834-5E64D016923C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D46112D-2688-4C51-A192-18B72BD7118E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D46112D-2688-4C51-A192-18B72BD7118E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D46112D-2688-4C51-A192-18B72BD7118E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D46112D-2688-4C51-A192-18B72BD7118E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,8 @@ using PriceGetter.ContentProvider.Interfaces;
 using PriceGetter.ContentProvider.NameExtractors;
 using PriceGetter.ContentProvider.PriceExtractors;
 using PriceGetter.Core.Interfaces;
+using PriceGetter.Infrastructure.Cache;
+using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Tools.Unbaser;
 using PriceGetter.WebClients;
 
@@ -58,7 +60,9 @@ namespace PriceGetter.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<DetailsProvider>().As<IDetailsProvider>().InstancePerLifetimeScope();
+            //builder.RegisterType<DetailsProvider>().As<IDetailsProvider>().InstancePerLifetimeScope();
+            builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
+            
             builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
             builder.RegisterType<BasicCssExtractor>().As<ICssContentExtractor>().InstancePerLifetimeScope();
             builder.RegisterType<CssPriceExtractor>().As<ICssPriceExtractor>().InstancePerLifetimeScope();
@@ -68,6 +72,8 @@ namespace PriceGetter.Web
             builder.RegisterType<MainImageExtractorXkom>();
 
             builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>();
+
+            builder.RegisterType<CacheFacade>().As<ICacheFacade>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -3,6 +3,7 @@ using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers;
 using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Web.Tools.Unbaser;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace PriceGetter.Web.Controllers
     {
         private readonly IDetailsProvider detailsProvider;
         private readonly IUrlUnbaser urlUnbaser;
+        private readonly ICacheFacade cacheFacade;
 
-        public PreProductDetailsController(IDetailsProvider detailsProvider, IUrlUnbaser urlUnbaser)
+        public PreProductDetailsController(IDetailsProvider detailsProvider, IUrlUnbaser urlUnbaser, ICacheFacade cacheFacade)
         {
             this.detailsProvider = detailsProvider;
             this.urlUnbaser = urlUnbaser;
+            this.cacheFacade = cacheFacade;
         }
 
         /// <summary>
@@ -38,8 +41,14 @@ namespace PriceGetter.Web.Controllers
         public async Task<SellerSpecificDetailsDto> GetDetails([FromRoute]string productUrlBase64)
         {
             Url url = this.urlUnbaser.Unbase(productUrlBase64);
-            SellerSpecificDetailsDto details = await this.detailsProvider.GetAsync(url.Value);
 
+            SellerSpecificDetailsDto details = this.cacheFacade.Get<SellerSpecificDetailsDto>(url);
+            if (details == null)
+            {
+                details = await this.detailsProvider.GetAsync(url.Value);
+                this.cacheFacade.Save(details, url);
+            }
+                
             return details;
         }
     }

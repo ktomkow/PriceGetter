@@ -10,28 +10,42 @@ namespace PriceGetter.Infrastructure.Cache
 
         public TItem Get<TItem>(object key)
         {
-            try
+            int keyHashCode = this.ConvertObjectToKey(key);
+
+            if(dictionary.TryGetValue(keyHashCode, out object @object))
             {
-                int keyHashCode = key.GetHashCode();
-                if (dictionary.TryGetValue(keyHashCode, out object @object))
-                {
-                    return (TItem)@object;
-                }
+                return (TItem)@object;
             }
-            catch(Exception) { }
 
             return default;
         }
 
         public void Save<TItem>(TItem obj, object key)
         {
-            int keyHashCode = key.GetHashCode();
+            int keyHashCode = this.ConvertObjectToKey(key);
             if (dictionary.ContainsKey(keyHashCode))
             {
                 dictionary.Remove(keyHashCode);
             }
 
             dictionary.Add(keyHashCode, obj);
+        }
+
+        private int ConvertObjectToKey(object key)
+        {
+            try
+            {
+                int keyHashCode = key.GetHashCode();
+                return keyHashCode;
+            }
+            catch(ArgumentNullException)
+            {
+                throw;
+            }
+            catch (Exception) 
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }

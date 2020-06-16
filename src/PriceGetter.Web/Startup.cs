@@ -9,6 +9,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,6 +49,10 @@ namespace PriceGetter.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -97,6 +102,16 @@ namespace PriceGetter.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
     }

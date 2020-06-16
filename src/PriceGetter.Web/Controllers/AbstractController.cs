@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PriceGetter.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public abstract class AbstractController : ControllerBase
     {
     }

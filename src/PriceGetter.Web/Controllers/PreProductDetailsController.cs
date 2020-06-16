@@ -16,13 +16,11 @@ namespace PriceGetter.Web.Controllers
     {
         private readonly IDetailsProvider detailsProvider;
         private readonly IUrlUnbaser urlUnbaser;
-        private readonly ICacheFacade cacheFacade;
 
-        public PreProductDetailsController(IDetailsProvider detailsProvider, IUrlUnbaser urlUnbaser, ICacheFacade cacheFacade)
+        public PreProductDetailsController(IDetailsProvider detailsProvider, IUrlUnbaser urlUnbaser)
         {
             this.detailsProvider = detailsProvider;
             this.urlUnbaser = urlUnbaser;
-            this.cacheFacade = cacheFacade;
         }
 
         /// <summary>
@@ -42,12 +40,7 @@ namespace PriceGetter.Web.Controllers
         {
             Url url = this.urlUnbaser.Unbase(productUrlBase64);
 
-            SellerSpecificDetailsDto details = this.cacheFacade.Get<SellerSpecificDetailsDto>(url);
-            if (details == null)
-            {
-                details = await this.detailsProvider.GetAsync(url.Value);
-                this.cacheFacade.Save(details, url);
-            }
+            SellerSpecificDetailsDto details = await this.detailsProvider.GetAsync(url.Value);
                 
             return details;
         }

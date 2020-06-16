@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
+    <ProjectReference Include="..\..\src\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

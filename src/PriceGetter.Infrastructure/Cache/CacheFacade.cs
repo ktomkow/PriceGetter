@@ -44,7 +44,7 @@ namespace PriceGetter.Infrastructure.Cache
             }
             catch (Exception) 
             {
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(key));
             }
         }
     }

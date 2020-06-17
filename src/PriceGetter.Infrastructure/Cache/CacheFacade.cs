@@ -14,7 +14,26 @@ namespace PriceGetter.Infrastructure.Cache
 
             if(dictionary.TryGetValue(keyHashCode, out object @object))
             {
-                return (TItem)@object;
+                try
+                {
+                    return (TItem)@object;
+                }
+                catch(InvalidCastException)
+                {
+                    return default;
+                }
+            }
+
+            return default;
+        }
+
+        public string Get(object key) 
+        {
+            int keyHashCode = this.ConvertObjectToKey(key);
+
+            if (dictionary.TryGetValue(keyHashCode, out object @object))
+            {
+                return string.Empty;
             }
 
             return default;

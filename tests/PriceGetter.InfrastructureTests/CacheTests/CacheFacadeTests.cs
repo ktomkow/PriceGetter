@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Cache;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,108 @@ namespace PriceGetter.InfrastructureTests.CacheTests
         public CacheFacadeTests()
         {
             this.cache = new CacheFacade();
+        }
+
+        [Fact]
+        public void Get_OtherTypeWantedThanStored_ShouldReturnDefaultValue_int()
+        {
+            int key = 102;
+            int storedInt = 33;
+
+            this.cache.Save(storedInt, key);
+            decimal result = this.cache.Get<decimal>(key);
+
+            result.Should().Be(0);
+        }
+
+        [Fact]
+        public void Get_OtherTypeWantedThanStored_ShouldReturnDefaultValue_string()
+        {
+            int key = 102;
+            int storedInt = 33;
+
+            this.cache.Save(storedInt, key);
+            string result = this.cache.Get<string>(key);
+
+            result.Should().BeNull();
+        }
+
+
+        [Fact]
+        public void Get_OtherTypeWantedThanStored_ShouldReturnDefaultValue_referenceType()
+        {
+            int key = 102;
+            int storedInt = 33;
+
+            this.cache.Save(storedInt, key);
+            ClassWithoutHashCodeImplemented result = this.cache.Get<ClassWithoutHashCodeImplemented>(key);
+
+            result.Should().BeNull();
+        }
+
+        [Fact]
+        public void Get_OtherTypeWantedThanStored_ShouldReturnDefaultValue_Money()
+        {
+            int key = 102;
+            int storedInt = 33;
+
+            this.cache.Save(storedInt, key);
+            Money result = this.cache.Get<Money>(key);
+
+            result.Should().BeNull();
+        }
+
+        [Fact]
+        public void Get_WhenNoObjectWithGivenKey_ShouldReturnDefaultValue_int()
+        {
+            int key = 102;
+
+            int result = this.cache.Get<int>(key);
+
+            result.Should().Be(0);
+        }
+
+        [Fact]
+        public void Get_WhenNoObjectWithGivenKey_ShouldReturnDefaultValue_string()
+        {
+            int key = 102;
+
+            string result = this.cache.Get<string>(key);
+
+            result.Should().BeNull();
+        }
+
+        [Fact]
+        public void Get_WhenNoObjectWithGivenKey_ShouldReturnDefaultValue_decimal()
+        {
+            int key = 102;
+
+            decimal result = this.cache.Get<decimal>(key);
+
+            result.Should().Be(0.0m);
+        }
+
+        [Fact]
+        public void Get_WhenNoObjectWithGivenKey_ShouldReturnDefaultValue_referenceType()
+        {
+            int key = 102;
+
+            ClassWithoutHashCodeImplemented result = this.cache.Get<ClassWithoutHashCodeImplemented>(key);
+
+            result.Should().BeNull();
+        }
+
+        [Fact]
+        public void Save_And_Get_ShouldBeTheSame_Money()
+        {
+            string key = "someStringKey";
+            Money moneyToSave = new Money(10.0m);
+            Money moneyFromCache;
+
+            this.cache.Save(moneyToSave, key);
+            moneyFromCache = this.cache.Get<Money>(key);
+
+            moneyFromCache.Should().Be(moneyToSave);
         }
 
         [Fact]

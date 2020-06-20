@@ -24,7 +24,9 @@ using PriceGetter.ContentProvider.NameExtractors;
 using PriceGetter.ContentProvider.PriceExtractors;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Infrastructure.Cache;
+using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Web.Fakes;
+using PriceGetter.Web.Filters;
 using PriceGetter.Web.Tools.Unbaser;
 using PriceGetter.WebClients;
 
@@ -76,9 +78,12 @@ namespace PriceGetter.Web
             builder.RegisterType<NameExtractorXkom>();
             builder.RegisterType<MainImageExtractorXkom>();
 
-            builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>();
+            builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
 
-            builder.RegisterType<CacheFacade>().As<ICacheFacade>();
+            builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
+            builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
+
+            builder.RegisterType<IpBlackListFilter>().SingleInstance();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

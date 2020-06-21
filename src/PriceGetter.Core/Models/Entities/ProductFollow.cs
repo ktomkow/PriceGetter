@@ -1,4 +1,6 @@
 ﻿using PriceGetter.Core.BaseClasses.Entities;
+using PriceGetter.Core.Entities;
+using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,20 +12,23 @@ namespace PriceGetter.Core.Models.Entities
         public Guid ProductId { get; }
         public Guid SellerId { get; }
         public bool IsActive { get; protected set; }
+        public Url ProductPage { get; set; }
 
         protected ProductFollow() : base() { }
 
-        public ProductFollow(Guid productId, Guid sellerId) : base()
+        public ProductFollow(Product product, Seller seller, Url productPage) : base()
         {
-            this.ProductId = productId;
-            this.SellerId = sellerId;
+            this.ProductId = product.Id;
+            this.SellerId = seller.Id;
+            this.ProductPage = productPage;
             this.IsActive = true;
         }
 
-        public ProductFollow(Guid productId, Guid sellerId, bool isActive) : base()
+        public ProductFollow(Product product, Seller seller, Url productPage, bool isActive) : base()
         {
-            this.ProductId = productId;
-            this.SellerId = sellerId;
+            this.ProductId = product.Id;
+            this.SellerId = seller.Id;
+            this.ProductPage = productPage;
             this.IsActive = isActive;
         }
 

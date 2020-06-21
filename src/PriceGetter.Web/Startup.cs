@@ -29,6 +29,7 @@ using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
+using PriceGetter.Web.Middleware;
 using PriceGetter.Web.Tools.Unbaser;
 using PriceGetter.WebClients;
 
@@ -93,6 +94,8 @@ namespace PriceGetter.Web
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
+            app.UseMiddleware<IpBlackListMiddleware>();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

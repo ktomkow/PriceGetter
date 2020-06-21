@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import PageNotFound from './app/pageNotFound/pageNotFound';
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,7 +30,8 @@ function App() {
             </a>
           </header>
         </div>
-      </Route>
+        </Route>
+          <Route component={PageNotFound} />
     </Router>
   );
 }

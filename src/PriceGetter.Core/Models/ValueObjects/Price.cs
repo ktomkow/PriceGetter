@@ -1,4 +1,6 @@
 ﻿using PriceGetter.Core.BaseClasses.ValueObjects;
+using PriceGetter.Core.Entities;
+using PriceGetter.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,11 +16,11 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         protected Price() { }
 
-        public Price(Money price, Guid productId, Guid sellerId, DateTime at)
+        public Price(Money price, Product product, Seller seller, DateTime at)
         {
             this.Amount = price;
-            this.ProductId = productId;
-            this.SellerId = sellerId;
+            this.ProductId = product.Id;
+            this.SellerId = seller.Id;
             this.At = new DateTime(at.Year, at.Month, at.Day, at.Hour, at.Minute, 0);
         }
 

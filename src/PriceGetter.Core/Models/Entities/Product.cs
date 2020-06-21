@@ -1,4 +1,5 @@
 ﻿using PriceGetter.Core.BaseClasses.Entities;
+using PriceGetter.Core.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -38,15 +39,15 @@ namespace PriceGetter.Core.Models.Entities
             this.Name = name;
         }
 
-        public void AddPrice(Money price, Guid sellerId)
+        public void AddPrice(Money price, Seller seller)
         {
-            Price timedPrice = new Price(price, this.Id, sellerId, DateTime.UtcNow);
+            Price timedPrice = new Price(price, this, seller, DateTime.UtcNow);
             this.prices.Add(timedPrice);
         }
 
-        public void AddPrice(Money price, Guid sellerId, DateTime dateTime)
+        public void AddPrice(Money price, Seller seller, DateTime dateTime)
         {
-            Price timedPrice = new Price(price, this.Id, sellerId, dateTime);
+            Price timedPrice = new Price(price, this, seller, dateTime);
             this.prices.Add(timedPrice);
         }
 

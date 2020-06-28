@@ -22,6 +22,7 @@
     <ProjectReference Include="..\PriceGetter.Contracts\PriceGetter.Contracts.csproj" />
     <ProjectReference Include="..\PriceGetter.Core\PriceGetter.Core.csproj" />
     <ProjectReference Include="..\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
+    <ProjectReference Include="..\PriceGetter.Persistence\PriceGetter.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

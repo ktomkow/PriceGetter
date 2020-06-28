@@ -12,7 +12,7 @@ namespace PriceGetter.Core.Models.Entities
         public Guid ProductId { get; }
         public Guid SellerId { get; }
         public bool IsActive { get; protected set; }
-        public Url ProductPage { get; set; }
+        public Url ProductPage { get; protected set; }
 
         protected ProductFollow() : base() { }
 
@@ -42,14 +42,44 @@ namespace PriceGetter.Core.Models.Entities
             this.IsActive = false;
         }
 
-        public override int GetHashCode()
+        public void UpdateProductPage(Url productPage)
         {
-            throw new NotImplementedException();
+            this.ProductPage = productPage;
         }
+
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            bool typeMatch = base.EqualsType<ProductFollow>(obj);
+
+            if (typeMatch == false)
+            {
+                return false;
+            }
+
+            ProductFollow instance = obj as ProductFollow;
+
+            bool isIdSame = this.Id == instance.Id;
+            bool isProductIdSame = this.ProductId == instance.SellerId;
+            bool isSellerIdSame = this.SellerId == instance.SellerId;
+            bool isActiveSame = this.IsActive == instance.IsActive;
+            bool isUrlSame = this.ProductPage == instance.ProductPage;
+
+            return isIdSame && isProductIdSame && isSellerIdSame && isActiveSame && isUrlSame;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 1579;
+
+                hash = hash * 12413 + this.Id.GetHashCode();
+                hash = hash * 12413 + this.ProductId.GetHashCode();
+                hash = hash * 12413 + this.SellerId.GetHashCode();
+
+                return hash;
+            }
         }
     }
 }

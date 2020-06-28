@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PriceGetter.ApplicationServices.PriceProviders;
+using PriceGetter.ApplicationServices.ProductServices;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
 using PriceGetter.ContentProvider.CssExtractors;
@@ -95,6 +97,10 @@ namespace PriceGetter.Web
             builder.RegisterType<InMemoryProductRepository>().As<IProductRepository>().SingleInstance();
             builder.RegisterType<InMemorySellersRepository>().As<ISellersRepository>().SingleInstance();
             builder.RegisterType<InMemoryFollowedProductsRepository>().As<IFollowedProductRepository>().SingleInstance();
+
+            builder.RegisterType<FollowedProductsRegister>().As<IFollowedProductsRegister>();
+
+            builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

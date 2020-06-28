@@ -8,6 +8,6 @@ namespace PriceGetter.ApplicationServices.ProductServices
 {
     public interface IFollowedProductsRegister
     {
-        Task Meh(); // pobierz śledzone produkty, pobierz ich cenę, zapisz produkty
+        Task RegisterPrices(); 
     }
 }

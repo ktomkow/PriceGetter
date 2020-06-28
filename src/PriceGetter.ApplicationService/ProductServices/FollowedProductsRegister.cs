@@ -35,7 +35,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
             this.logger = logger;
         }
 
-        public async Task Meh()
+        public async Task RegisterPrices()
         {
             Task<IEnumerable<ProductFollow>> getFollowed = this.followedProductRepository.Get();
 

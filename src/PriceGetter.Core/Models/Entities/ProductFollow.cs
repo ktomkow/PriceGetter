@@ -13,6 +13,7 @@ namespace PriceGetter.Core.Models.Entities
         public Guid SellerId { get; }
         public bool IsActive { get; protected set; }
         public Url ProductPage { get; protected set; }
+        public Url ProductImage { get; protected set; }
 
         protected ProductFollow() : base() { }
 
@@ -47,6 +48,10 @@ namespace PriceGetter.Core.Models.Entities
             this.ProductPage = productPage;
         }
 
+        public void UpdateImageUrl(Url imageUrl)
+        {
+            this.ProductImage = imageUrl;
+        }
 
         public override bool Equals(object obj)
         {

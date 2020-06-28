@@ -25,12 +25,21 @@ namespace PriceGetter.Core.Models.Entities
             this.IsActive = true;
         }
 
-        public ProductFollow(Product product, Seller seller, Url productPage, bool isActive) : base()
+        public ProductFollow(Product product, Seller seller, Url productPage, Guid id, bool isActive) : base(id)
         {
             this.ProductId = product.Id;
             this.SellerId = seller.Id;
             this.ProductPage = productPage;
             this.IsActive = isActive;
+        }
+
+        public ProductFollow(Product product, Seller seller, Url productPage, Guid id, bool isActive, Url imageUrl) : base(id)
+        {
+            this.ProductId = product.Id;
+            this.SellerId = seller.Id;
+            this.ProductPage = productPage;
+            this.IsActive = isActive;
+            this.ProductImage = imageUrl;
         }
 
         public void Activate()

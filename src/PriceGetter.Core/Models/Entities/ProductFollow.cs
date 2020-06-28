@@ -14,6 +14,7 @@ namespace PriceGetter.Core.Models.Entities
         public bool IsActive { get; protected set; }
         public Url ProductPage { get; protected set; }
         public Url ProductImage { get; protected set; }
+        public bool HasImageLink => this.ProductImage != null;
 
         protected ProductFollow() : base() { }
 

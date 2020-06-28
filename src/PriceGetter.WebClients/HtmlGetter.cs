@@ -10,10 +10,10 @@ namespace PriceGetter.WebClients
 {
     public class HtmlGetter : IHtmlContentGetter
     {
+        private static HttpClient client = new HttpClient();
+
         public async Task<Html> GetAsync(Url url)
         {
-            var client = new HttpClient();
-
             HttpResponseMessage response = await client.GetAsync(url.Value);
 
             string responseContent = await response.Content.ReadAsStringAsync();

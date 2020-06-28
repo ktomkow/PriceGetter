@@ -23,10 +23,12 @@ using PriceGetter.ContentProvider.Interfaces;
 using PriceGetter.ContentProvider.NameExtractors;
 using PriceGetter.ContentProvider.PriceExtractors;
 using PriceGetter.Core.Interfaces;
+using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
+using PriceGetter.Persistence.Repositories;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
 using PriceGetter.Web.Middleware;
@@ -89,6 +91,10 @@ namespace PriceGetter.Web
             builder.RegisterInstance(new LoggerSettings() { LogFilepath = "C:/Logs/PriceGetter/logs.log"});
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
+
+            builder.RegisterType<InMemoryProductRepository>().As<IProductRepository>().SingleInstance();
+            builder.RegisterType<InMemorySellersRepository>().As<ISellersRepository>().SingleInstance();
+            builder.RegisterType<InMemoryFollowedProductsRepository>().As<IFollowedProductRepository>().SingleInstance();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

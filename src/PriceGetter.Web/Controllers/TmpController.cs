@@ -5,6 +5,7 @@ using PriceGetter.Core.Enums;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Infrastructure.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,21 +20,31 @@ namespace PriceGetter.Web.Controllers
         private readonly ISellersRepository sellersRepository;
         private readonly IFollowedProductRepository followedProductRepository;
         private readonly IFollowedProductsRegister register;
+        private readonly SqlDatabaseSettings dbSettings;
 
         public TmpController(
             IProductRepository productRepository,
             ISellersRepository sellersRepository,
             IFollowedProductRepository followedProductRepository,
-            IFollowedProductsRegister register)
+            IFollowedProductsRegister register,
+            SqlDatabaseSettings dbSettings)
         {
             this.productRepository = productRepository;
             this.sellersRepository = sellersRepository;
             this.followedProductRepository = followedProductRepository;
             this.register = register;
+            this.dbSettings = dbSettings;
         }
 
         [HttpGet]
         public IActionResult Get()
+        {
+            return Ok(dbSettings.ConnectionString);
+        }
+
+        [Route("sampleJob")]
+        [HttpGet]
+        public IActionResult SampleJob()
         {
             string url = "https://www.x-kom.pl/p/564447-procesory-intel-core-i5-intel-core-i5-10600kf.html";
 
@@ -54,5 +65,6 @@ namespace PriceGetter.Web.Controllers
 
             return Ok(products);
         }
+
     }
 }

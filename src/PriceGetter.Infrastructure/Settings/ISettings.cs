@@ -4,8 +4,7 @@ using System.Text;
 
 namespace PriceGetter.Infrastructure.Settings
 {
-    public class LoggerSettings : ISettings
+    public interface ISettings
     {
-        public string LogFilepath { get; set; }
     }
 }

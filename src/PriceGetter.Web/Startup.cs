@@ -31,6 +31,7 @@ using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Persistence.Repositories;
+using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
 using PriceGetter.Web.Middleware;
@@ -90,7 +91,8 @@ namespace PriceGetter.Web
             builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
             builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
             builder.RegisterType<PriceGetterLogger>().As<IPriceGetterLogger>().SingleInstance();
-            builder.RegisterInstance(new LoggerSettings() { LogFilepath = "C:/Logs/PriceGetter/logs.log"});
+            builder.RegisterInstance(this.Configuration.GetSettings<SqlDatabaseSettings>());
+            builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 

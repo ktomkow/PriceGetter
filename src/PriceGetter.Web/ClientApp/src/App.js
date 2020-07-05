@@ -9,14 +9,20 @@ import {
 } from "react-router-dom";
 
 import Home from "./app/components/home/home";
+import List from "./app/components/list/list";
+import Form from "./app/components/form/form";
+import Tmp from "./app/components/tmp/tmp";
 
 function App() {
   return (
     <Router>
-      <Route exact path={["/clientapp", "/"]}>
-        <Home />
-      </Route>
-      <Route component={PageNotFound} />
+      <Switch>
+        <Route exact path={["/clientapp", "/home"]} component={Home} />
+        <Route exact path={["/list"]} component={List} />
+        <Route exact path="/form" component={Form} />
+        <Route exact path={["/", "/tmp"]} component={Tmp} />
+        <Route component={PageNotFound} />
+      </Switch>
     </Router>
   );
 }

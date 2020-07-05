@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
 
 // option 1
 const List = connect(mapStateToProps)(ConnectedList);
-
 export default List;
 
 

@@ -3,6 +3,7 @@ import React from "react";
 import List from "../list/list";
 import Form from "../form/form";
 import HookForm from "../form/hookForm";
+import Post from "../posts/posts";
 
 const Tmp = () => {
   return (
@@ -10,6 +11,7 @@ const Tmp = () => {
       <List />
       <Form />
       <HookForm />
+      <Post />
     </>
   );
 };

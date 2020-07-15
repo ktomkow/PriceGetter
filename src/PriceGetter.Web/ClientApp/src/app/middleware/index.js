@@ -12,7 +12,7 @@ export function forbiddenWordsMiddleware({ dispatch }) {
 
         if (foundWord.length) {
           alert("Not cool");
-            return dispatch({ type: "FOUND_BAD_WORD" });
+          return dispatch({ type: "FOUND_BAD_WORD" });
         }
       }
       return next(action);

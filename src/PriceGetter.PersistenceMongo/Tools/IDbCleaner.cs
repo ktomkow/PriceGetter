@@ -6,6 +6,6 @@ namespace PriceGetter.PersistenceMongo.Tools
 {
     public interface IDbCleaner
     {
-        void Clean(string databaseName);
+        void Clean();
     }
 }

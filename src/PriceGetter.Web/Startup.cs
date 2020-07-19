@@ -91,7 +91,7 @@ namespace PriceGetter.Web
             builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
             builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
             builder.RegisterType<PriceGetterLogger>().As<IPriceGetterLogger>().SingleInstance();
-            builder.RegisterInstance(this.Configuration.GetSettings<DatabaseSettings>());
+            builder.RegisterInstance(this.Configuration.GetSettings<SqlSettings>());
             builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();

@@ -9,12 +9,11 @@ namespace PriceGetter.PersistenceMongo.Tools
     public class CollectionProvider : ICollectionProvider
     {
         private readonly IMongoDatabase database;
-        private static readonly string databaseName = "PriceGetter";
 
-        public CollectionProvider(DatabaseSettings settings)
+        public CollectionProvider(MongoSettings settings)
         {
-            IMongoClient client = new MongoClient(settings.NoSqlConnectionString);
-            this.database = client.GetDatabase(databaseName);
+            IMongoClient client = new MongoClient(settings.ConnectionString);
+            this.database = client.GetDatabase(settings.DatabaseName);
         }
 
         public IMongoCollection<T> Get<T>(string collectionName)

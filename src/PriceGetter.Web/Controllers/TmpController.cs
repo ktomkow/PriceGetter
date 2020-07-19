@@ -22,14 +22,14 @@ namespace PriceGetter.Web.Controllers
         private readonly ISellersRepository sellersRepository;
         private readonly IFollowedProductRepository followedProductRepository;
         private readonly IFollowedProductsRegister register;
-        private readonly DatabaseSettings dbSettings;
+        private readonly SqlSettings dbSettings;
 
         public TmpController(
             IProductRepository productRepository,
             ISellersRepository sellersRepository,
             IFollowedProductRepository followedProductRepository,
             IFollowedProductsRegister register,
-            DatabaseSettings dbSettings)
+            SqlSettings dbSettings)
         {
             this.productRepository = productRepository;
             this.sellersRepository = sellersRepository;

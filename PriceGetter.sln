@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceEnti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceMongo", "src\PriceGetter.PersistenceMongo\PriceGetter.PersistenceMongo.csproj", "{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceMongoTests", "tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{AE13DCFE-4342-49C1-B07B-39D57B839DC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,10 @@ Global
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{B4D12F73-9EA5-442C-A60E-95B47EFFE29D} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{5C8D3288-3831-4E1D-9DF4-0779939EC67D} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
+		{AE13DCFE-4342-49C1-B07B-39D57B839DC1} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

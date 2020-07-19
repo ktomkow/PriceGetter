@@ -23,6 +23,7 @@
     <ProjectReference Include="..\PriceGetter.Core\PriceGetter.Core.csproj" />
     <ProjectReference Include="..\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
     <ProjectReference Include="..\PriceGetter.PersistenceEntityFramework\PriceGetter.PersistenceEntityFramework.csproj" />
+    <ProjectReference Include="..\PriceGetter.PersistenceMongo\PriceGetter.PersistenceMongo.csproj" />
     <ProjectReference Include="..\PriceGetter.Persistence\PriceGetter.Persistence.csproj" />
   </ItemGroup>
 

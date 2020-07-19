@@ -6,9 +6,11 @@ using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Settings;
+using PriceGetter.PersistenceMongo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,13 +41,24 @@ namespace PriceGetter.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(dbSettings.SqlConnectionString + " " + dbSettings.NoSqlConnectionString);
+            StringBuilder builder = new StringBuilder();
+
+            var collections = Collections.All();
+
+            foreach (var item in collections)
+            {
+                builder.AppendLine(item);
+            }
+
+            return Ok(builder.ToString());
         }
 
         [Route("sampleJob")]
         [HttpGet]
         public IActionResult SampleJob()
         {
+            throw new Exception("safety-valve");
+
             string url = "https://www.x-kom.pl/p/564447-procesory-intel-core-i5-intel-core-i5-10600kf.html";
 
             Seller seller = new Seller(new Name("xkom"), SellerSystem.xkom);
@@ -65,6 +78,5 @@ namespace PriceGetter.Web.Controllers
 
             return Ok(products);
         }
-
     }
 }

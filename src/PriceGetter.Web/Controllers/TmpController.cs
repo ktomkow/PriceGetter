@@ -20,14 +20,14 @@ namespace PriceGetter.Web.Controllers
         private readonly ISellersRepository sellersRepository;
         private readonly IFollowedProductRepository followedProductRepository;
         private readonly IFollowedProductsRegister register;
-        private readonly SqlDatabaseSettings dbSettings;
+        private readonly DatabaseSettings dbSettings;
 
         public TmpController(
             IProductRepository productRepository,
             ISellersRepository sellersRepository,
             IFollowedProductRepository followedProductRepository,
             IFollowedProductsRegister register,
-            SqlDatabaseSettings dbSettings)
+            DatabaseSettings dbSettings)
         {
             this.productRepository = productRepository;
             this.sellersRepository = sellersRepository;
@@ -39,7 +39,7 @@ namespace PriceGetter.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(dbSettings.ConnectionString);
+            return Ok(dbSettings.SqlConnectionString + " " + dbSettings.NoSqlConnectionString);
         }
 
         [Route("sampleJob")]

@@ -8,16 +8,16 @@ namespace PriceGetter.PersistenceEntityFramework.Basics
 {
     public class PriceGetterDbContext : DbContext
     {
-        private readonly SqlDatabaseSettings dbSettings;
+        private readonly DatabaseSettings dbSettings;
 
-        public PriceGetterDbContext(SqlDatabaseSettings dbSettings)
+        public PriceGetterDbContext(DatabaseSettings dbSettings)
         {
             this.dbSettings = dbSettings;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql($"Host={this.dbSettings.ConnectionString}");
+            optionsBuilder.UseNpgsql($"Host={this.dbSettings.SqlConnectionString}");
         }
     }
 }

@@ -9,23 +9,20 @@ namespace PriceGetter.PersistenceMongo.Tools
 {
     public class DbCleaner : IDbCleaner
     {
-        private readonly MongoSettings dbSettings;
+        private readonly CollectionProvider collectionProvider;
 
-        public DbCleaner(MongoSettings dbSettings)
+        public DbCleaner(CollectionProvider collectionProvider)
         {
-            this.dbSettings = dbSettings;
+            this.collectionProvider = collectionProvider;
         }
 
         public void Clean()
         {
             IEnumerable<string> collections = Collections.All();
 
-            var client = new MongoClient(this.dbSettings.ConnectionString);
-            var database = client.GetDatabase(this.dbSettings.DatabaseName);
-
             foreach (var collectionName in collections)
             {
-                var collection = database.GetCollection<object>(collectionName);
+                var collection = this.collectionProvider.Get<object>(collectionName);
                 collection.DeleteMany(new BsonDocument());
             }
         }

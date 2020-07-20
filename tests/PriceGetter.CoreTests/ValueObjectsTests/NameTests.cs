@@ -122,5 +122,18 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
 
             name.Value.Should().Be(expectedName);
         }
+
+        [Theory]
+        [InlineData("Placek")]
+        [InlineData("Bolek i Lolek")]
+        public void EqualsOp_WhenTheValueExactlyTheSame_ShouldBeTrue(string name)
+        {
+            Name name1 = new Name(name);
+            Name name2 = new Name(name);
+
+            bool areEqual = name1 == name2;
+
+            areEqual.Should().BeTrue();
+        }
     }
 }

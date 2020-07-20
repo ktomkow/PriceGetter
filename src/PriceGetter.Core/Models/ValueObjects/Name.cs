@@ -43,6 +43,16 @@ namespace PriceGetter.Core.Models.ValueObjects
             return this.Value == instance.Value;
         }
 
+        public static bool operator ==(Name leftName, Name rightName)
+        {
+            return leftName.Equals(rightName);
+        }
+
+        public static bool operator !=(Name leftName, Name rightName)
+        {
+            return !leftName.Equals(rightName);
+        }
+
         private void EnsureHasValue(string name)
         {
             if (string.IsNullOrWhiteSpace(name))

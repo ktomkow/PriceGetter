@@ -31,6 +31,7 @@ using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Persistence.Repositories;
+using PriceGetter.PersistenceMongo.Tools;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
@@ -92,6 +93,7 @@ namespace PriceGetter.Web
             builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
             builder.RegisterType<PriceGetterLogger>().As<IPriceGetterLogger>().SingleInstance();
             builder.RegisterInstance(this.Configuration.GetSettings<SqlSettings>());
+            builder.RegisterInstance(this.Configuration.GetSettings<MongoSettings>());
             builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
@@ -103,6 +105,9 @@ namespace PriceGetter.Web
             builder.RegisterType<FollowedProductsRegister>().As<IFollowedProductsRegister>();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
+
+            builder.RegisterType<CollectionProvider>().As<ICollectionProvider>();
+            builder.RegisterType<DbCleaner>().As<IDbCleaner>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

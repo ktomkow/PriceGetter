@@ -7,6 +7,7 @@ using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.PersistenceMongo;
+using PriceGetter.PersistenceMongo.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +24,25 @@ namespace PriceGetter.Web.Controllers
         private readonly IFollowedProductRepository followedProductRepository;
         private readonly IFollowedProductsRegister register;
         private readonly SqlSettings dbSettings;
+        private readonly IDbCleaner dbCleaner;
+        private readonly ICollectionProvider collectionProvider;
 
         public TmpController(
             IProductRepository productRepository,
             ISellersRepository sellersRepository,
             IFollowedProductRepository followedProductRepository,
             IFollowedProductsRegister register,
-            SqlSettings dbSettings)
+            SqlSettings dbSettings,
+            IDbCleaner dbCleaner,
+            ICollectionProvider collectionProvider)
         {
             this.productRepository = productRepository;
             this.sellersRepository = sellersRepository;
             this.followedProductRepository = followedProductRepository;
             this.register = register;
             this.dbSettings = dbSettings;
+            this.dbCleaner = dbCleaner;
+            this.collectionProvider = collectionProvider;
         }
 
         [HttpGet]
@@ -51,6 +58,22 @@ namespace PriceGetter.Web.Controllers
             }
 
             return Ok(builder.ToString());
+        }
+
+        [HttpPost]
+        public IActionResult SampleDb()
+        {
+            Sample dupa = new Sample("dupa");
+            this.collectionProvider.Get<Sample>("Sellers").InsertOne(dupa);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult ClearDb()
+        {
+            this.dbCleaner.Clean();
+
+            return NoContent();
         }
 
         [Route("sampleJob")]
@@ -77,6 +100,18 @@ namespace PriceGetter.Web.Controllers
             var products = this.productRepository.Get().Result;
 
             return Ok(products);
+        }
+
+        public class Sample
+        {
+            public Guid Id { get; set; }
+            public string Dupa { get; set; }
+
+            public Sample(string dupa)
+            {
+                this.Dupa = dupa;
+                this.Id = Guid.NewGuid();
+            }
         }
     }
 }

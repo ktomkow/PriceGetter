@@ -9,9 +9,9 @@ namespace PriceGetter.PersistenceMongo.Tools
 {
     public class DbCleaner : IDbCleaner
     {
-        private readonly CollectionProvider collectionProvider;
+        private readonly ICollectionProvider collectionProvider;
 
-        public DbCleaner(CollectionProvider collectionProvider)
+        public DbCleaner(ICollectionProvider collectionProvider)
         {
             this.collectionProvider = collectionProvider;
         }

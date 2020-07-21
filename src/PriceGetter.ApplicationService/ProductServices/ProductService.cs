@@ -24,9 +24,11 @@ namespace PriceGetter.ApplicationServices.ProductServices
 
             foreach (var product in products)
             {
-                ProductDto productDto = new ProductDto();
-                productDto.Id = product.Id;
-                productDto.Name = product.Name.ToString();
+                ProductDto productDto = new ProductDto
+                {
+                    Id = product.Id,
+                    Name = product.Name.ToString()
+                };
 
                 List<PriceDto> prices = new List<PriceDto>();
                 foreach (var price in product.PriceHistory)

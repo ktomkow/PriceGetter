@@ -11,6 +11,7 @@ namespace PriceGetter.Core.Models.ValueObjects
         private static readonly int minLength = 4;
         private static readonly int maxLength = 100;
 
+        [Obsolete]
         public string Value { get; }
 
         public Name(string name)
@@ -27,6 +28,11 @@ namespace PriceGetter.Core.Models.ValueObjects
         public override int GetHashCode()
         {
             return this.Value.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return this.Value;
         }
 
         public override bool Equals(object obj)

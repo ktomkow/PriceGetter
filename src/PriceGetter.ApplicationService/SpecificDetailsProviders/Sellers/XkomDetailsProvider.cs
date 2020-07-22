@@ -33,7 +33,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             this.imageExtractor = imageExtractor;
         }
 
-        public async Task<SellerSpecificDetailsDto> GetAsync(Url url)
+        public async Task<ProductFromSellerDetailsDto> GetAsync(Url url)
         {
             Html html = await this.htmlGetter.GetAsync(url);
 
@@ -41,7 +41,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             Name productName = this.nameExtractor.Extract(html);
             Url imageUrl = this.imageExtractor.Extract(html);
 
-            var result = new SellerSpecificDetailsDto()
+            var result = new ProductFromSellerDetailsDto()
             {
                 Name = productName.Value,
                 CurrentPrice = currentPrice.Value,

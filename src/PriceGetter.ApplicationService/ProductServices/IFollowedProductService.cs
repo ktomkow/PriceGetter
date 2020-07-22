@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.ProductServices
 {
-    public interface IProductService : IApplicationService
+    public interface IFollowedProductService
     {
-        Task<Guid> CreateProduct();
-        Task<IEnumerable<ProductDto>> GetAll();
+        Task<ProductFromSellerDetailsDto> GetSpecificProduct(Guid followedProductId);
     }
 }

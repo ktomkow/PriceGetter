@@ -10,10 +10,10 @@ namespace PriceGetter.Web.Fakes
 {
     public class DetailsProviderFake : IDetailsProvider
     {
-        public async Task<SellerSpecificDetailsDto> GetAsync(string url)
+        public async Task<ProductFromSellerDetailsDto> GetAsync(string url)
         {
             await Task.Delay(200);
-            SellerSpecificDetailsDto result = new SellerSpecificDetailsDto()
+            ProductFromSellerDetailsDto result = new ProductFromSellerDetailsDto()
             {
                 Name = "name",
                 CurrentPrice = 19.99m,

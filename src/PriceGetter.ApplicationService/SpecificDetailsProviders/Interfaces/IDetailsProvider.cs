@@ -8,6 +8,6 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces
 {
     public interface IDetailsProvider
     {
-        Task<SellerSpecificDetailsDto> GetAsync(string url);
+        Task<ProductFromSellerDetailsDto> GetAsync(string url);
     }
 }

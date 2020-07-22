@@ -7,6 +7,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 {
     public class Url : ValueObjectBase
     {
+        [Obsolete]
         public string Value { get; }
 
         public Url(string url)
@@ -35,6 +36,11 @@ namespace PriceGetter.Core.Models.ValueObjects
             Url instance = obj as Url;
 
             return this.Value == instance.Value;
+        }
+
+        public override string ToString()
+        {
+            return this.Value;
         }
 
         private string Format(string url)

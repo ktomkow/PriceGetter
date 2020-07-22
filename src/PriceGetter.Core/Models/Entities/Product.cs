@@ -13,6 +13,7 @@ namespace PriceGetter.Core.Models.Entities
         private readonly HashSet<Price> prices;
 
         public Name Name { get; protected set; }
+        public Price LastPrice { get => this.GetLastPrice(); }
 
         public IEnumerable<Price> PriceHistory =>
             this.prices.OrderByDescending(x => x.At).ToList();
@@ -80,6 +81,11 @@ namespace PriceGetter.Core.Models.Entities
 
                 return hash;
             }
+        }
+
+        private Price GetLastPrice()
+        {
+            return this.PriceHistory.First();
         }
     }
 }

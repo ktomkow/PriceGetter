@@ -10,6 +10,6 @@ namespace PriceGetter.Contracts.Products
         public string ImageUrl { get; set; }
         public string ProductPage { get; set; }
         public string Seller { get; set; }
-        public decimal CurrentPrice { get; set; }
+        public PriceDto LastPrice { get; set; }
     }
 }

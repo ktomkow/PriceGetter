@@ -28,6 +28,11 @@ namespace PriceGetter.Core.Entities
             this.Rename(name);
         }
 
+        public bool IsOwnerOf(Price price)
+        {
+            return price.SellerId == this.Id;
+        }
+
         public void Rename(Name name)
         {
             this.Name = name;

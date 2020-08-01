@@ -4,6 +4,7 @@ using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace PriceGetter.Core.Models.Entities
@@ -13,7 +14,6 @@ namespace PriceGetter.Core.Models.Entities
         private readonly HashSet<Price> prices;
 
         public Name Name { get; protected set; }
-        public Price LastPrice { get => this.GetLastPrice(); }
 
         public IEnumerable<Price> PriceHistory =>
             this.prices.OrderByDescending(x => x.At).ToList();
@@ -52,6 +52,18 @@ namespace PriceGetter.Core.Models.Entities
             this.prices.Add(timedPrice);
         }
 
+        public Price GetLastPrice()
+        {
+            return this.PriceHistory.First();
+        }
+
+        public Price GetLastPrice(Seller seller)
+        {
+            Price price = this.PriceHistory.FirstOrDefault(x => seller.IsOwnerOf(x));
+
+            return price;
+        }
+
         public override bool Equals(object obj)
         {
             bool typeMatch = base.EqualsType<Product>(obj);
@@ -81,11 +93,6 @@ namespace PriceGetter.Core.Models.Entities
 
                 return hash;
             }
-        }
-
-        private Price GetLastPrice()
-        {
-            return this.PriceHistory.First();
         }
     }
 }

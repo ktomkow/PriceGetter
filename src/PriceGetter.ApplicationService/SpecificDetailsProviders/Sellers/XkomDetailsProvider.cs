@@ -9,6 +9,7 @@ using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.WebClients;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,11 +44,11 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
 
             var result = new ProductFromSellerDetailsDto()
             {
-                Name = productName.Value,
-                CurrentPrice = currentPrice.Value,
-                ProductPage = url.Value,
+                Name = productName.ToString(),
+                LastPrice = new PriceDto() { Price = currentPrice.Value, At = DateTime.UtcNow },
+                ProductPage = url.ToString(),
                 Seller = SellerSystem.xkom.ToString(),
-                ImageUrl = imageUrl.Value
+                ImageUrl = imageUrl.ToString()
             };
 
             return result;

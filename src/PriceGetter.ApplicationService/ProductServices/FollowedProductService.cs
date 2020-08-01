@@ -31,12 +31,11 @@ namespace PriceGetter.ApplicationServices.ProductServices
             Seller seller = await this.sellersRepository.Get(productFollow.SellerId);
 
             Product product = await this.productRepository.Get(productFollow.ProductId);
-            Price lastPrice = product.LastPrice;
+            Price lastPrice = product.GetLastPrice(seller);
 
             PriceDto priceDto = new PriceDto()
             {
                 At = lastPrice.At,
-                SellerId = lastPrice.SellerId,
                 Price = lastPrice.Amount.Value
             };
 

@@ -36,8 +36,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
                     PriceDto priceDto = new PriceDto()
                     {
                         At = price.At,
-                        Price = price.Amount.Value,
-                        SellerId = price.SellerId
+                        Price = price.Amount.Value                    
                     };
 
                     prices.Add(priceDto);

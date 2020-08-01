@@ -1,4 +1,5 @@
 ﻿using PriceGetter.Contracts.Products;
+using PriceGetter.Core.Entities;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
@@ -14,6 +15,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
     {
         private readonly IFollowedProductRepository followedRepository;
         private readonly IProductRepository productRepository;
+        private readonly ISellersRepository sellersRepository;
 
         public FollowedProductService(IFollowedProductRepository followedRepository, IProductRepository productRepository)
         {
@@ -26,10 +28,28 @@ namespace PriceGetter.ApplicationServices.ProductServices
             var followedProducts = await this.followedRepository.Get();
             ProductFollow productFollow = followedProducts.Single(x => x.Id == followedProductId);
 
+            Seller seller = await this.sellersRepository.Get(productFollow.SellerId);
+
             Product product = await this.productRepository.Get(productFollow.ProductId);
             Price lastPrice = product.LastPrice;
 
-            throw new NotImplementedException();
+            PriceDto priceDto = new PriceDto()
+            {
+                At = lastPrice.At,
+                SellerId = lastPrice.SellerId,
+                Price = lastPrice.Amount.Value
+            };
+
+            ProductFromSellerDetailsDto productDto = new ProductFromSellerDetailsDto()
+            {
+                Name = product.Name.ToString(),
+                LastPrice = priceDto,
+                ImageUrl = productFollow.ProductImage.ToString(),
+                ProductPage = productFollow.ProductPage.ToString(),
+                Seller = seller.Name.ToString()
+            };
+
+            return productDto;
         }
     }
 }

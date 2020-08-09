@@ -10,11 +10,12 @@ namespace PriceGetter.WebTests.Tools
 { 
     public class UnbaserTests
     {
-        private IUrlUnbaser unbaser;
+        private IUrlUnbaser urlUnbaser;
 
         public UnbaserTests()
         {
-            this.unbaser = new UrlUnbaser();
+            IUnbaser unbaser = new Unbaser();
+            this.urlUnbaser = new UrlUnbaser(unbaser);
         }
 
         [Theory]
@@ -24,7 +25,7 @@ namespace PriceGetter.WebTests.Tools
             Url expectedUrl = new Url(original);
             string encodedOriginal = this.Encode(original);
 
-            Url result = this.unbaser.Unbase(encodedOriginal);
+            Url result = this.urlUnbaser.Unbase(encodedOriginal);
 
             result.Should().Be(expectedUrl);
         }
@@ -35,7 +36,7 @@ namespace PriceGetter.WebTests.Tools
         {
             Url expectedUrl = new Url(expected);
 
-            Url result = this.unbaser.Unbase(encoded);
+            Url result = this.urlUnbaser.Unbase(encoded);
 
             result.Should().Be(expectedUrl);
         }

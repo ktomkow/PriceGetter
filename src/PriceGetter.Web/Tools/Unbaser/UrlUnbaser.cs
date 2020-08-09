@@ -9,14 +9,18 @@ namespace PriceGetter.Web.Tools.Unbaser
 {
     public class UrlUnbaser : IUrlUnbaser
     {
+        private readonly IUnbaser unbaser;
+
+        public UrlUnbaser(IUnbaser unbaser)
+        {
+            this.unbaser = unbaser;
+        }
+
         public Url Unbase(string urlInBase64)
         {
-            urlInBase64 = urlInBase64.Replace('_', '/');
-            urlInBase64 = urlInBase64.Replace('-', '+');
-            byte[] byteArray = Convert.FromBase64String(urlInBase64);
-            urlInBase64 = Encoding.UTF8.GetString(byteArray);
+            string unbased = this.unbaser.Unbase(urlInBase64);
 
-            Url url = new Url(urlInBase64);
+            Url url = new Url(unbased);
 
             return url;
         }

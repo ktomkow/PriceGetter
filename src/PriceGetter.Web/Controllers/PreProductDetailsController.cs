@@ -15,12 +15,12 @@ namespace PriceGetter.Web.Controllers
     public class PreProductDetailsController : AbstractController
     {
         private readonly IDetailsProvider detailsProvider;
-        private readonly IUrlUnbaser urlUnbaser;
+        private readonly IUnbaser unbaser;
 
-        public PreProductDetailsController(IDetailsProvider detailsProvider, IUrlUnbaser urlUnbaser)
+        public PreProductDetailsController(IDetailsProvider detailsProvider, IUnbaser unbaser)
         {
             this.detailsProvider = detailsProvider;
-            this.urlUnbaser = urlUnbaser;
+            this.unbaser = unbaser;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace PriceGetter.Web.Controllers
         [Route("{productUrlBase64}")]
         public async Task<ProductFromSellerDetailsDto> GetDetails([FromRoute]string productUrlBase64)
         {
-            Url url = this.urlUnbaser.Unbase(productUrlBase64);
+            string url = this.unbaser.Unbase(productUrlBase64);
 
-            ProductFromSellerDetailsDto details = await this.detailsProvider.GetAsync(url.Value);
+            ProductFromSellerDetailsDto details = await this.detailsProvider.GetAsync(url);
                 
             return details;
         }

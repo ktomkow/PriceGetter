@@ -90,6 +90,7 @@ namespace PriceGetter.Web
             builder.RegisterType<MainImageExtractorXkom>();
 
             builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
+            builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();
 
             builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
             builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();

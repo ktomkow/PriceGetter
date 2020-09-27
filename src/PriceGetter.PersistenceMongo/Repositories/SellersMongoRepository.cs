@@ -42,7 +42,7 @@ namespace PriceGetter.PersistenceMongo.Repositories
             return seller;
         }
 
-        public async Task Save(Seller seller)
+        public async Task Add(Seller seller)
         {
             var collection = this.GetCollection();
             SellerDbModel dbModel = new SellerDbModel(seller);

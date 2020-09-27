@@ -35,7 +35,7 @@ namespace PriceGetter.ApplicationServices.SellerServices
             Seller seller = new Seller(name, sellerSystem);
             seller.UpdateHomePage(url);
 
-            await this.sellersRepository.Save(seller);
+            await this.sellersRepository.Add(seller);
         }
 
         private async Task<bool> DoesExists(Name name)

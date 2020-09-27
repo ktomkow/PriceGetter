@@ -52,13 +52,13 @@ namespace PriceGetter.ApplicationServices.ProductServices
                     IPriceProvider priceProvider = this.priceProviderFactory.GetProvider(seller);
                     Money amount = await priceProvider.Get(follow);
                     product.AddPrice(amount, seller);
-                    await this.productRepository.Save(product);
+                    await this.productRepository.Add(product);
                 }
                 catch(Exception e)
                 {
                     logger.Error(e, "Error during getting price");
                     follow.Deactivate();
-                    await this.followedProductRepository.Save(follow);
+                    await this.followedProductRepository.Add(follow);
                 }
             }
         }

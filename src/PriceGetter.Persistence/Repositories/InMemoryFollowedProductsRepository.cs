@@ -22,7 +22,7 @@ namespace PriceGetter.Persistence.Repositories
             return await Task.FromResult(this.followedProducts.ToList());
         }
 
-        public async Task Save(ProductFollow productFollow)
+        public async Task Add(ProductFollow productFollow)
         {
             if(this.followedProducts.Contains(productFollow) == false)
             {

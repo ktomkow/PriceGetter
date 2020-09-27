@@ -10,6 +10,6 @@ namespace PriceGetter.Core.Interfaces.Repositories
     {
         Task<IEnumerable<Seller>> Get();
         Task<Seller> Get(Guid sellerId);
-        Task Save(Seller seller);
+        Task Add(Seller seller);
     }
 }

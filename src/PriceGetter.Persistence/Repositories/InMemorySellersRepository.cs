@@ -27,7 +27,7 @@ namespace PriceGetter.Persistence.Repositories
             return await Task.FromResult(this.sellers.Single(x => x.Id == sellerId));
         }
 
-        public async Task Save(Seller seller)
+        public async Task Add(Seller seller)
         {
             if (this.sellers.Contains(seller) == false)
             {

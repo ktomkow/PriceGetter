@@ -85,13 +85,13 @@ namespace PriceGetter.Web.Controllers
             string url = "https://www.x-kom.pl/p/564447-procesory-intel-core-i5-intel-core-i5-10600kf.html";
 
             Seller seller = new Seller(new Name("xkom"), SellerSystem.xkom);
-            this.sellersRepository.Save(seller);
+            this.sellersRepository.Add(seller);
 
             Product product = new Product(new Name("procek i5"));
-            this.productRepository.Save(product);
+            this.productRepository.Add(product);
 
             ProductFollow follow = new ProductFollow(product, seller, new Url(url));
-            this.followedProductRepository.Save(follow);
+            this.followedProductRepository.Add(follow);
 
             this.register.RegisterPrices();
 

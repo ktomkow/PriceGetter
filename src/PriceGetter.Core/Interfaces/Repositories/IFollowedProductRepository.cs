@@ -9,6 +9,6 @@ namespace PriceGetter.Core.Interfaces.Repositories
     public interface IFollowedProductRepository
     {
         Task<IEnumerable<ProductFollow>> Get();
-        Task Save(ProductFollow productFollow);
+        Task Add(ProductFollow productFollow);
     }
 }

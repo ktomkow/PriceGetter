@@ -146,7 +146,7 @@ namespace PriceGetter.InfrastructureTests.CacheTests
 
             act.Should().ThrowExactly<ArgumentException>();
         }
-
+            
         [Fact]
         public void Reset_WhenObjectSavedAndCacheReset_ThenReturnDefault()
         {

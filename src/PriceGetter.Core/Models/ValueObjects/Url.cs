@@ -7,8 +7,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 {
     public class Url : ValueObjectBase
     {
-        [Obsolete]
-        public string Value { get; }
+        private string value;
 
         public Url(string url)
         {
@@ -16,12 +15,12 @@ namespace PriceGetter.Core.Models.ValueObjects
             url = this.Format(url);
             this.EnsureUrlIsValid(url);
 
-            this.Value = url;
+            this.value = url;
         }
 
         public override int GetHashCode()
         {
-            return this.Value.GetHashCode();
+            return this.value.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -35,12 +34,12 @@ namespace PriceGetter.Core.Models.ValueObjects
 
             Url instance = obj as Url;
 
-            return this.Value == instance.Value;
+            return this.value == instance.value;
         }
 
         public override string ToString()
         {
-            return this.Value;
+            return this.value;
         }
 
         private string Format(string url)

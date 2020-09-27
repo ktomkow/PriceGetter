@@ -6,5 +6,6 @@ namespace PriceGetter.Infrastructure.Settings
 {
     public interface ISettings
     {
+        bool IsInitialized();
     }
 }

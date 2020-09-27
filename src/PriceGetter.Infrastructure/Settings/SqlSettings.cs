@@ -7,5 +7,10 @@ namespace PriceGetter.Infrastructure.Settings
     public class SqlSettings : ISettings
     {
         public string ConnectionString { get; set; }
+
+        public bool IsInitialized()
+        {
+            return string.IsNullOrWhiteSpace(this.ConnectionString);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace PriceGetter.WebClients
 
         public async Task<Html> GetAsync(Url url)
         {
-            HttpResponseMessage response = await client.GetAsync(url.Value);
+            HttpResponseMessage response = await client.GetAsync(url.ToString());
 
             string responseContent = await response.Content.ReadAsStringAsync();
 

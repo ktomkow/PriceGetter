@@ -19,7 +19,7 @@ namespace PriceGetter.PersistenceMongo.DbModels
         {
             this.Id = seller.Id.ToString();
             this.Name = seller.Name.Value;
-            this.Homepage = seller.HomePage.Value;
+            this.Homepage = seller.HomePage.ToString();
             this.SellerSystem = seller.SellerSystem.ToString();
         }
 

@@ -147,6 +147,31 @@ namespace PriceGetter.InfrastructureTests.CacheTests
             act.Should().ThrowExactly<ArgumentException>();
         }
 
+        [Fact]
+        public void Reset_WhenObjectSavedAndCacheReset_ThenReturnDefault()
+        {
+            string key = "key";
+            int storedInt = 123;
+
+            this.cache.Save(storedInt, key);
+
+            int intFromCache = this.cache.Get<int>(key);
+            intFromCache.Should().Be(123);
+
+            this.cache.Reset<int>(key);
+
+            int secondIntFromCache = this.cache.Get<int>(key);
+            secondIntFromCache.Should().Be(default(int));
+        }
+
+        [Fact]
+        public void Reset_WhenObjectNotSetButReset_ThenNothingHappens()
+        {
+            string key = "key";
+
+            this.cache.Reset<int>(key);
+        }
+
         private class ClassWithoutHashCodeImplemented
         {
             public override int GetHashCode()

@@ -39,6 +39,12 @@ namespace PriceGetter.Infrastructure.Cache
             return default;
         }
 
+        public void Reset<TIem>(object key)
+        {
+            int keyHashCode = this.ConvertObjectToKey(key);
+            dictionary.Remove(keyHashCode);
+        }
+
         public void Save<TItem>(TItem obj, object key)
         {
             int keyHashCode = this.ConvertObjectToKey(key);

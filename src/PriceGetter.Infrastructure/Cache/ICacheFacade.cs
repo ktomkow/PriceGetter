@@ -8,5 +8,6 @@ namespace PriceGetter.Infrastructure.Cache
     {
         TItem Get<TItem>(object key);
         void Save<TItem>(TItem obj, object key);
+        void Reset<TIem>(object key);
     }
 }

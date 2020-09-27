@@ -95,7 +95,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
 
             Name name = new Name(originalName);
 
-            name.Value.First().Should().Be('m');
+            name.ToString().First().Should().Be('m');
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
 
             Name name = new Name(originalName);
 
-            name.Value.First().Should().Be('M');
+            name.ToString().First().Should().Be('M');
         }
 
         [Theory]
@@ -120,7 +120,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         {
             Name name = new Name(originalName);
 
-            name.Value.Should().Be(expectedName);
+            name.ToString().Should().Be(expectedName);
         }
 
         [Theory]

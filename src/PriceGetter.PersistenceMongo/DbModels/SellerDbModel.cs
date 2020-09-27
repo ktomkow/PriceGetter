@@ -14,11 +14,10 @@ namespace PriceGetter.PersistenceMongo.DbModels
         public string Homepage { get; set; }
         public string SellerSystem { get; set; }
 
-
         public SellerDbModel(Seller seller)
         {
             this.Id = seller.Id.ToString();
-            this.Name = seller.Name.Value;
+            this.Name = seller.Name.ToString();
             this.Homepage = seller.HomePage.ToString();
             this.SellerSystem = seller.SellerSystem.ToString();
         }

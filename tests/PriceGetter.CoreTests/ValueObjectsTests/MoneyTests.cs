@@ -18,7 +18,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 9.99m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.Value;
+            decimal obtainedPrice = price.ValuAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
@@ -30,22 +30,70 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 9.99m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.Value;
+            decimal obtainedPrice = price.ValuAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
 
-        //[Fact]
-        //public void WhenPrice9p991_Then_Value9p99() // TODO: TESTY ZAOKR¥GLANIA
-        //{
-        //    decimal originalPrice = 9.991m;
-        //    decimal expectedPrice = 9.99m;
+        [Fact]
+        public void WhenPrice9_Then_ValueAsString_9p00()
+        {
+            decimal originalPrice = 9m;
+            string expectedPriceAsString = "9.00";
 
-        //    Price price = new Price(originalPrice);
-        //    decimal obtainedPrice = price.Value;
+            Money price = new Money(originalPrice);
+            string priceAsString = price.ValueAsString;
 
-        //    obtainedPrice.Should().Be(expectedPrice);
-        //}
+            priceAsString.Should().Be(expectedPriceAsString);
+        }
+
+        [Fact]
+        public void WhenPrice9p9_Then_ValueAsString_9p90()
+        {
+            decimal originalPrice = 9.9m;
+            string expectedPriceAsString = "9.90";
+
+            Money price = new Money(originalPrice);
+            string priceAsString = price.ValueAsString;
+
+            priceAsString.Should().Be(expectedPriceAsString);
+        }
+
+        [Fact]
+        public void WhenPrice9p999_Then_ValueAsString_10p00()
+        {
+            decimal originalPrice = 9.999m;
+            string expectedPriceAsString = "10.00";
+
+            Money price = new Money(originalPrice);
+            string priceAsString = price.ValueAsString;
+
+            priceAsString.Should().Be(expectedPriceAsString);
+        }
+
+        [Fact]
+        public void WhenPrice9p995_Then_ValueAsString_10p00()
+        {
+            decimal originalPrice = 9.995m;
+            string expectedPriceAsString = "10.00";
+
+            Money price = new Money(originalPrice);
+            string priceAsString = price.ValueAsString;
+
+            priceAsString.Should().Be(expectedPriceAsString);
+        }
+
+        [Fact]
+        public void WhenPrice9p994_Then_ValueAsString_9p99()
+        {
+            decimal originalPrice = 9.994m;
+            string expectedPriceAsString = "9.99";
+
+            Money price = new Money(originalPrice);
+            string priceAsString = price.ValueAsString;
+
+            priceAsString.Should().Be(expectedPriceAsString);
+        }
 
         [Fact]
         public void WhenPrice0_Then_Value0p00()
@@ -54,7 +102,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 0.00m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.Value;
+            decimal obtainedPrice = price.ValuAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
@@ -81,7 +129,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             Money price = new Money(original);
             Money expectedPrice = new Money(expected);
 
-            bool result = price.Value == expectedPrice.Value;
+            bool result = price.ValuAsDecimal == expectedPrice.ValuAsDecimal;
 
             result.Should().BeTrue();
         }

@@ -45,7 +45,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             var result = new ProductFromSellerDetailsDto()
             {
                 Name = productName.ToString(),
-                LastPrice = new PriceDto() { Price = currentPrice.Value, At = DateTime.UtcNow },
+                LastPrice = new PriceDto() { Price = currentPrice.ValuAsDecimal, At = DateTime.UtcNow },
                 ProductPage = url.ToString(),
                 Seller = SellerSystem.xkom.ToString(),
                 ImageUrl = imageUrl.ToString()

@@ -14,7 +14,7 @@ namespace PriceGetter.Core.Models.ValueObjects
         public Guid SellerId { get; }
         public Guid ProductId { get; }
 
-        public decimal AmountAsDecimal { get => this.Amount.Value; }
+        public decimal AmountAsDecimal { get => this.Amount.ValuAsDecimal; }
 
         protected Price() { }
 

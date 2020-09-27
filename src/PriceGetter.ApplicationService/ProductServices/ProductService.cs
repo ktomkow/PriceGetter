@@ -36,7 +36,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
                     PriceDto priceDto = new PriceDto()
                     {
                         At = price.At,
-                        Price = price.Amount.Value                    
+                        Price = price.Amount.ValuAsDecimal                    
                     };
 
                     prices.Add(priceDto);

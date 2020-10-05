@@ -10,16 +10,16 @@ namespace PriceGetter.ApplicationServices.ProductServices
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository productRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IUnitOfWork unitOfWork)
         {
-            this.productRepository = productRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            IEnumerable<Product> products = await this.productRepository.Get();
+            IEnumerable<Product> products = await this.unitOfWork.ProductRepository.Get();
             List<ProductDto> productsDtos = new List<ProductDto>();
 
             foreach (var product in products)

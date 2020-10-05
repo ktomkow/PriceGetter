@@ -13,24 +13,21 @@ namespace PriceGetter.ApplicationServices.ProductServices
 {
     public class FollowedProductService : IFollowedProductService
     {
-        private readonly IFollowedProductRepository followedRepository;
-        private readonly IProductRepository productRepository;
-        private readonly ISellersRepository sellersRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public FollowedProductService(IFollowedProductRepository followedRepository, IProductRepository productRepository)
+        public FollowedProductService(IUnitOfWork unitOfWork)
         {
-            this.followedRepository = followedRepository;
-            this.productRepository = productRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<ProductFromSellerDetailsDto> GetSpecificProduct(Guid followedProductId)
         {
-            var followedProducts = await this.followedRepository.Get();
+            var followedProducts = await this.unitOfWork.FollowedProductRepository.Get();
             ProductFollow productFollow = followedProducts.Single(x => x.Id == followedProductId);
 
-            Seller seller = await this.sellersRepository.Get(productFollow.SellerId);
+            Seller seller = await this.unitOfWork.SellersRepository.Get(productFollow.SellerId);
 
-            Product product = await this.productRepository.Get(productFollow.ProductId);
+            Product product = await this.unitOfWork.ProductRepository.Get(productFollow.ProductId);
             Price lastPrice = product.GetLastPrice(seller);
 
             PriceDto priceDto = new PriceDto()

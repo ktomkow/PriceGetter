@@ -18,28 +18,25 @@ namespace PriceGetter.ApplicationServices.ProductServices
         private readonly IProductRepository productRepository;
         private readonly ISellersRepository sellersRepository;
         private readonly IFollowedProductRepository followedProductRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IPriceProviderFactory priceProviderFactory;
         private readonly IPriceGetterLogger logger;
 
         public FollowedProductsRegister(
-            IProductRepository productRepository,
-            ISellersRepository sellersRepository,
-            IFollowedProductRepository followedProductRepository,
+            IUnitOfWork unitOfWork,
             IPriceProviderFactory priceProviderFactory,
             IPriceGetterLogger logger)
         {
-            this.productRepository = productRepository;
-            this.sellersRepository = sellersRepository;
-            this.followedProductRepository = followedProductRepository;
+            this.unitOfWork = unitOfWork;
             this.priceProviderFactory = priceProviderFactory;
             this.logger = logger;
         }
 
         public async Task RegisterPrices()
         {
-            Task<IEnumerable<ProductFollow>> getFollowed = this.followedProductRepository.Get();
+            Task<IEnumerable<ProductFollow>> getFollowed = this.unitOfWork.FollowedProductRepository.Get();
 
-            IEnumerable<Seller> sellers = await this.sellersRepository.Get();
+            IEnumerable<Seller> sellers = await this.unitOfWork.SellersRepository.Get();
 
             IEnumerable<ProductFollow> followedProducts = await getFollowed;
 
@@ -48,17 +45,18 @@ namespace PriceGetter.ApplicationServices.ProductServices
                 try
                 {
                     Seller seller = sellers.Single(x => x.Id == follow.SellerId);
-                    Product product = await this.productRepository.Get(follow.ProductId);
+                    Product product = await this.unitOfWork.ProductRepository.Get(follow.ProductId);
                     IPriceProvider priceProvider = this.priceProviderFactory.GetProvider(seller);
                     Money amount = await priceProvider.Get(follow);
                     product.AddPrice(amount, seller);
-                    await this.productRepository.Add(product);
+                    this.unitOfWork.Commit();
                 }
                 catch(Exception e)
                 {
+                    this.unitOfWork.Rollback();
                     logger.Error(e, "Error during getting price");
                     follow.Deactivate();
-                    await this.followedProductRepository.Add(follow);
+                    this.unitOfWork.Commit();
                 }
             }
         }

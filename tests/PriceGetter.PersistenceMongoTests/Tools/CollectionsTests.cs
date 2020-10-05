@@ -18,8 +18,6 @@ namespace PriceGetter.PersistenceMongoTests.Tools
 
         [Theory]
         [InlineData("Products")]
-        [InlineData("Sellers")]
-        [InlineData("ProductFollows")]
         public void Should_Contain_CriticalCollections(string collectionName)
         {
             IEnumerable<string> collections = Collections.All();

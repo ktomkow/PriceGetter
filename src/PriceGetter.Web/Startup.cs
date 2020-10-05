@@ -98,7 +98,7 @@ namespace PriceGetter.Web
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
-            builder.RegisterType<InMemoryProductRepository>().As<IProductRepository>().SingleInstance();
+            builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 

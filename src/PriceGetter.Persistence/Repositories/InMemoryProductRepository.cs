@@ -1,5 +1,6 @@
 ﻿using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
+using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.Persistence.Repositories
 {
-    public class InMemoryProductRepository : IProductRepository
+    public class InMemoryProductRepository : IProductsRepository
     {
         private List<Product> products;
 
@@ -35,6 +36,16 @@ namespace PriceGetter.Persistence.Repositories
             }
 
             await Task.CompletedTask;
+        }
+
+        public Task<IEnumerable<Product>> GetMonitored()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Product> Get(Name name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

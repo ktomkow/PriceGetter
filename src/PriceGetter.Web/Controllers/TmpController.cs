@@ -18,13 +18,13 @@ namespace PriceGetter.Web.Controllers
 {
     public class TmpController : AbstractController
     {
-        private readonly IProductRepository productRepository;
+        private readonly IProductsRepository productRepository;
         private readonly SqlSettings dbSettings;
         private readonly IDbCleaner dbCleaner;
         private readonly ICollectionProvider collectionProvider;
 
         public TmpController(
-            IProductRepository productRepository,
+            IProductsRepository productRepository,
             SqlSettings dbSettings,
             IDbCleaner dbCleaner,
             ICollectionProvider collectionProvider)

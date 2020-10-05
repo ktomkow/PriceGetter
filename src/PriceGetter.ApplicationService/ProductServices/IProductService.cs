@@ -8,6 +8,8 @@ namespace PriceGetter.ApplicationServices.ProductServices
 {
     public interface IProductService : IApplicationService
     {
-        Task<IEnumerable<ProductDto>> GetAll();
+        Task<IEnumerable<ProductDto>> Get();
+
+        Task<Guid> Create(CreateProductCommand command);
     }
 }

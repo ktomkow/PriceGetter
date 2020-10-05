@@ -1,6 +1,7 @@
 ﻿using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
+using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,10 +15,23 @@ namespace PriceGetter.ApplicationServices.ProductServices
 
         public ProductService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAll()
+        public async Task<Guid> Create(CreateProductCommand command)
+        {
+            var productName = new Name(command.Name);
+
+            Product product = new Product(productName);
+
+            await this.unitOfWork.ProductRepository.Add(product);
+
+            await this.unitOfWork.CommitAsync();
+
+            return product.Id;
+        }
+
+        public async Task<IEnumerable<ProductDto>> Get()
         {
             IEnumerable<Product> products = await this.unitOfWork.ProductRepository.Get();
             List<ProductDto> productsDtos = new List<ProductDto>();

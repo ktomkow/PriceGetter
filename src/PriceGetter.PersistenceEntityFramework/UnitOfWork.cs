@@ -12,7 +12,6 @@ namespace PriceGetter.PersistenceEntityFramework
 
         public IProductsRepository ProductRepository { get; }
 
-
         public UnitOfWork(PriceGetterDbContext db, IProductsRepository productsRepository)
         {
             this.db = db ?? throw new ArgumentNullException(nameof(db));

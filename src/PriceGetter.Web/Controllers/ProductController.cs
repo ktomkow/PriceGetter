@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PriceGetter.ApplicationServices.ProductServices;
 using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Interfaces.Repositories;
 using System;
@@ -10,23 +11,25 @@ namespace PriceGetter.Web.Controllers
 {
     public class ProductController : AbstractController
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IProductService productService;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IProductService productService)
         {
-            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.productService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
 
         [HttpPost]
-        public async Task Create([FromBody] CreateProductCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
         {
-            throw new NotImplementedException();
+            var newIdentifier = await this.productService.Create(command);
+
+            return Created("http://dupa.pl",null);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
         {
-            var products = await this.unitOfWork.ProductRepository.Get();
+            var products = await this.productService.Get();
 
             return Ok(products);
         }

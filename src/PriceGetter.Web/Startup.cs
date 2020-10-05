@@ -100,15 +100,17 @@ namespace PriceGetter.Web
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
-            builder.RegisterType<ProductsRepository>().As<IProductsRepository>().SingleInstance();
+            builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 
             builder.RegisterType<CollectionProvider>().As<ICollectionProvider>();
             builder.RegisterType<DbCleaner>().As<IDbCleaner>();
 
-            builder.RegisterType<PriceGetterDbContext>();
+            builder.RegisterType<PriceGetterDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

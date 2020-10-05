@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PriceGetter.ApplicationServices.PriceProviders
+namespace PriceGetter.Core.Interfaces
 {
     public interface IPriceProvider
     {
-        Task<Money> Get(ProductFollow productFollow);
+        Task<Money> Get(Url productPage);
     }
 }

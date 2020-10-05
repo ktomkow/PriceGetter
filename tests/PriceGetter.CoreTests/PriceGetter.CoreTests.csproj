@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EntitiesTests\" />
+  </ItemGroup>
+
 </Project>

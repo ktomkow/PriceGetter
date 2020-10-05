@@ -11,7 +11,9 @@ namespace PriceGetter.Core.Models.ValueObjects
         private static readonly int minLength = 4;
         private static readonly int maxLength = 100;
 
-        private readonly string value;
+        public string ValueAsString { get; }
+
+        protected Name () { }
 
         public Name(string name)
         {
@@ -21,17 +23,17 @@ namespace PriceGetter.Core.Models.ValueObjects
 
             this.EnsureNameIsValid(name);
 
-            this.value = name;
+            this.ValueAsString = name;
         }
 
         public override int GetHashCode()
         {
-            return this.value.GetHashCode();
+            return this.ValueAsString.GetHashCode();
         }
 
         public override string ToString()
         {
-            return this.value;
+            return this.ValueAsString;
         }
 
         public override bool Equals(object obj)
@@ -45,7 +47,7 @@ namespace PriceGetter.Core.Models.ValueObjects
 
             Name instance = obj as Name;
 
-            return this.value == instance.value;
+            return this.ValueAsString == instance.ValueAsString;
         }
 
         public static bool operator ==(Name leftName, Name rightName)

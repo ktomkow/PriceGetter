@@ -9,8 +9,6 @@ namespace PriceGetter.Core.Interfaces.Repositories
         void Commit();
         void Rollback();
 
-        ISellersRepository SellersRepository { get; }
         IProductRepository ProductRepository { get; }
-        IFollowedProductRepository FollowedProductRepository { get; }
     }
 }

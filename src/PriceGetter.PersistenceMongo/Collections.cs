@@ -8,8 +8,6 @@ namespace PriceGetter.PersistenceMongo
     public static class Collections
     {
         public static readonly string Products = "Products";
-        public static readonly string Sellers = "Sellers";
-        public static readonly string ProductFollows = "ProductFollows";
 
         public static IEnumerable<string> All()
         {

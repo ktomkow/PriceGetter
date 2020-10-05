@@ -17,7 +17,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PriceGetter.ApplicationServices.PriceProviders;
 using PriceGetter.ApplicationServices.ProductServices;
-using PriceGetter.ApplicationServices.SellerServices;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
 using PriceGetter.ContentProvider.CssExtractors;
@@ -32,7 +31,6 @@ using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Persistence.Repositories;
-using PriceGetter.PersistenceMongo.Repositories;
 using PriceGetter.PersistenceMongo.Tools;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
@@ -78,7 +76,6 @@ namespace PriceGetter.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            //builder.RegisterType<DetailsProvider>().As<IDetailsProvider>().InstancePerLifetimeScope();
             builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
             
             builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
@@ -102,18 +99,11 @@ namespace PriceGetter.Web
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
             builder.RegisterType<InMemoryProductRepository>().As<IProductRepository>().SingleInstance();
-            //builder.RegisterType<InMemorySellersRepository>().As<ISellersRepository>().SingleInstance();
-            builder.RegisterType<InMemoryFollowedProductsRepository>().As<IFollowedProductRepository>().SingleInstance();
-
-            builder.RegisterType<FollowedProductsRegister>().As<IFollowedProductsRegister>();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 
             builder.RegisterType<CollectionProvider>().As<ICollectionProvider>();
             builder.RegisterType<DbCleaner>().As<IDbCleaner>();
-            builder.RegisterType<SellersMongoRepository>().As<ISellersRepository>();
-
-            builder.RegisterType<SellerService>().As<ISellerService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

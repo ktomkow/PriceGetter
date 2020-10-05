@@ -1,5 +1,4 @@
 ﻿using PriceGetter.Core.BaseClasses.Entities;
-using PriceGetter.Core.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -12,25 +11,26 @@ namespace PriceGetter.Core.Models.Entities
         private readonly HashSet<Price> prices;
 
         public Name Name { get; protected set; }
+        public bool MonitoringActive { get; protected set; }
 
-        public IEnumerable<Price> PriceHistory =>
+        public Url ProductPage { get; protected set; }
+        public Url ProductImage { get; protected set; }
+
+        public IEnumerable<Price> Prices =>
             this.prices.OrderByDescending(x => x.At).ToList();
 
         protected Product() : base() 
         {
             this.prices = new HashSet<Price>();
+            this.ProductImage = new EmptyUrl();
+            this.ProductPage = new EmptyUrl();
+
+            this.MonitoringActive = true;
         }
 
-        public Product(Name name, Guid guid) : base(guid)
+        public Product(Name name) : this()
         {
             this.Rename(name);
-            this.prices = new HashSet<Price>();
-        }
-
-        public Product(Name name) : base()
-        {
-            this.Rename(name);
-            this.prices = new HashSet<Price>();
         }
 
         public void Rename(Name name)
@@ -38,28 +38,35 @@ namespace PriceGetter.Core.Models.Entities
             this.Name = name;
         }
 
-        public void AddPrice(Money price, Seller seller)
+        public void ChangeUrl(Url url)
         {
-            Price timedPrice = new Price(price, this, seller, DateTime.UtcNow);
-            this.prices.Add(timedPrice);
+            this.ProductPage = url;
         }
 
-        public void AddPrice(Money price, Seller seller, DateTime dateTime)
+        public void ChangeImageUrl(Url url)
         {
-            Price timedPrice = new Price(price, this, seller, dateTime);
-            this.prices.Add(timedPrice);
+            this.ProductImage = url;
+        }
+
+        public void AddPrice(Money amount)
+        {
+            Price price = new Price(amount, this);
+            this.prices.Add(price);
         }
 
         public Price GetLastPrice()
         {
-            return this.PriceHistory.First();
+            return this.Prices.First();
         }
 
-        public Price GetLastPrice(Seller seller)
+        public void ActivateMonitoring()
         {
-            Price price = this.PriceHistory.FirstOrDefault(x => seller.IsOwnerOf(x));
+            this.MonitoringActive = true;
+        }
 
-            return price;
+       public void DeactivateMonitoring()
+        {
+            this.MonitoringActive = false;
         }
 
         public override bool Equals(object obj)
@@ -87,7 +94,7 @@ namespace PriceGetter.Core.Models.Entities
 
                 hash = hash * 12413 + this.Id.GetHashCode();
                 hash = hash * 12413 + this.Name.GetHashCode();
-                hash = hash * 12413 + this.PriceHistory.GetHashCode();
+                hash = hash * 12413 + this.Prices.GetHashCode();
 
                 return hash;
             }

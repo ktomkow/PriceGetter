@@ -1,5 +1,6 @@
 ﻿using PriceGetter.ContentProvider.Interfaces;
 using PriceGetter.ContentProvider.PriceExtractors;
+using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
@@ -22,9 +23,9 @@ namespace PriceGetter.ApplicationServices.PriceProviders.Sellers
             this.priceExtractor = priceExtractor;
         }
 
-        public async Task<Money> Get(ProductFollow productFollow)
+        public async Task<Money> Get(Url productPage)
         {
-            Html html = await this.htmlContentGetter.GetAsync(productFollow.ProductPage);
+            Html html = await this.htmlContentGetter.GetAsync(productPage);
 
             Money money = this.priceExtractor.Extract(html);
 

@@ -31,7 +31,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
                 };
 
                 List<PriceDto> prices = new List<PriceDto>();
-                foreach (var price in product.PriceHistory)
+                foreach (var price in product.Prices)
                 {
                     PriceDto priceDto = new PriceDto()
                     {

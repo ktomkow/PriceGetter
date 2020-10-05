@@ -31,6 +31,8 @@ using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Persistence.Repositories;
+using PriceGetter.PersistenceEntityFramework;
+using PriceGetter.PersistenceEntityFramework.Repositories;
 using PriceGetter.PersistenceMongo.Tools;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
@@ -98,12 +100,15 @@ namespace PriceGetter.Web
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
-            builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
+            builder.RegisterType<ProductsRepository>().As<IProductsRepository>().SingleInstance();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 
             builder.RegisterType<CollectionProvider>().As<ICollectionProvider>();
             builder.RegisterType<DbCleaner>().As<IDbCleaner>();
+
+            builder.RegisterType<PriceGetterDbContext>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

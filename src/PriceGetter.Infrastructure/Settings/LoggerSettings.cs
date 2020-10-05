@@ -6,7 +6,7 @@ namespace PriceGetter.Infrastructure.Settings
 {
     public class LoggerSettings : ISettings
     {
-        public string LogFilepath { get; }
+        public string LogFilepath { get; set; }
 
         public LoggerSettings() { }
 

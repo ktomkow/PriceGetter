@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PriceGetter.PersistenceEntityFramework;
 
 namespace PriceGetter.PersistenceEntityFramework.Migrations
 {
     [DbContext(typeof(PriceGetterDbContext))]
-    partial class PriceGetterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006195725_NameConversion")]
+    partial class NameConversion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,11 +50,6 @@ namespace PriceGetter.PersistenceEntityFramework.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductImage")
-                        .HasColumnName("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -86,6 +83,23 @@ namespace PriceGetter.PersistenceEntityFramework.Migrations
 
             modelBuilder.Entity("PriceGetter.Core.Models.Entities.Product", b =>
                 {
+                    b.OwnsOne("PriceGetter.Core.Models.ValueObjects.Url", "ProductImage", b1 =>
+                        {
+                            b1.Property<Guid>("ProductId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("ValueAsString")
+                                .HasColumnName("ImageUrl")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ProductId");
+
+                            b1.ToTable("Products");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProductId");
+                        });
+
                     b.OwnsOne("PriceGetter.Core.Models.ValueObjects.Url", "ProductPage", b1 =>
                         {
                             b1.Property<Guid>("ProductId")

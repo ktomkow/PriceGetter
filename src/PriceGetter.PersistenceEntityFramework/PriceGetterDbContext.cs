@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PriceGetter.Core.BaseClasses.Entities;
 using PriceGetter.Core.Models.Entities;
+using PriceGetter.Core.Models.ValueObjects;
 
 namespace PriceGetter.PersistenceEntityFramework
 {
@@ -24,9 +25,24 @@ namespace PriceGetter.PersistenceEntityFramework
 
             modelBuilder.Entity<Product>().HasKey(x => x.Id);
             modelBuilder.Entity<Product>().HasMany(x => x.Prices);
-            modelBuilder.Entity<Product>().OwnsOne(x => x.Name).Property(x => x.ValueAsString).HasColumnName("Name");
-            modelBuilder.Entity<Product>().OwnsOne(x => x.ProductPage).Property(x => x.ValueAsString).HasColumnName("PageUrl");
-            modelBuilder.Entity<Product>().OwnsOne(x => x.ProductImage).Property(x => x.ValueAsString).HasColumnName("ImageUrl");
+
+            modelBuilder.Entity<Product>().Property(x => x.ProductPage)
+                .HasConversion(
+                x => x.ToString(),
+                x => new Url(x))
+                .HasColumnName("PageUrl");
+
+            modelBuilder.Entity<Product>().Property(x => x.ProductImage)
+                .HasConversion(
+                x => x.ToString(), 
+                x => new Url(x))
+                .HasColumnName("ImageUrl");
+
+            modelBuilder.Entity<Product>().Property(x => x.Name)
+                .IsRequired()
+                .HasConversion(
+                x => x.ToString(),
+                x => new Name(x));
 
             modelBuilder.Entity<Price>().ToTable("Prices");
             modelBuilder.Entity<Price>().HasKey(x => x.Id);

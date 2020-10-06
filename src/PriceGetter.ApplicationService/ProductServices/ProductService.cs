@@ -41,7 +41,9 @@ namespace PriceGetter.ApplicationServices.ProductServices
                 ProductDto productDto = new ProductDto
                 {
                     Id = product.Id,
-                    Name = product.Name.ToString()
+                    Name = product.Name.ToString(),
+                    ImageUrl = product.ProductImage.ToString(),
+                    ProductPage = product.ProductPage.ToString()
                 };
 
                 List<PriceDto> prices = new List<PriceDto>();

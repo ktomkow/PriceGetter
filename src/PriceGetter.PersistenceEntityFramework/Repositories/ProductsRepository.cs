@@ -25,9 +25,11 @@ namespace PriceGetter.PersistenceEntityFramework.Repositories
 
         public async Task<IEnumerable<Product>> Get()
         {
-            return await this.db.Products
+            var products = await this.db.Products
                 .Include(x => x.Prices)
                 .ToListAsync();
+
+            return products;
         }
 
         public async Task<Product> Get(Guid productId)

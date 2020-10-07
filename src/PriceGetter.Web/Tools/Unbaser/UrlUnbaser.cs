@@ -20,7 +20,7 @@ namespace PriceGetter.Web.Tools.Unbaser
         {
             string unbased = this.unbaser.Unbase(urlInBase64);
 
-            Url url = new Url(unbased);
+            Url url = Url.FromString(unbased);
 
             return url;
         }

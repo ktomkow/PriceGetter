@@ -9,7 +9,10 @@ namespace PriceGetter.Core.Models.ValueObjects
     {
         private readonly string value;
 
-        protected Url() { }
+        protected Url() 
+        {
+            this.value = string.Empty;
+        }
 
         public Url(string url)
         {
@@ -20,6 +23,16 @@ namespace PriceGetter.Core.Models.ValueObjects
             this.EnsureUrlIsValid(url);
 
             this.value = url;
+        }
+
+        public static Url FromString(string url)
+        {
+            if(string.IsNullOrWhiteSpace(url))
+            {
+                return new EmptyUrl();
+            }
+
+            return new Url(url);
         }
 
         public override int GetHashCode()

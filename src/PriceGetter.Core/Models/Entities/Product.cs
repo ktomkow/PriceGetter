@@ -22,8 +22,8 @@ namespace PriceGetter.Core.Models.Entities
         protected Product() : base() 
         {
             this.prices = new HashSet<Price>();
-            this.ProductImage = new Url("https");
-            this.ProductPage = new Url("https");
+            this.ProductImage = Url.FromString(string.Empty);
+            this.ProductPage = Url.FromString(string.Empty);
 
             this.MonitoringActive = true;
         }

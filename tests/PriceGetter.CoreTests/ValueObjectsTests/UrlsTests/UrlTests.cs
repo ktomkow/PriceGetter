@@ -37,11 +37,12 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
             url.Should().BeOfType(typeof(EmptyUrl));
         }
 
-        [Fact]
-        public void FromString_WhenNonEmptyStringNotStartFromHttpOrHttps_ThenException()
+        [Theory]
+        [InlineData("abcdefghijk")]
+        [InlineData("124124")]
+        [InlineData("aaa_http://someCoolAddress")]
+        public void FromString_WhenNonEmptyStringNotStartFromHttpOrHttps_ThenException(string text)
         {
-            string text = "abcdefghijk";
-
             Action act = () =>
             {
                 Url url = Url.FromString(text);
@@ -59,7 +60,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
         {
             Url url = Url.FromString(text);
 
-            url.Should().BeOfType(typeof(EmptyUrl));
+            url.Should().BeOfType(typeof(Url));
         }
     }
 }

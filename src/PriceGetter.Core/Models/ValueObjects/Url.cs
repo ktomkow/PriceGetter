@@ -59,6 +59,16 @@ namespace PriceGetter.Core.Models.ValueObjects
             return this.value;
         }
 
+        public static bool operator ==(Url left, Url right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Url left, Url right)
+        {
+            return !left.Equals(right);
+        }
+
         private string Format(string url)
         {
             url = url.Trim();

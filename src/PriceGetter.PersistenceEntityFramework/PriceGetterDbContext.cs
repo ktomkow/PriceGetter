@@ -2,12 +2,15 @@
 using Microsoft.Extensions.Logging;
 using PriceGetter.Core.BaseClasses.Entities;
 using PriceGetter.Core.Models.Entities;
+using PriceGetter.Infrastructure.Settings;
 using PriceGetter.PersistenceEntityFramework.TypesConfigurations;
 
 namespace PriceGetter.PersistenceEntityFramework
 {
     public class PriceGetterDbContext : DbContext
     {
+        private readonly SqlSettings settings;
+
         public DbSet<Product> Products { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
@@ -17,11 +20,26 @@ namespace PriceGetter.PersistenceEntityFramework
 
         }
 
+        public PriceGetterDbContext(SqlSettings sqlSettings)
+        {
+            this.settings = sqlSettings;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
+            if(this.settings is null)
+            {
+                optionsBuilder
                 .UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=PriceGetter;Trusted_Connection=True;")
                 .UseLoggerFactory(MyLoggerFactory);
+            }
+            else
+            {
+                optionsBuilder
+                .UseSqlServer(this.settings.ConnectionString)
+                .UseLoggerFactory(MyLoggerFactory);
+            }
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

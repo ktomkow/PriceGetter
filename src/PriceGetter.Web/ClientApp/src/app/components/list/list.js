@@ -15,7 +15,7 @@ const ConnectedList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { articles: state.articles };
+  return { articles: state.rootReducer.articles };
 };
 
 

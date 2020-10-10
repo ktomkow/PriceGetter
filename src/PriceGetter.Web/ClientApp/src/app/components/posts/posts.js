@@ -24,7 +24,7 @@ export class Post extends Component {
 
 function mapStateToProps(state) {
   return {
-    remoteArticles: state.remoteArticles.slice(0, 100)
+    remoteArticles: state.rootReducer.remoteArticles.slice(0, 100)
   };
 }
 

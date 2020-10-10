@@ -1,5 +1,8 @@
 import React from "react";
 import logo from "../../../logo.svg";
+
+import strings from "../../localization/strings";
+
 import "./home.css";
 
 const Home = () => {
@@ -18,6 +21,9 @@ const Home = () => {
         >
           Learn React
         </a>
+        <p>
+          {strings.HOME.HELLO}
+        </p>
       </header>
     </div>
   );

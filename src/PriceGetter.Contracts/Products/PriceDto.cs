@@ -6,7 +6,8 @@ namespace PriceGetter.Contracts.Products
 {
     public class PriceDto
     {
-        public decimal Price { get; set; }
+        public decimal Amount { get; set; }
+
         public DateTime At { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             this.imageExtractor = imageExtractor;
         }
 
-        public async Task<ProductFromSellerDetailsDto> GetAsync(Url url)
+        public async Task<PreProductDto> GetAsync(Url url)
         {
             Html html = await this.htmlGetter.GetAsync(url);
 
@@ -42,12 +42,13 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             Name productName = this.nameExtractor.Extract(html);
             Url imageUrl = this.imageExtractor.Extract(html);
 
-            var result = new ProductFromSellerDetailsDto()
+            PriceDto price = new PriceDto() { Amount = currentPrice.ValuAsDecimal, At = DateTime.UtcNow };
+
+            var result = new PreProductDto()
             {
                 Name = productName.ToString(),
-                LastPrice = new PriceDto() { Price = currentPrice.ValuAsDecimal, At = DateTime.UtcNow },
+                LastPrice = price,
                 ProductPage = url.ToString(),
-                Seller = SellerSystem.xkom.ToString(),
                 ImageUrl = imageUrl.ToString()
             };
 

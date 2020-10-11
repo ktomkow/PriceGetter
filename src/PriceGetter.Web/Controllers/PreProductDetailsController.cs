@@ -36,11 +36,11 @@ namespace PriceGetter.Web.Controllers
         /// <returns>SellerSpecificDetailsDto</returns>
         [HttpGet]
         [Route("{productUrlBase64}")]
-        public async Task<ProductFromSellerDetailsDto> GetDetails([FromRoute]string productUrlBase64)
+        public async Task<PreProductDto> GetDetails([FromRoute]string productUrlBase64)
         {
             string url = this.unbaser.Unbase(productUrlBase64);
 
-            ProductFromSellerDetailsDto details = await this.detailsProvider.GetAsync(url);
+            PreProductDto details = await this.detailsProvider.GetAsync(url);
                 
             return details;
         }

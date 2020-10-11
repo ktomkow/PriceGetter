@@ -22,13 +22,13 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders
             this.cacheFacade = cacheFacade;
         }
 
-        public async Task<ProductFromSellerDetailsDto> GetAsync(string url)
+        public async Task<PreProductDto> GetAsync(string url)
         {
             ISpecificDetailsProvider provider = this.factory.Get(url);
 
             Url productUrl = new Url(url);
 
-            ProductFromSellerDetailsDto specificDetailsDto = this.cacheFacade.Get<ProductFromSellerDetailsDto>(url);
+            PreProductDto specificDetailsDto = this.cacheFacade.Get<PreProductDto>(url);
             if(specificDetailsDto == null)
             {
                 specificDetailsDto = await provider.GetAsync(productUrl);

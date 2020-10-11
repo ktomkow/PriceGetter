@@ -6,17 +6,25 @@ namespace PriceGetter.Infrastructure.Cache
 {
     public class CacheFacade : ICacheFacade
     {
-        private static Dictionary<int, object> dictionary = new Dictionary<int, object>();
+        private static Dictionary<int, (object, DateTime)> dictionary = new Dictionary<int, (object, DateTime)>();
+
+        private TimeSpan period = TimeSpan.FromMinutes(180);
 
         public TItem Get<TItem>(object key)
         {
             int keyHashCode = this.ConvertObjectToKey(key);
 
-            if(dictionary.TryGetValue(keyHashCode, out object @object))
+            if(dictionary.TryGetValue(keyHashCode, out (object, DateTime) @object))
             {
                 try
                 {
-                    return (TItem)@object;
+                    if (DateTime.UtcNow > @object.Item2.Add(this.period))
+                    {
+                        return default;
+                    }
+
+                    TItem instance = (TItem)@object.Item1;
+                    return instance;
                 }
                 catch(InvalidCastException)
                 {
@@ -31,7 +39,7 @@ namespace PriceGetter.Infrastructure.Cache
         {
             int keyHashCode = this.ConvertObjectToKey(key);
 
-            if (dictionary.TryGetValue(keyHashCode, out object @object))
+            if (dictionary.TryGetValue(keyHashCode, out (object, DateTime) @object))
             {
                 return string.Empty;
             }
@@ -53,7 +61,7 @@ namespace PriceGetter.Infrastructure.Cache
                 dictionary.Remove(keyHashCode);
             }
 
-            dictionary.Add(keyHashCode, obj);
+            dictionary.Add(keyHashCode, (obj, DateTime.UtcNow));
         }
 
         private int ConvertObjectToKey(object key)

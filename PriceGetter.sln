@@ -37,9 +37,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.DomainServices"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceEntityFramework", "src\PriceGetter.PersistenceEntityFramework\PriceGetter.PersistenceEntityFramework.csproj", "{5C8D3288-3831-4E1D-9DF4-0779939EC67D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceMongo", "src\PriceGetter.PersistenceMongo\PriceGetter.PersistenceMongo.csproj", "{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMongo", "src\PriceGetter.PersistenceMongo\PriceGetter.PersistenceMongo.csproj", "{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceMongoTests", "tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{AE13DCFE-4342-49C1-B07B-39D57B839DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMongoTests", "tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{AE13DCFE-4342-49C1-B07B-39D57B839DC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Quartz", "src\PriceGetter.Quartz\PriceGetter.Quartz.csproj", "{BEE21997-67E9-4391-BA6D-D813C1AC94B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,10 @@ Global
 		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE13DCFE-4342-49C1-B07B-39D57B839DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{5C8D3288-3831-4E1D-9DF4-0779939EC67D} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{AE13DCFE-4342-49C1-B07B-39D57B839DC1} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
+		{BEE21997-67E9-4391-BA6D-D813C1AC94B0} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

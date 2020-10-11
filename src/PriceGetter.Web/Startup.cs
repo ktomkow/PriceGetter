@@ -34,12 +34,17 @@ using PriceGetter.Persistence.Repositories;
 using PriceGetter.PersistenceEntityFramework;
 using PriceGetter.PersistenceEntityFramework.Repositories;
 using PriceGetter.PersistenceMongo.Tools;
+using PriceGetter.Quartz.Jobs;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
 using PriceGetter.Web.Middleware;
+using PriceGetter.Web.QuartzConfig;
 using PriceGetter.Web.Tools.Unbaser;
 using PriceGetter.WebClients;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 
 namespace PriceGetter.Web
 {
@@ -74,6 +79,8 @@ namespace PriceGetter.Web
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddHostedService<QuartzHostedService>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -111,6 +118,15 @@ namespace PriceGetter.Web
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
+            builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();
+
+            builder.RegisterType<HelloWorld>().SingleInstance();
+
+            builder.RegisterInstance(new JobSchedule(
+                jobType: typeof(HelloWorld),
+                cronExpression: "0/5 * * * * ?"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

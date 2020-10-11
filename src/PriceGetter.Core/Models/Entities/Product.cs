@@ -11,9 +11,11 @@ namespace PriceGetter.Core.Models.Entities
         private readonly HashSet<Price> prices;
 
         public Name Name { get; protected set; }
+
         public bool MonitoringActive { get; protected set; }
 
         public Url ProductPage { get; protected set; }
+
         public Url ProductImage { get; protected set; }
 
         public IEnumerable<Price> Prices =>

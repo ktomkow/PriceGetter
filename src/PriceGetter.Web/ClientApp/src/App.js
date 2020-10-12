@@ -13,6 +13,7 @@ import Home from "./app/components/home/home";
 import List from "./app/components/list/list";
 import Form from "./app/components/form/form";
 import Tmp from "./app/components/tmp/tmp";
+import Products from "./app/components/products/products";
 
 
 function App() {
@@ -25,12 +26,16 @@ function App() {
         <div>
           <Link to="/list">list</Link>
         </div>
+        <div>
+          <Link to="/products">products</Link>
+        </div>
         <Button color="primary">
           Hello Material
         </Button>
       </div>
       <Switch>
         <Route exact path={["/clientapp", "/home"]} component={Home} />
+        <Route exact path="/products" component={Products} />
         <Route exact path={["/list"]} component={List} />
         <Route exact path="/form" component={Form} />
         <Route exact path={["/", "/tmp"]} component={Tmp} />

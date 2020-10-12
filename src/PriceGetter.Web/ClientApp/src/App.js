@@ -7,11 +7,13 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
+import { Button } from '@material-ui/core';
 
 import Home from "./app/components/home/home";
 import List from "./app/components/list/list";
 import Form from "./app/components/form/form";
 import Tmp from "./app/components/tmp/tmp";
+
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
         <div>
           <Link to="/list">list</Link>
         </div>
+        <Button color="primary">
+          Hello Material
+        </Button>
       </div>
       <Switch>
         <Route exact path={["/clientapp", "/home"]} component={Home} />

@@ -16,6 +16,14 @@ import Tmp from "./app/components/tmp/tmp";
 function App() {
   return (
     <Router>
+      <div>
+        <div>
+          <Link to="/tmp">tmp</Link>
+        </div>
+        <div>
+          <Link to="/list">list</Link>
+        </div>
+      </div>
       <Switch>
         <Route exact path={["/clientapp", "/home"]} component={Home} />
         <Route exact path={["/list"]} component={List} />

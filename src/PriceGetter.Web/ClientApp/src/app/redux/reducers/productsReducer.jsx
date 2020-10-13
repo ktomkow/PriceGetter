@@ -7,10 +7,12 @@ const initialState = {
 function productsReducer(state = initialState, action) {
   if (action.type === PRODUCTS_ACTIONS.GET_ALL_PRODUCTS) {
     return Object.assign({}, state, {
-      products: [
-          ...state.products,
-          action.payload
-      ]
+      // the one commented below would actually add a new element to existing collection
+      // products: [
+      //     ...state.products,
+      //     action.payload
+      // ]
+      products: action.payload
     });
   }
 

@@ -10,11 +10,9 @@ export function getProducts() {
       .get("/api/product")
       .then(function (response) {
         const payload = response.data;
-        // const payload = { name: "dupa", price: "10.99", id: Math.random() };
         dispatch({ type: PRODUCTS_ACTIONS.GET_ALL_PRODUCTS, payload: payload });
       })
       .catch(function (error) {
-        // handle error
         console.error(error);
       });
     }, 1000);

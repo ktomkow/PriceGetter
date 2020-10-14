@@ -8,10 +8,8 @@ import { useEffect } from "react";
 const Products = (props) => {
   useEffect(() => {
     console.log("hook");
-    if (props.products.length === 0) {
-      props.getProducts();
-    }
-  });
+    props.getProducts();
+  }, []);
 
   return (
     <div>

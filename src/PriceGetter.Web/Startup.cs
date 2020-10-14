@@ -117,7 +117,9 @@ namespace PriceGetter.Web
             builder.RegisterType<PriceGetterDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+            //builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+            builder.RegisterType<FakeProductService>().As<IProductService>().SingleInstance();
+
 
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();

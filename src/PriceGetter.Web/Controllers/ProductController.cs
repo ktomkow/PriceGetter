@@ -18,20 +18,20 @@ namespace PriceGetter.Web.Controllers
             this.productService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
-        {
-            var newIdentifier = await this.productService.Create(command);
-
-            return Created("http://dupa.pl",null);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await this.productService.Get();
 
             return Ok(products);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
+        {
+            var newIdentifier = await this.productService.Create(command);
+
+            return Created("http://dupa.pl",null);
         }
     }
 }

@@ -7,7 +7,9 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
+
+import TopBar from "./app/components/layout/topBar";
 
 import Home from "./app/components/home/home";
 import List from "./app/components/list/list";
@@ -15,10 +17,10 @@ import Form from "./app/components/form/form";
 import Tmp from "./app/components/tmp/tmp";
 import Products from "./app/components/products/products";
 
-
 function App() {
   return (
     <Router>
+      <TopBar />
       <div>
         <div>
           <Link to="/tmp">tmp</Link>
@@ -29,9 +31,7 @@ function App() {
         <div>
           <Link to="/products">products</Link>
         </div>
-        <Button color="primary">
-          Hello Material
-        </Button>
+        <Button color="primary">Hello Material</Button>
       </div>
       <Switch>
         <Route exact path={["/clientapp", "/home"]} component={Home} />

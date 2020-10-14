@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../../redux/actions/productsActionCreator";
 
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, Grid } from "@material-ui/core";
 import { useEffect } from "react";
+import ProductCard from "./productCard";
 
 const Products = (props) => {
   useEffect(() => {
@@ -12,7 +13,7 @@ const Products = (props) => {
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Products </h1>
       <Button color="primary" onClick={() => props.getProducts()}>
         Get
@@ -20,6 +21,17 @@ const Products = (props) => {
       <Button color="secondary" onClick={() => props.getProducts()}>
         Get
       </Button>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <ProductCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ProductCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ProductCard />
+        </Grid>
+      </Grid>
       {props.products.length === 0 && <CircularProgress />}
       <div>
         {props.products.map((item) => (
@@ -28,7 +40,7 @@ const Products = (props) => {
           </p>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

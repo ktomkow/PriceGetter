@@ -7,7 +7,7 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 import TopBar from "./app/components/layout/topBar";
 
@@ -17,30 +17,22 @@ import Form from "./app/components/form/form";
 import Tmp from "./app/components/tmp/tmp";
 import Products from "./app/components/products/products";
 
+import PageContent from "./app/components/layout/pageContent";
+
 function App() {
   return (
     <Router>
       <TopBar />
-      <div>
-        <div>
-          <Link to="/tmp">tmp</Link>
-        </div>
-        <div>
-          <Link to="/list">list</Link>
-        </div>
-        <div>
-          <Link to="/products">products</Link>
-        </div>
-        <Button color="primary">Hello Material</Button>
-      </div>
-      <Switch>
-        <Route exact path={["/clientapp", "/home"]} component={Home} />
-        <Route exact path="/products" component={Products} />
-        <Route exact path={["/list"]} component={List} />
-        <Route exact path="/form" component={Form} />
-        <Route exact path={["/", "/tmp"]} component={Tmp} />
-        <Route component={PageNotFound} />
-      </Switch>
+      <PageContent>
+        <Switch>
+          <Route exact path={["/clientapp", "/home"]} component={Home} />
+          <Route exact path="/products" component={Products} />
+          <Route exact path={["/list"]} component={List} />
+          <Route exact path="/form" component={Form} />
+          <Route exact path={["/", "/tmp"]} component={Tmp} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </PageContent>
     </Router>
   );
 }

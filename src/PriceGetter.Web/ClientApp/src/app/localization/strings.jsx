@@ -13,6 +13,11 @@ const strings = new LocalizedStrings({
         TITLE: "Price Getter",
       }
     },
+    CARDS: {
+      PRODUCT_CARD: {
+        LAST_PRICE: "Last price: "
+      }
+    }
   },
   pl: {
     HOME: {

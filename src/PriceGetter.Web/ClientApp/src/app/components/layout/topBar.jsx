@@ -28,18 +28,15 @@ const TopBar = () => {
         <Typography className={classes.typographyStyles} variant="h6">
           {strings.LAYOUT.TOP_BAR.TITLE}
         </Typography>
-        <Button component={Link} to="/list">
+        <Button component={Link} to="/list" color="secondary">
           list
         </Button>{" "}
-        <Button component={Link} to="/tmp">
+        <Button component={Link} to="/tmp" color="secondary">
           tmp
         </Button>
-        <Button component={Link} to="/products">
+        <Button component={Link} to="/products" color="secondary">
           products
         </Button>
-        <IconButton>
-          <FavoriteRoundedIcon />
-        </IconButton>
       </Toolbar>
     </AppBar>
   );

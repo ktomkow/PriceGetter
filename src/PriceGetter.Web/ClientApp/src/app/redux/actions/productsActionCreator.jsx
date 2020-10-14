@@ -15,6 +15,6 @@ export function getProducts() {
       .catch(function (error) {
         console.error(error);
       });
-    }, 1000);
+    }, 2500);
   };
 }

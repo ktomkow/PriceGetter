@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../../redux/actions/productsActionCreator";
 
-import { Button, CircularProgress, Grid } from "@material-ui/core";
-import { useEffect } from "react";
+import { CircularProgress, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import ProductCard from "./productCard";
 
+const useStyles = makeStyles({
+  spinner: {
+    position: "relative",
+    marginLeft: "50%",
+    marginTop: "10%",
+  }
+});
+
 const Products = (props) => {
+  const classes = useStyles();
+
   useEffect(() => {
     console.log("hook");
     props.getProducts();
@@ -14,32 +25,25 @@ const Products = (props) => {
 
   return (
     <>
-      <h1>Products </h1>
-      <Button color="primary" onClick={() => props.getProducts()}>
-        Get
-      </Button>
-      <Button color="secondary" onClick={() => props.getProducts()}>
-        Get
-      </Button>
+      <Typography variant="h3">Products </Typography>
+      {props.products.length === 0 && (
+        <Grid container spacing={0} alignItems="center" justify="center">
+          <Grid item xs={12}>
+            <CircularProgress
+              className={classes.spinner}
+              size="8rem"
+              thickness={1.0}
+            />
+          </Grid>
+        </Grid>
+      )}
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={4}>
-          <ProductCard />
-        </Grid>
-        <Grid item xs={4}>
-          <ProductCard />
-        </Grid>
-      </Grid>
-      {props.products.length === 0 && <CircularProgress />}
-      <div>
         {props.products.map((item) => (
-          <p key={item.id}>
-            Name: {item.name}, id: {item.id}
-          </p>
+          <Grid item xs={6} sm={4} lg={3} key={item.id}>
+            <ProductCard product={item} />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </>
   );
 };

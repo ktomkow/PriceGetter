@@ -24,13 +24,14 @@ namespace PriceGetter.ApplicationServices.ProductServices
         {
             List<ProductDto> list = new List<ProductDto>();
 
-            for (int i = 0; i < this.random.Next(12); i++)
+            for (int i = 0; i < this.random.Next(6) + 6; i++)
             {
                 var productDto = new ProductDto()
                 {
+                    Id = Guid.NewGuid(),
                     Name = $"Product{i}",
-                    ProductPage = "",
-                    ImageUrl = "",
+                    ProductPage = "https://google.com",
+                    ImageUrl = "https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png",
                     Prices = this.GetPrices()
                 };
 
@@ -44,7 +45,7 @@ namespace PriceGetter.ApplicationServices.ProductServices
         {
             List<PriceDto> list = new List<PriceDto>();
 
-            for (int i = 0; i < this.random.Next(50); i++)
+            for (int i = 0; i < this.random.Next(40) + 10; i++)
             {
                 var price = new PriceDto()
                 {

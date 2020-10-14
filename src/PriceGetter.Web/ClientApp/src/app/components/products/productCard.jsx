@@ -1,10 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { CardHeader, CardMedia, IconButton } from "@material-ui/core";
+import LinkIcon from "@material-ui/icons/Link";
+
+import { formatRawDate } from "../../services/dateServices";
+import { formatMoneyAndAddPLN } from "../../services/moneyServices";
+
+import strings from "../../localization/strings";
 
 const useStyles = makeStyles({
   bullet: {
@@ -18,37 +24,74 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  media: {
+    height: 0,
+    paddingTop: "100%", // 56% would be 16:9
+  },
 });
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+
+  const getLastPrice = () => {
+    const price = product.prices.sort((a, b) => {
+      return a.at - b.at;
+    })[0];
+
+    if (price) {
+      return price;
+    }
+
+    return { at: "", amount: "" };
+  };
+
+  const getLastPriceDate = () => {
+    const lastPrice = getLastPrice();
+
+    return formatRawDate(lastPrice.at);
+  };
+
+  const getLastPriceAmount = () => {
+    const lastPrice = getLastPrice();
+
+    const formattedAmount = formatMoneyAndAddPLN(lastPrice.amount);
+
+    return formattedAmount;
+  };
+
+  const handlePageChange = () => {
+    const url = product.productPage;
+    window.open(url);
+  };
 
   return (
     <Card>
+      <CardHeader
+        title={product.name}
+        subheader={getLastPriceDate()}
+        action={
+          <IconButton aria-label="settings">
+            <LinkIcon onClick={handlePageChange} />
+          </IconButton>
+        }
+      ></CardHeader>
+      <CardMedia
+        className={classes.media}
+        image={product.imageUrl}
+        title="Product image"
+      />
       <CardContent>
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          Word of the Day
+          {strings.CARDS.PRODUCT_CARD.LAST_PRICE}
         </Typography>
         <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {getLastPriceAmount()}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 };

@@ -17,6 +17,12 @@ const strings = new LocalizedStrings({
       PRODUCT_CARD: {
         LAST_PRICE: "Last price: "
       }
+    },
+    CREATE_FORM: {
+      PRODUCT_CREATE: {
+        TITLE: "Create new product",
+        LINK_INPUT_PLACEHOLDER: "Paste a link here"
+      }
     }
   },
   pl: {

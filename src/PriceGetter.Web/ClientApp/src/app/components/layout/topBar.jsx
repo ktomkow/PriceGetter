@@ -32,6 +32,9 @@ const TopBar = () => {
         <Typography className={classes.typographyStyles} variant="h4">
           {strings.LAYOUT.TOP_BAR.TITLE}
         </Typography>
+        <Button component={Link} to="/createProduct" color="secondary" className={classes.topBarNavButton}>
+          Create Product
+        </Button>
         <Button component={Link} to="/list" color="secondary" className={classes.topBarNavButton}>
           list
         </Button>

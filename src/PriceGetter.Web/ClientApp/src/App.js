@@ -16,6 +16,7 @@ import List from "./app/components/list/list";
 import Form from "./app/components/form/form";
 import Tmp from "./app/components/tmp/tmp";
 import Products from "./app/components/products/products";
+import ProductCreateForm from './app/components/productCreate/productCreateForm';
 
 import PageContent from "./app/components/layout/pageContent";
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/products" component={Products} />
           <Route exact path={["/list"]} component={List} />
           <Route exact path="/form" component={Form} />
+          <Route exact path="/createProduct" component={ProductCreateForm} />
           <Route exact path={["/", "/tmp"]} component={Tmp} />
           <Route component={PageNotFound} />
         </Switch>

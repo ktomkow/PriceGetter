@@ -5,12 +5,12 @@ import {
   Typography,
   IconButton,
   Button,
+  Tabs,
+  Tab
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/styles";
 
-import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
 import strings from "../../localization/strings";
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,10 @@ const useStyles = makeStyles(() => ({
   typographyStyles: {
     flex: 1,
   },
+  topBarNavButton: {
+    paddingRight: "2em",
+    paddingLeft: "2em"
+  }
 }));
 
 const TopBar = () => {
@@ -25,16 +29,16 @@ const TopBar = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography className={classes.typographyStyles} variant="h6">
+        <Typography className={classes.typographyStyles} variant="h4">
           {strings.LAYOUT.TOP_BAR.TITLE}
         </Typography>
-        <Button component={Link} to="/list" color="secondary">
+        <Button component={Link} to="/list" color="secondary" className={classes.topBarNavButton}>
           list
-        </Button>{" "}
-        <Button component={Link} to="/tmp" color="secondary">
+        </Button>
+        <Button component={Link} to="/tmp" color="secondary" className={classes.topBarNavButton}>
           tmp
         </Button>
-        <Button component={Link} to="/products" color="secondary">
+        <Button component={Link} to="/products" color="secondary" className={classes.topBarNavButton}>
           products
         </Button>
       </Toolbar>

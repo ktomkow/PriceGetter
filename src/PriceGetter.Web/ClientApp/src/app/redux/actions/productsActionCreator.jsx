@@ -18,3 +18,9 @@ export function getProducts() {
     }, 2500);
   };
 }
+
+export function clearProducts() {
+  return function (dispatch) {
+    dispatch({ type: PRODUCTS_ACTIONS.CLEAR_PRODUCTS });
+  };
+}

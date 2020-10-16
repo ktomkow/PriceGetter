@@ -16,6 +16,12 @@ function productsReducer(state = initialState, action) {
     });
   }
 
+  if (action.type === PRODUCTS_ACTIONS.CLEAR_PRODUCTS) {
+    return Object.assign({}, state, {
+      products: []
+    });
+  }
+
   return state;
 }
 

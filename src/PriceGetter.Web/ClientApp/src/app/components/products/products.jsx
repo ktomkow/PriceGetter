@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getProducts } from "../../redux/actions/productsActionCreator";
+import { getProducts, clearProducts } from "../../redux/actions/productsActionCreator";
 
 import { CircularProgress, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,6 +20,7 @@ const Products = (props) => {
 
   useEffect(() => {
     console.log("hook");
+    props.clearProducts();
     props.getProducts();
   }, []);
 
@@ -52,4 +53,4 @@ const mapStateToProps = (state) => {
   return { products: state.productsReducer.products };
 };
 
-export default connect(mapStateToProps, { getProducts })(Products);
+export default connect(mapStateToProps, { getProducts, clearProducts })(Products);

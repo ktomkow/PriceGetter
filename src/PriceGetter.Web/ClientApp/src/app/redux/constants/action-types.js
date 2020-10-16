@@ -5,6 +5,7 @@ export const preProducts = {
 };
 
 export const PRODUCTS_ACTIONS = {
+    CLEAR_PRODUCTS: "CLEAR_PRODUCTS",
     GET_ALL_PRODUCTS: "GET_ALL_PRODUCTS"
 };
 

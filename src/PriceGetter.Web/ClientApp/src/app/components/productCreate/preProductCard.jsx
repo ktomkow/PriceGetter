@@ -42,8 +42,8 @@ const PreProductCard = ({ props }) => {
       <CardHeader
         title={name}
         action={
-          <IconButton aria-label="settings">
-            <LinkIcon onClick={handlePageChange} />
+          <IconButton aria-label="settings" onClick={handlePageChange}>
+            <LinkIcon />
           </IconButton>
         }
       ></CardHeader>

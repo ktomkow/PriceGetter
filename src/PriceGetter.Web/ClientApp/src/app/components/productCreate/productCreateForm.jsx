@@ -70,8 +70,12 @@ const ProductCreateForm = (props) => {
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />
-        <IconButton className={classes.iconButton} aria-label="search">
-          <SearchIcon onClick={handleClick} />
+        <IconButton
+          className={classes.iconButton}
+          aria-label="search"
+          onClick={handleClick}
+        >
+          <SearchIcon />
         </IconButton>
       </Paper>
     </Paper>
@@ -79,9 +83,9 @@ const ProductCreateForm = (props) => {
 };
 
 function mapDispatchToProps(dispatch) {
-    return {
-        getPreproduct: (link) => getPreproduct(link, dispatch),
-    };
-  }
-  
+  return {
+    getPreproduct: (link) => getPreproduct(link, dispatch),
+  };
+}
+
 export default connect(null, mapDispatchToProps)(ProductCreateForm);

@@ -70,8 +70,8 @@ const ProductCard = ({ product }) => {
         title={product.name}
         subheader={getLastPriceDate()}
         action={
-          <IconButton aria-label="settings">
-            <LinkIcon onClick={handlePageChange} />
+          <IconButton aria-label="settings" onClick={handlePageChange}>
+            <LinkIcon  />
           </IconButton>
         }
       ></CardHeader>

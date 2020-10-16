@@ -16,7 +16,7 @@ namespace PriceGetter.Web.Fakes
             PreProductDto result = new PreProductDto()
             {
                 Name = "name",
-                LastPrice = new PriceDto() { Amount = 19.99m, At = new DateTime(1970,1,1,0,0,0)},
+                Price = 19.99m,
                 ProductPage = url,
                 ImageUrl = string.Empty
             };

@@ -42,12 +42,10 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             Name productName = this.nameExtractor.Extract(html);
             Url imageUrl = this.imageExtractor.Extract(html);
 
-            PriceDto price = new PriceDto() { Amount = currentPrice.ValuAsDecimal, At = DateTime.UtcNow };
-
             var result = new PreProductDto()
             {
                 Name = productName.ToString(),
-                LastPrice = price,
+                Price = currentPrice.ValuAsDecimal,
                 ProductPage = url.ToString(),
                 ImageUrl = imageUrl.ToString()
             };

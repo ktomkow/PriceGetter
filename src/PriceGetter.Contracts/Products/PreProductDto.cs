@@ -12,6 +12,6 @@ namespace PriceGetter.Contracts.Products
 
         public string ProductPage { get; set; }
 
-        public PriceDto LastPrice { get; set; }
+        public decimal Price { get; set; }
     }
 }

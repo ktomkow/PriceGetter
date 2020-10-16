@@ -12,12 +12,17 @@ import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 import strings from "../../localization/strings";
 
 const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
   title: {
     fontSize: 14,
   },
   media: {
-    height: 0,
-    paddingTop: "100%", // 56% would be 16:9
+    width: "10em",
+    // paddingTop: "100%", // 56% would be 16:9
   },
 });
 
@@ -38,7 +43,7 @@ const PreProductCard = ({ props }) => {
   };
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
         title={name}
         action={
@@ -51,6 +56,7 @@ const PreProductCard = ({ props }) => {
         className={classes.media}
         image={imageUrl}
         title="Product image"
+        component="img"
       />
       <CardContent>
         <Typography variant="h5" component="h2">

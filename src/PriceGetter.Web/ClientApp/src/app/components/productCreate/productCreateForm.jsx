@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import strings from "../../localization/strings";
 
 import { getPreproduct } from "../../redux/actions/preProductActionCreator";
+import preProductReducer from "../../redux/reducers/preProductReducer";
 
 import PreProductCard from "./preProductCard";
 
@@ -41,7 +42,7 @@ const ProductCreateForm = (props) => {
 
   const [link, setLink] = useState("");
 
-  const emptyProduct = () => {
+  const emptyPreProduct = () => {
     return {
       name: "Name will be here",
       price: "0,0000",
@@ -50,6 +51,15 @@ const ProductCreateForm = (props) => {
         "https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png",
     };
   };
+
+  const getPreProduct = () => {
+    let preProduct = props.preProductReducer.preProduct;
+    if(preProduct) {
+      return preProduct;
+    }
+
+    return emptyPreProduct();
+  }
 
   const handleClick = () => {
     props.getPreproduct(link);
@@ -60,7 +70,7 @@ const ProductCreateForm = (props) => {
       <Typography variant="h6">
         {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
       </Typography>
-      <PreProductCard props={emptyProduct()} />
+      <PreProductCard inProgress={props.preProductReducer.gettingDataInProgress} preproduct={getPreProduct()} />
       <Paper className={classes.inputContainer} elevation={10}>
         <InputBase
           className={classes.input}
@@ -74,6 +84,7 @@ const ProductCreateForm = (props) => {
           className={classes.iconButton}
           aria-label="search"
           onClick={handleClick}
+          disabled={props.preProductReducer.gettingDataInProgress}
         >
           <SearchIcon />
         </IconButton>
@@ -88,4 +99,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(ProductCreateForm);
+const mapStateToProps = (state) => {
+  return { preProductReducer: state.preProductReducer };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCreateForm);

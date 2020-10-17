@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Controllers
 {
-    public class PreProductDetailsController : AbstractController
+    public class PreProductController : AbstractController
     {
         private readonly IDetailsProvider detailsProvider;
         private readonly IUnbaser unbaser;
 
-        public PreProductDetailsController(IDetailsProvider detailsProvider, IUnbaser unbaser)
+        public PreProductController(IDetailsProvider detailsProvider, IUnbaser unbaser)
         {
             this.detailsProvider = detailsProvider;
             this.unbaser = unbaser;

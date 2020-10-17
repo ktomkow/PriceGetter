@@ -23,6 +23,7 @@ import PreProductCard from "./preProductCard";
 const useStyles = makeStyles({
   root: {
     padding: "3em",
+    marginTop: "2em",
   },
   container: {
     display: "flex",
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
   inputContainer: {
     padding: "2px 4px",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   input: {
     flex: 1,
@@ -45,7 +46,7 @@ const useStyles = makeStyles({
   },
   iconButton: {
     padding: 10,
-    float: "right"
+    float: "right",
   },
 });
 
@@ -78,39 +79,43 @@ const ProductCreateForm = (props) => {
   };
 
   return (
-    <Paper className={classes.root} elevation={10}>
-      <Container className={classes.container}>
-        <Typography variant="h6" className={classes.containerItem}>
-          {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
-        </Typography>
-        <PreProductCard
-          className={classes.containerItem}
-          inProgress={props.preProductReducer.gettingDataInProgress}
-          preproduct={getPreProduct()}
-        />
-        <Paper
-          className={(classes.inputContainer, classes.containerItem)}
-          variant="outlined"
-        >
-          <InputBase
-            className={classes.input}
-            placeholder={
-              strings.CREATE_FORM.PRODUCT_CREATE.LINK_INPUT_PLACEHOLDER
-            }
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-          />
-          <IconButton
-            className={classes.iconButton}
-            aria-label="search"
-            onClick={handleClick}
-            disabled={props.preProductReducer.gettingDataInProgress}
-          >
-            <SearchIcon />
-          </IconButton>
+    <Grid container justify="center">
+      <Grid item>
+        <Paper className={classes.root} elevation={10}>
+          <Container className={classes.container}>
+            <Typography variant="h6" className={classes.containerItem}>
+              {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
+            </Typography>
+            <PreProductCard
+              className={classes.containerItem}
+              inProgress={props.preProductReducer.gettingDataInProgress}
+              preproduct={getPreProduct()}
+            />
+            <Paper
+              className={(classes.inputContainer, classes.containerItem)}
+              variant="outlined"
+            >
+              <InputBase
+                className={classes.input}
+                placeholder={
+                  strings.CREATE_FORM.PRODUCT_CREATE.LINK_INPUT_PLACEHOLDER
+                }
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+              />
+              <IconButton
+                className={classes.iconButton}
+                aria-label="search"
+                onClick={handleClick}
+                disabled={props.preProductReducer.gettingDataInProgress}
+              >
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+          </Container>
         </Paper>
-      </Container>
-    </Paper>
+      </Grid>
+    </Grid>
   );
 };
 

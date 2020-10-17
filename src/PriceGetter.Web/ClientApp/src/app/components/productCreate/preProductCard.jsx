@@ -19,6 +19,7 @@ import strings from "../../localization/strings";
 
 const useStyles = makeStyles({
   root: {
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center"

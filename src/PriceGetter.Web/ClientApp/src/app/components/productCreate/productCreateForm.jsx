@@ -31,17 +31,21 @@ const useStyles = makeStyles({
   },
   containerItem: {
     margin: "1em",
+    width: "100%",
   },
   inputContainer: {
     padding: "2px 4px",
-    minWidth: 400,
     display: "flex",
+    alignItems: "center"
   },
   input: {
     flex: 1,
+    padding: "5px",
+    minWidth: 400,
   },
   iconButton: {
     padding: 10,
+    float: "right"
   },
 });
 
@@ -80,11 +84,14 @@ const ProductCreateForm = (props) => {
           {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
         </Typography>
         <PreProductCard
-         className={classes.containerItem}
+          className={classes.containerItem}
           inProgress={props.preProductReducer.gettingDataInProgress}
           preproduct={getPreProduct()}
         />
-        <Paper className={classes.inputContainer, classes.containerItem} variant="outlined">
+        <Paper
+          className={(classes.inputContainer, classes.containerItem)}
+          variant="outlined"
+        >
           <InputBase
             className={classes.input}
             placeholder={

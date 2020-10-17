@@ -55,6 +55,8 @@ const ProductCreateForm = (props) => {
 
   const [link, setLink] = useState("");
 
+  const loadingInProgress = props.preProductReducer.gettingDataInProgress;
+
   const emptyPreProduct = () => {
     return {
       name: "Name will be here",
@@ -78,6 +80,22 @@ const ProductCreateForm = (props) => {
     props.getPreproduct(link);
   };
 
+  const isInputValid = () => {
+    if (!link) {
+      return false;
+    }
+
+    if (link.length < 1) {
+      return false;
+    }
+
+    if (link.startsWith("http")) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <Grid container justify="center">
       <Grid item>
@@ -88,7 +106,7 @@ const ProductCreateForm = (props) => {
             </Typography>
             <PreProductCard
               className={classes.containerItem}
-              inProgress={props.preProductReducer.gettingDataInProgress}
+              inProgress={loadingInProgress}
               preproduct={getPreProduct()}
             />
             <Paper
@@ -102,12 +120,13 @@ const ProductCreateForm = (props) => {
                 }
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
+                disabled={loadingInProgress}
               />
               <IconButton
                 className={classes.iconButton}
                 aria-label="search"
                 onClick={handleClick}
-                disabled={props.preProductReducer.gettingDataInProgress}
+                disabled={loadingInProgress || !isInputValid()}
               >
                 <SearchIcon />
               </IconButton>

@@ -8,6 +8,7 @@ import {
   Paper,
   IconButton,
   Typography,
+  Container,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -16,13 +17,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import strings from "../../localization/strings";
 
 import { getPreproduct } from "../../redux/actions/preProductActionCreator";
-import preProductReducer from "../../redux/reducers/preProductReducer";
 
 import PreProductCard from "./preProductCard";
 
 const useStyles = makeStyles({
   root: {
     padding: "3em",
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  containerItem: {
+    margin: "1em",
   },
   inputContainer: {
     padding: "2px 4px",
@@ -54,41 +62,47 @@ const ProductCreateForm = (props) => {
 
   const getPreProduct = () => {
     let preProduct = props.preProductReducer.preProduct;
-    if(preProduct) {
+    if (preProduct) {
       return preProduct;
     }
 
     return emptyPreProduct();
-  }
+  };
 
   const handleClick = () => {
     props.getPreproduct(link);
   };
 
   return (
-    <Paper className={classes.root} elevation={3}>
-      <Typography variant="h6">
-        {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
-      </Typography>
-      <PreProductCard inProgress={props.preProductReducer.gettingDataInProgress} preproduct={getPreProduct()} />
-      <Paper className={classes.inputContainer} elevation={10}>
-        <InputBase
-          className={classes.input}
-          placeholder={
-            strings.CREATE_FORM.PRODUCT_CREATE.LINK_INPUT_PLACEHOLDER
-          }
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+    <Paper className={classes.root} elevation={10}>
+      <Container className={classes.container}>
+        <Typography variant="h6" className={classes.containerItem}>
+          {strings.CREATE_FORM.PRODUCT_CREATE.TITLE}
+        </Typography>
+        <PreProductCard
+         className={classes.containerItem}
+          inProgress={props.preProductReducer.gettingDataInProgress}
+          preproduct={getPreProduct()}
         />
-        <IconButton
-          className={classes.iconButton}
-          aria-label="search"
-          onClick={handleClick}
-          disabled={props.preProductReducer.gettingDataInProgress}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
+        <Paper className={classes.inputContainer, classes.containerItem} variant="outlined">
+          <InputBase
+            className={classes.input}
+            placeholder={
+              strings.CREATE_FORM.PRODUCT_CREATE.LINK_INPUT_PLACEHOLDER
+            }
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+          />
+          <IconButton
+            className={classes.iconButton}
+            aria-label="search"
+            onClick={handleClick}
+            disabled={props.preProductReducer.gettingDataInProgress}
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
+      </Container>
     </Paper>
   );
 };
@@ -102,4 +116,5 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = (state) => {
   return { preProductReducer: state.preProductReducer };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCreateForm);

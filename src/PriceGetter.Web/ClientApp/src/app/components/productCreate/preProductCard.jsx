@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   title: {
     fontSize: 14,
@@ -63,7 +63,7 @@ const PreProductCard = (props) => {
   }
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined" >
       <CardHeader
         title={name}
         action={

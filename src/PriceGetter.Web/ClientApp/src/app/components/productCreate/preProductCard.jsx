@@ -75,7 +75,7 @@ const PreProductCard = (props) => {
       />
 
       <Container className={classes.mediaContainer}>
-        {inProgress && <CircularProgress />}
+        {inProgress && <CircularProgress size="6rem" thickness={2.0}/>}
         {!inProgress && (
           <CardMedia
             className={classes.media}

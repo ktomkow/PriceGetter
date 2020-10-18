@@ -20,7 +20,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void IdShouldBeGenerated()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.Id.Should().NotBe(Guid.Empty);
         }
@@ -28,7 +28,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void MonitoringActiveFlag_ShouldBeTrue()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.MonitoringActive.Should().BeTrue();
         }
@@ -36,7 +36,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void ProductPage_ShouldNotBeNull()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.ProductPage.Should().NotBeNull();
         }
@@ -44,7 +44,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void ProductPageToString_ShouldBeEmptyString()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.ProductPage.ToString().Should().Be(string.Empty);
         }
@@ -52,7 +52,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void ProductImage_ShouldNotBeNull()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.ProductImage.Should().NotBeNull();
         }
@@ -60,7 +60,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void ProductImageToString_ShouldBeEmptyString()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.ProductImage.ToString().Should().Be(string.Empty);
         }
@@ -68,7 +68,7 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void Prices_ShouldNotReturnNull()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.Prices.Should().NotBeNull();
         }
@@ -76,9 +76,18 @@ namespace PriceGetter.CoreTests.EntitiesTests.ProductTests
         [Fact]
         public void Prices_ShouldReturnEmptyCollection()
         {
-            Product product = new Product(this.exampleNotEmptyName);
+            Product product = this.CreateProduct(this.exampleNotEmptyName);
 
             product.Prices.Should().BeEmpty();
+        }
+
+        private Product CreateProduct(Name name)
+        {
+            Url emptyUrl = Url.FromString(string.Empty);
+
+            Product product = new Product(name, emptyUrl);
+
+            return product;
         }
     }
 }

@@ -25,14 +25,14 @@ namespace PriceGetter.Core.Models.Entities
         {
             this.prices = new HashSet<Price>();
             this.ProductImage = Url.FromString(string.Empty);
-            this.ProductPage = Url.FromString(string.Empty);
 
             this.MonitoringActive = true;
         }
 
-        public Product(Name name) : this()
+        public Product(Name name, Url productPage) : this()
         {
-            this.Rename(name);
+            this.Rename(name); 
+            this.ChangeProductPage(productPage);
         }
 
         public void Rename(Name name)
@@ -40,7 +40,7 @@ namespace PriceGetter.Core.Models.Entities
             this.Name = name;
         }
 
-        public void ChangeUrl(Url url)
+        public void ChangeProductPage(Url url)
         {
             this.ProductPage = url;
         }

@@ -21,8 +21,9 @@ namespace PriceGetter.ApplicationServices.ProductServices
         public async Task<Guid> Create(CreateProductCommand command)
         {
             var productName = new Name(command.Name);
+            var productPage = Url.FromString(command.ProductPage);
 
-            Product product = new Product(productName);
+            Product product = new Product(productName, productPage);
 
             await this.unitOfWork.ProductRepository.Add(product);
 

@@ -13,7 +13,9 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
         [Fact]
         public void GetHashCode_ShouldBeImplemented()
         {
-            Product product = new Product(new Name("Sample"));
+            Url emptyUrl = Url.FromString(string.Empty);
+            Name sampleName = new Name("Sample");
+            Product product = new Product(sampleName, emptyUrl);
 
             Money money = new Money(10.00m);
             Price price = new Price(money, product);

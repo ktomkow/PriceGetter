@@ -55,8 +55,10 @@ namespace PriceGetter.Persistence.Repositories
 
         private Product GetProduct()
         {
+            Url emptyUrl = Url.FromString(string.Empty);
+
             Name name = new Name(Guid.NewGuid().ToString().Substring(0, 6));
-            Product product = new Product(name);
+            Product product = new Product(name, emptyUrl);
 
             Money price = new Money(19.28m);
             product.AddPrice(price);

@@ -50,7 +50,7 @@ namespace PriceGetter.PersistenceEntityFramework
             modelBuilder.Entity<Price>().HasKey(x => x.Id);
             modelBuilder.Entity<Price>().Property(x => x.At);
             modelBuilder.Entity<Price>().OwnsOne(x => x.Amount)
-                .Property(x => x.ValuAsDecimal)
+                .Property(x => x.ValueAsDecimal)
                 .HasColumnName("Amount")
                 .HasColumnType("decimal(19,4");
 

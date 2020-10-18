@@ -16,6 +16,11 @@ namespace PriceGetter.Persistence.Repositories
         public InMemoryProductRepository()
         {
             this.products = new List<Product>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                this.products.Add(this.GetProduct());
+            }
         }
 
         public async Task<IEnumerable<Product>> Get()
@@ -46,6 +51,17 @@ namespace PriceGetter.Persistence.Repositories
         public Task<Product> Get(Name name)
         {
             throw new NotImplementedException();
+        }
+
+        private Product GetProduct()
+        {
+            Name name = new Name(Guid.NewGuid().ToString().Substring(0, 6));
+            Product product = new Product(name);
+
+            Money price = new Money(19.28m);
+            product.AddPrice(price);
+
+            return product;
         }
     }
 }

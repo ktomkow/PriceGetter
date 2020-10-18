@@ -107,7 +107,8 @@ namespace PriceGetter.Web
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
-            builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
+            //builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
 
             builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 
@@ -117,8 +118,7 @@ namespace PriceGetter.Web
             builder.RegisterType<PriceGetterDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
-            builder.RegisterType<FakeProductService>().As<IProductService>().SingleInstance();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();

@@ -8,8 +8,8 @@ namespace PriceGetter.Contracts.Products
     {
         public string Name { get; set; }
 
-        public string Page { get; set; }
+        public string ProductPage { get; set; }
 
-        public string Image { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 9.99m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.ValuAsDecimal;
+            decimal obtainedPrice = price.ValueAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
@@ -30,7 +30,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 9.99m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.ValuAsDecimal;
+            decimal obtainedPrice = price.ValueAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
@@ -102,7 +102,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             decimal expectedPrice = 0.00m;
 
             Money price = new Money(originalPrice);
-            decimal obtainedPrice = price.ValuAsDecimal;
+            decimal obtainedPrice = price.ValueAsDecimal;
 
             obtainedPrice.Should().Be(expectedPrice);
         }
@@ -129,7 +129,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             Money price = new Money(original);
             Money expectedPrice = new Money(expected);
 
-            bool result = price.ValuAsDecimal == expectedPrice.ValuAsDecimal;
+            bool result = price.ValueAsDecimal == expectedPrice.ValueAsDecimal;
 
             result.Should().BeTrue();
         }

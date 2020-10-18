@@ -45,7 +45,7 @@ namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
             var result = new PreProductDto()
             {
                 Name = productName.ToString(),
-                Price = currentPrice.ValuAsDecimal,
+                Price = currentPrice.ValueAsDecimal,
                 ProductPage = url.ToString(),
                 ImageUrl = imageUrl.ToString()
             };

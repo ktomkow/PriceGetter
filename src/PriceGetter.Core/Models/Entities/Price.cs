@@ -10,7 +10,7 @@ namespace PriceGetter.Core.Models.Entities
         public DateTime At { get; }
         public Product Product { get; }
 
-        public decimal AmountAsDecimal { get => this.Amount.ValuAsDecimal; }
+        public decimal AmountAsDecimal { get => this.Amount.ValueAsDecimal; }
 
         protected Price() 
         {
@@ -25,7 +25,15 @@ namespace PriceGetter.Core.Models.Entities
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            unchecked
+            {
+                int hash = 48383;
+
+                hash = hash * 476981 + this.At.GetHashCode();
+                hash = hash * 476981 + this.Amount.GetHashCode();
+
+                return hash;
+            }
         }
 
         public override bool Equals(object obj)

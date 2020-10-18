@@ -4,6 +4,6 @@ namespace PriceGetter.Core.Interfaces.Factories
 {
     public interface IPreProductFactory
     {
-        PreProduct Create(Name name, Url productPage, Url imageUrl);
+        PreProduct Create(Url imageUrl);
     }
 }

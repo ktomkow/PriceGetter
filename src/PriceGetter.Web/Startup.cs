@@ -74,7 +74,7 @@ namespace PriceGetter.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ContentProvidersInstaller());
+            builder.RegisterModule(new MainInstaller());
 
             builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
             

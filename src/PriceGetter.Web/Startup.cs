@@ -10,12 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PriceGetter.ApplicationServices.PriceProviders;
 using PriceGetter.ApplicationServices.ProductServices;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
-using PriceGetter.ContentProvider.DataExtractors;
-using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Infrastructure.Cache;
@@ -29,6 +26,7 @@ using PriceGetter.Quartz.Jobs;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
+using PriceGetter.Web.IoC;
 using PriceGetter.Web.Middleware;
 using PriceGetter.Web.QuartzConfig;
 using PriceGetter.Web.Tools.Unbaser;
@@ -76,15 +74,13 @@ namespace PriceGetter.Web
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterModule(new ContentProvidersInstaller());
+
             builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
             
             builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<BasicCssExtractor>().As<ICssContentExtractor>().InstancePerLifetimeScope();
-            builder.RegisterType<CssPriceExtractor>().As<ICssPriceExtractor>().InstancePerLifetimeScope();
+
             builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
-            builder.RegisterType<PriceExtractorXkom>();
-            builder.RegisterType<NameExtractorXkom>();
-            builder.RegisterType<MainImageExtractorXkom>();
 
             builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
             builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();

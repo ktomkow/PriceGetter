@@ -1,9 +1,9 @@
 ﻿using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Interfaces.DataProviders;
-using PriceGetter.Core.Models.ValueObjects;
 
 namespace PriceGetter.Core.Interfaces.Factories
 {
+    // TODO: Check if it is reasonable and implement it
     public interface IDataProvidersFactory
     {
         IPriceProvider PriceProvider();

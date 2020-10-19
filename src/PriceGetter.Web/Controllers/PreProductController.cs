@@ -1,25 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
-using PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers;
+using PriceGetter.ApplicationServices.Interfaces;
 using PriceGetter.Contracts.Products;
-using PriceGetter.Core.Models.ValueObjects;
-using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Web.Tools.Unbaser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Controllers
 {
     public class PreProductController : AbstractController
     {
-        private readonly IDetailsProvider detailsProvider;
+        private readonly IPreProductService preProductService;
         private readonly IUnbaser unbaser;
 
-        public PreProductController(IDetailsProvider detailsProvider, IUnbaser unbaser)
+        public PreProductController(IPreProductService preProductService, IUnbaser unbaser)
         {
-            this.detailsProvider = detailsProvider;
+            this.preProductService = preProductService;
             this.unbaser = unbaser;
         }
 
@@ -40,9 +34,9 @@ namespace PriceGetter.Web.Controllers
         {
             string url = this.unbaser.Unbase(productUrlBase64);
 
-            PreProductDto details = await this.detailsProvider.GetAsync(url);
+            PreProductDto preProductDto = await this.preProductService.Get(url);
                 
-            return details;
+            return preProductDto;
         }
     }
 }

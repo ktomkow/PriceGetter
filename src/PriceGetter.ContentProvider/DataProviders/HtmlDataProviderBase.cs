@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders
 {
-    public abstract class HtmlDataProvider
+    internal abstract class HtmlDataProviderBase
     {
         protected readonly IHtmlContentGetter htmlContentGetter;
         protected readonly ICacheFacade cacheFacade;
 
-        public HtmlDataProvider(IHtmlContentGetter htmlContentGetter, ICacheFacade cacheFacade)
+        public HtmlDataProviderBase(IHtmlContentGetter htmlContentGetter, ICacheFacade cacheFacade)
         {
             this.htmlContentGetter = htmlContentGetter ?? throw new ArgumentNullException(nameof(htmlContentGetter));
             this.cacheFacade = cacheFacade ?? throw new ArgumentNullException(nameof(cacheFacade));

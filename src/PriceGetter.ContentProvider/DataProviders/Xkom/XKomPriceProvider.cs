@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.PriceProviders.Sellers
 {
-    public class XKomPriceProvider : HtmlDataProvider, IPriceProvider
+    public class XKomPriceProvider : HtmlDataProviderBase, IPriceProvider
     {
         private readonly PriceExtractorXkom priceExtractor;
 

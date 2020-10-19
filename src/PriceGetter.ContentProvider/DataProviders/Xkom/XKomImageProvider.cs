@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders.Xkom
 {
-    public class XKomImageProvider : HtmlDataProvider, IImageUrlProvider
+    public class XKomImageProvider : HtmlDataProviderBase, IImageUrlProvider
     {
         private readonly IMainImageExtractor imageExtractor;
 

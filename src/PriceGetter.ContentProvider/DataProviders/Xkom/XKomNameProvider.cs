@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders.Xkom
 {
-    public class XKomNameProvider : HtmlDataProvider, INameProvider
+    public class XKomNameProvider : HtmlDataProviderBase, INameProvider
     {
         private readonly INameExtractor nameExtractor;
 

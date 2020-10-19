@@ -12,6 +12,7 @@ namespace PriceGetter.Web.IoC
             builder.RegisterModule(new PersistenceMongoInstaller());
             builder.RegisterModule(new PersistenceEntityFrameworkInstaller());
             builder.RegisterModule(new WebClientsInstaller());
+            builder.RegisterModule(new ApplicationServicesInstaller());
         }
     }
 }

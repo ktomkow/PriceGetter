@@ -1,18 +1,41 @@
-﻿using PriceGetter.Core.Interfaces.Factories;
+﻿using PriceGetter.Core.Interfaces.DataProviders;
+using PriceGetter.Core.Interfaces.Factories;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace PriceGetter.DomainServices.Factories
 {
     public class PreProductFactory : IPreProductFactory
     {
-        // TODO: Tu korzystanie z abstrakcji tych obiektów do pobierania danych
+        private readonly IDataProvider dataProvider;
 
-        public PreProduct Create(Url imageUrl)
+        public PreProductFactory(IDataProvider dataProvider)
         {
-            throw new NotImplementedException();
+            this.dataProvider = dataProvider ?? throw new ArgumentNullException();
+        }
+
+        public PreProduct Create(Url productPage)
+        {
+            PreProduct preProduct = this.CreateAsync(productPage).Result;
+
+            return preProduct;
+        }
+
+        public async Task<PreProduct> CreateAsync(Url productPage)
+        {
+            if(productPage is null)
+            {
+                throw new ArgumentNullException(nameof(productPage));
+            }
+
+            Money price = await this.dataProvider.GetPrice(productPage);
+            Url imageUrl = await this.dataProvider.GetImageUrl(productPage);
+            Name name = await this.dataProvider.GetName(productPage);
+
+            PreProduct preProduct = new PreProduct(name, price, productPage, imageUrl);
+
+            return preProduct;
         }
     }
 }

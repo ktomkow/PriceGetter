@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders
 {
-    internal abstract class HtmlDataProviderBase
+    public abstract class HtmlDataProviderBase
     {
         protected readonly IHtmlContentGetter htmlContentGetter;
         protected readonly ICacheFacade cacheFacade;

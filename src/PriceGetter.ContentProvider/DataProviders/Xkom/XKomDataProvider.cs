@@ -3,7 +3,6 @@ using PriceGetter.ContentProvider.DataProviders.Xkom;
 using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Interfaces.DataProviders;
 using PriceGetter.Core.Models.ValueObjects;
-using PriceGetter.Infrastructure.Cache;
 using System;
 using System.Threading.Tasks;
 

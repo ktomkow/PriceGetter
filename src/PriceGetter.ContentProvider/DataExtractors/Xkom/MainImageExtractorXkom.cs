@@ -41,8 +41,8 @@ namespace PriceGetter.ContentProvider.DataExtractors.Xkom
             string rawUrl = dirtyResult.Substring(0, dirtyResult.Length - 3);
             rawUrl = rawUrl.RemoveChar('"');
             rawUrl = rawUrl.Trim();
-            
-            Url url = new Url(rawUrl);
+
+            Url url = Url.FromString(rawUrl);
 
             return url;
         }

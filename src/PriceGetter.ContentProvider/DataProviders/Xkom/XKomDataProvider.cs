@@ -1,4 +1,5 @@
 ﻿using PriceGetter.ApplicationServices.PriceProviders.Sellers;
+using PriceGetter.ContentProvider.DataProviders.Xkom;
 using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Interfaces.DataProviders;
 using PriceGetter.Core.Models.ValueObjects;
@@ -10,36 +11,34 @@ namespace PriceGetter.ContentProvider.DataProviders.XKom
 {
     public class XKomDataProvider : IDataProvider
     {
-        private readonly XKomPriceProvider priceProvider;
+        private readonly IPriceProvider priceProvider;
         private readonly INameProvider nameProvider;
         private readonly IImageUrlProvider imageUrlProvider;
-        private readonly ICacheFacade cache;
 
         public XKomDataProvider(
             XKomPriceProvider priceProvider, 
-            INameProvider nameProvider, 
-            IImageUrlProvider imageUrlProvider,
+            XKomNameProvider nameProvider, 
+            XKomImageProvider imageUrlProvider,
             ICacheFacade cache)
         {
-            this.priceProvider = priceProvider;
-            this.nameProvider = nameProvider;
-            this.imageUrlProvider = imageUrlProvider;
-            this.cache = cache;
+            this.priceProvider = priceProvider ?? throw new ArgumentNullException(nameof(priceProvider));
+            this.nameProvider = nameProvider ?? throw new ArgumentNullException(nameof(nameProvider));
+            this.imageUrlProvider = imageUrlProvider ?? throw new ArgumentNullException(nameof(imageUrlProvider));
         }
 
-        public Task<Url> GetImageUrl(Url productPage)
+        public async Task<Url> GetImageUrl(Url productPage)
         {
-            throw new NotImplementedException();
+            return await this.imageUrlProvider.GetImageUrl(productPage);
         }
 
-        public Task<Name> GetName(Url productPage)
+        public async Task<Name> GetName(Url productPage)
         {
-            throw new NotImplementedException();
+            return await this.nameProvider.GetName(productPage);
         }
 
-        public Task<Money> GetPrice(Url productPage)
+        public async Task<Money> GetPrice(Url productPage)
         {
-            throw new NotImplementedException();
+            return await this.priceProvider.GetPrice(productPage);
         }
     }
 }

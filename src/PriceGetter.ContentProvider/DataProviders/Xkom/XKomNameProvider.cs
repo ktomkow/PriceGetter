@@ -1,15 +1,34 @@
-﻿using PriceGetter.Core.Interfaces.DataProviders;
+﻿using PriceGetter.ContentProvider.DataExtractors.Xkom;
+using PriceGetter.Core.Interfaces;
+using PriceGetter.Core.Interfaces.DataProviders;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Infrastructure.Cache;
 using System;
 using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders.Xkom
 {
-    public class XKomNameProvider : INameProvider
+    public class XKomNameProvider : HtmlDataProvider, INameProvider
     {
-        public Task<Name> GetName(Url productPage)
+        private readonly INameExtractor nameExtractor;
+
+        public XKomNameProvider(NameExtractorXkom nameExtractor, IHtmlContentGetter htmlContentGetter, ICacheFacade cacheFacade) : base(htmlContentGetter, cacheFacade)
         {
-            throw new NotImplementedException();
+            this.nameExtractor = nameExtractor;
+        }
+
+        public async Task<Name> GetName(Url productPage)
+        {
+            if (productPage is null)
+            {
+                throw new ArgumentNullException(nameof(productPage));
+            }
+
+            Html html = await this.TakeThroughCache(productPage);
+
+            Name productName = this.nameExtractor.Extract(html);
+
+            return productName;
         }
     }
 }

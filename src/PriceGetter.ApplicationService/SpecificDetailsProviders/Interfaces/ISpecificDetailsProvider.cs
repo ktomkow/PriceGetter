@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces
 {
+    [Obsolete]
     public interface ISpecificDetailsProvider
     {
         Task<PreProductDto> GetAsync(Url url);

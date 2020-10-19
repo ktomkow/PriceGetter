@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.SpecificDetailsProviders
 {
+    [Obsolete]
     public class DetailsProvider : IDetailsProvider
     {
         private readonly ISpecificDetailsProviderFactory factory;

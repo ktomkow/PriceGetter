@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.ProductServices
 {
+    [Obsolete]
     public interface IProductService : IApplicationService
     {
         Task<IEnumerable<ProductDto>> Get();

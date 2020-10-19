@@ -3,11 +3,12 @@ using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
-
+using System;
 using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers
 {
+    [Obsolete]
     public class XkomDetailsProvider : ISpecificDetailsProvider
     {
         private readonly IHtmlContentGetter htmlGetter;

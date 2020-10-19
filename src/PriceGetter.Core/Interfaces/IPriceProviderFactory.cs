@@ -1,13 +1,13 @@
-﻿using PriceGetter.Core.Enums;
+﻿using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using PriceGetter.Core.Models.ValueObjects;
 
 namespace PriceGetter.Core.Interfaces
 {
     public interface IPriceProviderFactory
     {
-        IPriceProvider GetProvider(Product product);
+        IPriceProvider GetProvider(Url productPage);
+
+        IPriceProvider GetProvider(Product produt);
     }
 }

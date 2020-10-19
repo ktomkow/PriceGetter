@@ -3,7 +3,9 @@ using PriceGetter.ContentProvider.Interfaces;
 using PriceGetter.ContentProvider.PriceExtractors;
 using PriceGetter.Core.Enums;
 using PriceGetter.Core.Interfaces;
+using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Models.Entities;
+using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +26,11 @@ namespace PriceGetter.ApplicationServices.PriceProviders
         }
 
         public IPriceProvider GetProvider(Product product)
+        {
+            return this.GetProvider(product.ProductPage);   
+        }
+
+        public IPriceProvider GetProvider(Url productPage)
         {
             // so far this is the only supported seller
             return new XKomPriceProvider(this.htmlContentGetter, this.xkomPriceExtractor);

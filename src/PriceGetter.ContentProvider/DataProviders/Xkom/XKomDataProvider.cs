@@ -18,8 +18,7 @@ namespace PriceGetter.ContentProvider.DataProviders.XKom
         public XKomDataProvider(
             XKomPriceProvider priceProvider, 
             XKomNameProvider nameProvider, 
-            XKomImageProvider imageUrlProvider,
-            ICacheFacade cache)
+            XKomImageProvider imageUrlProvider)
         {
             this.priceProvider = priceProvider ?? throw new ArgumentNullException(nameof(priceProvider));
             this.nameProvider = nameProvider ?? throw new ArgumentNullException(nameof(nameProvider));

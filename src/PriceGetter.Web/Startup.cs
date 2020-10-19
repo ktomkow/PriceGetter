@@ -13,8 +13,6 @@ using Microsoft.OpenApi.Models;
 using PriceGetter.ApplicationServices.ProductServices;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
-using PriceGetter.Core.Interfaces;
-using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
@@ -27,7 +25,6 @@ using PriceGetter.Web.IoC;
 using PriceGetter.Web.Middleware;
 using PriceGetter.Web.QuartzConfig;
 using PriceGetter.Web.Tools.Unbaser;
-using PriceGetter.WebClients;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
@@ -76,8 +73,6 @@ namespace PriceGetter.Web
             builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
             
             builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
-
-            builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
 
             builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
             builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();

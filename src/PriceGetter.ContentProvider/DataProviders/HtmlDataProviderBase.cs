@@ -23,7 +23,7 @@ namespace PriceGetter.ContentProvider.DataProviders
             if (html is null)
             {
                 html = await this.htmlContentGetter.GetAsync(productPage);
-                this.cacheFacade.Save<Html>(html, productPage);
+                this.cacheFacade.Save(html, productPage);
             }
 
             return html;

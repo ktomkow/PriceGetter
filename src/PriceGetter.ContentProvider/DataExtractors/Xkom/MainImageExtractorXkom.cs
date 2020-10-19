@@ -1,13 +1,9 @@
 ﻿using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Core.SimpleTypesConverters.Extensions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace PriceGetter.ContentProvider.ImagesUrlExtractors
+namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 {
     public class MainImageExtractorXkom : IMainImageExtractor
     {

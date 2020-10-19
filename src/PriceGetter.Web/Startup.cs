@@ -1,29 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PriceGetter.ApplicationServices.PriceProviders;
 using PriceGetter.ApplicationServices.ProductServices;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders;
 using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
-using PriceGetter.ContentProvider.CssExtractors;
-using PriceGetter.ContentProvider.ImagesUrlExtractors;
-using PriceGetter.ContentProvider.Interfaces;
-using PriceGetter.ContentProvider.NameExtractors;
-using PriceGetter.ContentProvider.PriceExtractors;
+using PriceGetter.ContentProvider.DataExtractors;
+using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Infrastructure.Cache;
@@ -32,7 +24,6 @@ using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Persistence.Repositories;
 using PriceGetter.PersistenceEntityFramework;
-using PriceGetter.PersistenceEntityFramework.Repositories;
 using PriceGetter.PersistenceMongo.Tools;
 using PriceGetter.Quartz.Jobs;
 using PriceGetter.Web.ExtensionMethods;
@@ -109,8 +100,6 @@ namespace PriceGetter.Web
 
             //builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
-
-            builder.RegisterType<PriceProviderFactory>().As<IPriceProviderFactory>();
 
             builder.RegisterType<CollectionProvider>().As<ICollectionProvider>();
             builder.RegisterType<DbCleaner>().As<IDbCleaner>();

@@ -1,11 +1,8 @@
 ﻿using FluentAssertions;
-using PriceGetter.ContentProvider.CssExtractors;
-using PriceGetter.ContentProvider.NameExtractors;
+using PriceGetter.ContentProvider.DataExtractors;
+using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PriceGetter.ContentProvidersTests.NameExtractors

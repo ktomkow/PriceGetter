@@ -1,4 +1,4 @@
-﻿using PriceGetter.ContentProvider.Interfaces;
+﻿using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;

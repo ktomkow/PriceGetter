@@ -1,10 +1,7 @@
 ﻿using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PriceGetter.ContentProvider.NameExtractors
+namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 {
     public class NameExtractorXkom : INameExtractor
     {

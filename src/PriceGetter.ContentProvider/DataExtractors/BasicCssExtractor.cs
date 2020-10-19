@@ -1,11 +1,8 @@
 ﻿using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace PriceGetter.ContentProvider.CssExtractors
+namespace PriceGetter.ContentProvider.DataExtractors
 {
     public class BasicCssExtractor : ICssContentExtractor
     {

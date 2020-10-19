@@ -1,16 +1,9 @@
 ﻿using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
-using PriceGetter.ContentProvider.ImagesUrlExtractors;
-using PriceGetter.ContentProvider.Interfaces;
-using PriceGetter.ContentProvider.NameExtractors;
-using PriceGetter.ContentProvider.PriceExtractors;
+using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.Contracts.Products;
-using PriceGetter.Core.Enums;
+using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Models.ValueObjects;
-using PriceGetter.WebClients;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+
 using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.SpecificDetailsProviders.Sellers

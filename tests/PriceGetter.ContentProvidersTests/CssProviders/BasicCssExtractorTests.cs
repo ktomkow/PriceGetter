@@ -1,9 +1,6 @@
 ﻿using FluentAssertions;
-using PriceGetter.ContentProvider.CssExtractors;
+using PriceGetter.ContentProvider.DataExtractors;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PriceGetter.ContentProvidersTests.CssProviders

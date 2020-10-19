@@ -1,12 +1,7 @@
-﻿using PriceGetter.Core.Interfaces;
-using PriceGetter.Core.Models.Entities;
-using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PriceGetter.Core.Models.ValueObjects;
 using System.Threading.Tasks;
 
-namespace PriceGetter.ContentProvider.Interfaces
+namespace PriceGetter.Core.Interfaces
 {
     public interface IHtmlContentGetter
     {

@@ -1,9 +1,8 @@
-﻿using PriceGetter.ContentProvider.Interfaces;
-using PriceGetter.ContentProvider.PriceExtractors;
+﻿using PriceGetter.ContentProvider.DataExtractors.Xkom;
+using PriceGetter.Core.Interfaces;
 using PriceGetter.Core.Interfaces.DataProvider;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
-
 using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.PriceProviders.Sellers

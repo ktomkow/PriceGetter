@@ -1,4 +1,5 @@
 ﻿using PriceGetter.Core.Interfaces;
+using PriceGetter.Core.Interfaces.DataExtractors;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Core.SimpleTypesConverters.Extensions;
 

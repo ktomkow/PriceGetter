@@ -4,6 +4,7 @@ using PriceGetter.ContentProvider.DataExtractors;
 using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.ContentProvider.DataProviders.Xkom;
 using PriceGetter.Core.Interfaces;
+using PriceGetter.Core.Interfaces.DataExtractors;
 
 namespace PriceGetter.Web.IoC
 {

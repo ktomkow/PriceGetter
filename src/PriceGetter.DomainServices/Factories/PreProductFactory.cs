@@ -1,5 +1,6 @@
 ﻿using PriceGetter.Core.Interfaces.DataProviders;
 using PriceGetter.Core.Interfaces.Factories;
+using PriceGetter.Core.Interfaces.Factories.DataProviders;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ namespace PriceGetter.DomainServices.Factories
 {
     public class PreProductFactory : IPreProductFactory
     {
-        private readonly IDataProvider dataProvider;
+        private readonly IDataProviderFactory dataProviderFactory;
 
-        public PreProductFactory(IDataProvider dataProvider)
+        public PreProductFactory(IDataProviderFactory dataProviderFactory)
         {
-            this.dataProvider = dataProvider ?? throw new ArgumentNullException();
+            this.dataProviderFactory = dataProviderFactory ?? throw new ArgumentNullException(nameof(dataProviderFactory));
         }
 
         public PreProduct Create(Url productPage)
@@ -29,9 +30,11 @@ namespace PriceGetter.DomainServices.Factories
                 throw new ArgumentNullException(nameof(productPage));
             }
 
-            Money price = await this.dataProvider.GetPrice(productPage);
-            Url imageUrl = await this.dataProvider.GetImageUrl(productPage);
-            Name name = await this.dataProvider.GetName(productPage);
+            IDataProvider dataProvider = this.dataProviderFactory.Create(productPage);
+
+            Money price = await dataProvider.GetPrice(productPage);
+            Url imageUrl = await dataProvider.GetImageUrl(productPage);
+            Name name = await dataProvider.GetName(productPage);
 
             PreProduct preProduct = new PreProduct(name, price, productPage, imageUrl);
 

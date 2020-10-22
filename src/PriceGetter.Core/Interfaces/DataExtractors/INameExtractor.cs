@@ -1,9 +1,6 @@
 ﻿using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PriceGetter.Core.Interfaces
+namespace PriceGetter.Core.Interfaces.DataExtractors
 {
     public interface INameExtractor : IExtractor
     {

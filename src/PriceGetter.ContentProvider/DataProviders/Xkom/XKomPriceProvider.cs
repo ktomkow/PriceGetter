@@ -1,7 +1,7 @@
 ﻿using PriceGetter.ContentProvider.DataExtractors.Xkom;
 using PriceGetter.ContentProvider.DataProviders;
 using PriceGetter.Core.Interfaces;
-using PriceGetter.Core.Interfaces.DataProvider;
+using PriceGetter.Core.Interfaces.DataProviders;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Cache;

@@ -1,5 +1,4 @@
-﻿using PriceGetter.Core.Interfaces.DataProvider;
-using PriceGetter.Core.Interfaces.DataProviders;
+﻿using PriceGetter.Core.Interfaces.DataProviders;
 
 namespace PriceGetter.Core.Interfaces.Factories
 {

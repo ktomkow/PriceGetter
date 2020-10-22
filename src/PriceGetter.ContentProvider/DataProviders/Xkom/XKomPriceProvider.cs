@@ -1,7 +1,8 @@
-﻿using PriceGetter.ContentProvider.DataExtractors.Xkom;
-using PriceGetter.ContentProvider.DataProviders;
+﻿using PriceGetter.ContentProvider.DataProviders;
 using PriceGetter.Core.Interfaces;
-using PriceGetter.Core.Interfaces.DataProviders;
+using PriceGetter.Core.Interfaces.DataExtractors;
+using PriceGetter.Core.Interfaces.DataExtractors.Xkom;
+using PriceGetter.Core.Interfaces.DataProviders.Xkom;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Cache;
@@ -10,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.PriceProviders.Sellers
 {
-    public class XKomPriceProvider : HtmlDataProviderBase, IPriceProvider
+    public class XKomPriceProvider : HtmlDataProviderBase, IXkomPriceProvider
     {
-        private readonly PriceExtractorXkom priceExtractor;
+        private readonly IPriceExtractor priceExtractor;
 
         public XKomPriceProvider(
-            PriceExtractorXkom priceExtractor,
+            IXkomPriceExtractor priceExtractor,
             IHtmlContentGetter htmlContentGetter,
             ICacheFacade cache) : base(htmlContentGetter, cache)
         {

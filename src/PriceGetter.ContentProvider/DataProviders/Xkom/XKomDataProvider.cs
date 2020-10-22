@@ -1,22 +1,21 @@
-﻿using PriceGetter.ApplicationServices.PriceProviders.Sellers;
-using PriceGetter.ContentProvider.DataProviders.Xkom;
-using PriceGetter.Core.Interfaces.DataProviders;
+﻿using PriceGetter.Core.Interfaces.DataProviders;
+using PriceGetter.Core.Interfaces.DataProviders.Xkom;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Threading.Tasks;
 
 namespace PriceGetter.ContentProvider.DataProviders.XKom
 {
-    public class XKomDataProvider : IDataProvider
+    public class XKomDataProvider : IXkomDataProvider
     {
         private readonly IPriceProvider priceProvider;
         private readonly INameProvider nameProvider;
         private readonly IImageUrlProvider imageUrlProvider;
 
         public XKomDataProvider(
-            XKomPriceProvider priceProvider, 
-            XKomNameProvider nameProvider, 
-            XKomImageProvider imageUrlProvider)
+            IXkomPriceProvider priceProvider, 
+            IXkomNameProvider nameProvider, 
+            IXkomImageUrlProvider imageUrlProvider)
         {
             this.priceProvider = priceProvider ?? throw new ArgumentNullException(nameof(priceProvider));
             this.nameProvider = nameProvider ?? throw new ArgumentNullException(nameof(nameProvider));

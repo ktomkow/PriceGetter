@@ -5,6 +5,6 @@ namespace PriceGetter.Core.Interfaces.Factories.DataProviders
 {
     public interface IImageUrlProviderFactory
     {
-        IImageUrlProvider GetProvider(Url productPage);
+        IImageUrlProvider Create(Url productPage);
     }
 }

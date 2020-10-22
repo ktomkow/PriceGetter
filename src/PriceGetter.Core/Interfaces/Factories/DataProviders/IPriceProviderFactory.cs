@@ -5,7 +5,7 @@ namespace PriceGetter.Core.Interfaces.Factories.DataProviders
 {
     public interface IPriceProviderFactory
     {
-        IPriceProvider GetProvider(Url productPage);
+        IPriceProvider Create(Url productPage);
 
         //IPriceProvider GetProvider(Product produt);
     }

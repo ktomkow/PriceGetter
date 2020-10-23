@@ -18,7 +18,8 @@ namespace PriceGetter.ContentProvidersTests.MainImagesExtractors
         public void ExtractFromSingleElement()
         {
             Url expectedUrl = new Url("https://dupa.jpg");
-            string rawHtml = "<span class=\"sc-1tblmgq-0 sc-1y93ua6-0 lodfKm sc-1tblmgq-2 bIcxIH\"><img src=\"https://dupa.jpg\" alt=\"Some product main picture\" class=\"sc-1tblmgq-1 bxjRuC\"/></span>";
+            string rawHtml = "<div class=\"sc-2ow6xm-5 dPFuqj\"><div class=\"sc-2ow6xm-6 dQiNgR\"><div class=\"sc-2ow6xm-0 jdsbUs\"><div><div class=\"sc-2ow6xm-10 bHyXlv\"><span class=\"sc-1tblmgq-0 sc-2ow6xm-1 eATWME sc-1tblmgq-2 jujzsL\"><img src=\"https://dupa.jpg\" alt=\"Intel Core i5-10600KF - 564447 - zdjęcie 1\" class=\"sc-1tblmgq-1 grqydx\"/></span></div></div></div></div><div";
+
             Html html = new Html(rawHtml);
 
             Url url = extractor.Extract(html);

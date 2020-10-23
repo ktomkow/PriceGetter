@@ -1,10 +1,12 @@
-﻿using PriceGetter.Core.Interfaces;
+﻿using PriceGetter.Core.Exceptions.NotExtractable;
 using PriceGetter.Core.Interfaces.DataExtractors;
+using PriceGetter.Core.Interfaces.DataExtractors.Xkom;
 using PriceGetter.Core.Models.ValueObjects;
+using System;
 
 namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 {
-    public class NameExtractorXkom : INameExtractor
+    public class NameExtractorXkom : IXkomNameExtractor
     {
         private readonly ICssContentExtractor cssContentExtractor;
 
@@ -15,13 +17,21 @@ namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 
         public Name Extract(Html html)
         {
-            CssClass cssClass = new CssClass("sc-1x6crnh-5 gOwOoL");
+            try
+            {
+                CssClass cssClass = new CssClass("sc-1x6crnh-5 gOwOoL");
 
-            string rawName = this.cssContentExtractor.Extract(html, cssClass);
+                string rawName = this.cssContentExtractor.Extract(html, cssClass);
 
-            Name name = new Name(rawName);
+                Name name = new Name(rawName);
 
-            return name;
+                return name;
+
+            }
+            catch (Exception)
+            {
+                throw new NotExtractableException(nameof(NameExtractorXkom));
+            }
         }
     }
 }

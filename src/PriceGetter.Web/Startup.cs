@@ -11,15 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PriceGetter.ApplicationServices.ProductServices;
-using PriceGetter.ApplicationServices.SpecificDetailsProviders;
-using PriceGetter.ApplicationServices.SpecificDetailsProviders.Interfaces;
 using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Quartz.Jobs;
 using PriceGetter.Web.ExtensionMethods;
-using PriceGetter.Web.Fakes;
 using PriceGetter.Web.Filters;
 using PriceGetter.Web.IoC;
 using PriceGetter.Web.Middleware;
@@ -70,10 +67,6 @@ namespace PriceGetter.Web
         {
             builder.RegisterModule(new MainInstaller());
 
-            builder.RegisterType<DetailsProviderFake>().As<IDetailsProvider>().InstancePerLifetimeScope();
-            
-            builder.RegisterType<SpecificDetailsProviderFactory>().As<ISpecificDetailsProviderFactory>().InstancePerLifetimeScope();
-
             builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
             builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();
 
@@ -87,7 +80,6 @@ namespace PriceGetter.Web
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
 
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
-
 
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();

@@ -1,28 +1,32 @@
-﻿using PriceGetter.Core.Interfaces;
-using PriceGetter.Core.Interfaces.DataExtractors;
+﻿using PriceGetter.Core.Exceptions.NotExtractable;
+using PriceGetter.Core.Interfaces.DataExtractors.Xkom;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Core.SimpleTypesConverters.Extensions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 {
-    public class MainImageExtractorXkom : IMainImageExtractor
+    public class MainImageExtractorXkom : IXkomImageUrlExtractor
     {
-        public MainImageExtractorXkom()
-        {
-        }
-
         public Url Extract(Html html)
         {
-            string elementWithImage = this.ExtractElementWithImage(html);
-            Url url = this.ExtractImageUrlFromElement(elementWithImage);
+            try
+            {
+                string elementWithImage = this.ExtractElementWithImage(html);
+                Url url = this.ExtractImageUrlFromElement(elementWithImage);
 
-            return url;
+                return url;
+            }
+            catch (Exception)
+            {
+                throw new NotExtractableException(nameof(MainImageExtractorXkom));
+            }
         }
 
         private string ExtractElementWithImage(Html html)
         {
-            string pattern = "<span class=\"sc-1tblmgq-0 sc-1y93ua6-0 lodfKm sc-1tblmgq-2 bIcxIH\"><img src=.+ class=\"sc-1tblmgq-1 bxjRuC\"";
+            string pattern = "<span class=\"sc-1tblmgq-0 sc-2ow6xm-1 eATWME sc-1tblmgq-2 jujzsL\"><img src=\"[^>]*\" class=\"sc-1tblmgq-1 grqydx\"\\/>";
             Regex regex = new Regex(pattern);
             Match match = regex.Match(html.RawContent);
             string dirtyResult = match.Value;

@@ -54,5 +54,18 @@ namespace PriceGetter.ContentProvider.PriceExtractors
 
             obtainedMoney.Should().Be(expectedPrice);
         }
+
+        [Fact]
+        public void Extract()
+        {
+            string source = "<div class=\"u7xnnm-4 iVazGO\">19 299,00 zł</div>";
+
+            Money expectedPrice = new Money(19299.00m);
+            Html html = new Html(source);
+
+            Money obtainedMoney = this.priceExtractor.Extract(html);
+
+            obtainedMoney.Should().Be(expectedPrice);
+        }
     }
 }

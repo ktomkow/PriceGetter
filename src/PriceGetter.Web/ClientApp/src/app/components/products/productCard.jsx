@@ -11,6 +11,7 @@ import { formatRawDate } from "../../services/dateServices";
 import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 
 import strings from "../../localization/strings";
+import { mockImage } from "../../mocks/product/image";
 
 const useStyles = makeStyles({
   bullet: {
@@ -59,6 +60,15 @@ const ProductCard = ({ product }) => {
     return formattedAmount;
   };
 
+  const getProductImage = () => {
+    const imageUrl = product.imageUrl;
+    if(imageUrl && imageUrl.startsWith("http")) {
+      return imageUrl;
+    }
+
+    return mockImage;
+  }
+
   const handlePageChange = () => {
     const url = product.productPage;
     window.open(url);
@@ -77,7 +87,7 @@ const ProductCard = ({ product }) => {
       ></CardHeader>
       <CardMedia
         className={classes.media}
-        image={product.imageUrl}
+        image={getProductImage()}
         title="Product image"
       />
       <CardContent>

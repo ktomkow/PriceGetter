@@ -12,10 +12,9 @@ import {
 } from "@material-ui/core";
 import LinkIcon from "@material-ui/icons/Link";
 
-import { formatRawDate } from "../../services/dateServices";
 import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 
-import strings from "../../localization/strings";
+import { mockImage } from "../../mocks/product/image";
 
 const useStyles = makeStyles({
   root: {
@@ -60,7 +59,7 @@ const PreProductCard = (props) => {
       return imageUrl;
     }
 
-    return "https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png";
+    return mockImage;
   }
 
   return (

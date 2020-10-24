@@ -5,7 +5,7 @@ const initialState = {
   preProduct: {
     name: strings.CREATE_FORM.PRODUCT_CREATE.NAME_WILL_BE_HERE,
     price: "0,0000",
-    productPage: "https://google.com",
+    productPage: "",
     imageUrl: ""
   },
 
@@ -23,6 +23,7 @@ function preProductReducer(state = initialState, action) {
     action.type === PRE_PRODUCTS_ACTIONS.GETTING_PREPRODUCT_IN_PROGRESS_START
   ) {
     return Object.assign({}, state, {
+      preProduct: initialState.preProduct,
       gettingDataInProgress: true,
     });
   }

@@ -57,24 +57,6 @@ const ProductCreateForm = (props) => {
 
   const loadingInProgress = props.preProductReducer.gettingDataInProgress;
 
-  const emptyPreProduct = () => {
-    return {
-      name: strings.CREATE_FORM.PRODUCT_CREATE.NAME_WILL_BE_HERE,
-      price: "0,0000",
-      productPage: "https://google.com",
-      imageUrl: ""
-    };
-  };
-
-  const getPreProduct = () => {
-    let preProduct = props.preProductReducer.preProduct;
-    if (preProduct) {
-      return preProduct;
-    }
-
-    return emptyPreProduct();
-  };
-
   const handleClick = () => {
     props.getPreproduct(link);
   };
@@ -106,7 +88,7 @@ const ProductCreateForm = (props) => {
             <PreProductCard
               className={classes.containerItem}
               inProgress={loadingInProgress}
-              preproduct={getPreProduct()}
+              preproduct={props.preProductReducer.preProduct}
             />
             <Paper
               className={(classes.inputContainer, classes.containerItem)}

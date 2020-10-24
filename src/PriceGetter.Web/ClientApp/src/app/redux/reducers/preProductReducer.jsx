@@ -1,7 +1,14 @@
 import { PRE_PRODUCTS_ACTIONS } from "../constants/action-types";
+import strings from "../../localization/strings";
 
 const initialState = {
-  preProduct: null,
+  preProduct: {
+    name: strings.CREATE_FORM.PRODUCT_CREATE.NAME_WILL_BE_HERE,
+    price: "0,0000",
+    productPage: "https://google.com",
+    imageUrl: ""
+  },
+
   gettingDataInProgress: false,
 };
 

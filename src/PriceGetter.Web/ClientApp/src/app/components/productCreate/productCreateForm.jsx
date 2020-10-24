@@ -59,11 +59,10 @@ const ProductCreateForm = (props) => {
 
   const emptyPreProduct = () => {
     return {
-      name: "Name will be here",
+      name: strings.CREATE_FORM.PRODUCT_CREATE.NAME_WILL_BE_HERE,
       price: "0,0000",
       productPage: "https://google.com",
-      imageUrl:
-        "https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png",
+      imageUrl: ""
     };
   };
 

@@ -21,7 +21,8 @@ const strings = new LocalizedStrings({
     CREATE_FORM: {
       PRODUCT_CREATE: {
         TITLE: "Create new product",
-        LINK_INPUT_PLACEHOLDER: "Paste a link here"
+        LINK_INPUT_PLACEHOLDER: "Paste a link here",
+        NAME_WILL_BE_HERE: "Product name will appear here"
       }
     }
   },

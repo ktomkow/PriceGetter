@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriceGetter.Infrastructure.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,11 +8,18 @@ namespace PriceGetter.Infrastructure.Cache
     public class CacheFacade : ICacheFacade
     {
         private static Dictionary<int, (object, DateTime)> dictionary = new Dictionary<int, (object, DateTime)>();
-
+        private readonly IPriceGetterLogger logger;
         private TimeSpan period = TimeSpan.FromMinutes(180);
+
+        public CacheFacade(IPriceGetterLogger logger)
+        {
+            this.logger = logger;
+        }
 
         public TItem Get<TItem>(object key)
         {
+            this.logger.Information("Yeah, getting from cache!");
+
             int keyHashCode = this.ConvertObjectToKey(key);
 
             if(dictionary.TryGetValue(keyHashCode, out (object, DateTime) @object))

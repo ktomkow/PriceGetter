@@ -26,7 +26,13 @@ const strings = new LocalizedStrings({
       }
     },
     SINGLE_PRODUCT: {
-      GO_BACK_BUTTON: "Go back to products"
+      GO_BACK_BUTTON: "Go back to products",
+      DATA_GRID: {
+        AMOUNT_HEADER: "Amount",
+        AMOUNT_DESCRIPTION: "Product price",
+        DATE_HEADER: "Date",
+        DATE_DESCRIPTION: "Day when the price was checked"
+      }
     }
   },
   pl: {

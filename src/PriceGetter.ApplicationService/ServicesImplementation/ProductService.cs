@@ -53,9 +53,26 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
         public async Task<ProductDto> Get(Guid productId)
         {
-            Product product = await this.unitOfWork.ProductRepository.Get(productId);
-            ProductDto dto = this.Map(product);
+            ProductDto dto = new ProductDto()
+            {
+                Name = "Random product",
+                ImageUrl = string.Empty,
+                ProductPage = string.Empty,
+                Id = Guid.NewGuid(),
+                Prices = new List<PriceDto>() 
+                { 
+                    new PriceDto() { Amount = 19.99m, At = DateTime.UtcNow },
+                    new PriceDto() { Amount = 12.99m, At = DateTime.UtcNow.AddDays(-1) },
+                    new PriceDto() { Amount = 12.99m, At = DateTime.UtcNow.AddDays(-2) },
+                    new PriceDto() { Amount = 15.99m, At = DateTime.UtcNow.AddDays(-3) },
+                    new PriceDto() { Amount = 22.99m, At = DateTime.UtcNow.AddDays(-4) }
+                }
+            };
+
             return dto;
+            //Product product = await this.unitOfWork.ProductRepository.Get(productId);
+            //ProductDto dto = this.Map(product);
+            //return dto;
         }
 
         private ProductDto Map(Product product)

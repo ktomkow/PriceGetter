@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using NSubstitute;
 using PriceGetter.Core.Models.ValueObjects;
 using PriceGetter.Infrastructure.Cache;
+using PriceGetter.Infrastructure.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,7 +17,8 @@ namespace PriceGetter.InfrastructureTests.CacheTests
 
         public CacheFacadeTests()
         {
-            this.cache = new CacheFacade();
+            var logger = Substitute.For<IPriceGetterLogger>();
+            this.cache = new CacheFacade(logger);
         }
 
         [Fact]

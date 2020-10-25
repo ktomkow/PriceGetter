@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import {
-  CircularProgress,
+  Divider,
   Grid,
   InputBase,
   Paper,
@@ -11,6 +11,7 @@ import {
   Container,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import AddIcon from '@material-ui/icons/Add';
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -59,12 +60,21 @@ const ProductCreateForm = (props) => {
 
   const loadingInProgress = props.preProductReducer.gettingDataInProgress;
 
-  const handleClick = () => {
+  const handleSearch = () => {
     props.getPreproduct(link);
+  };
+
+  const handleAdd = () => {
+    // TODO
   };
 
   const isInputValid = () => {
     return isUrlValid(link);
+  };
+
+  const preProductLoaded = () => {
+    // TODO
+    return isUrlValid(link); // just for a while
   };
 
   return (
@@ -95,8 +105,16 @@ const ProductCreateForm = (props) => {
               />
               <IconButton
                 className={classes.iconButton}
+                aria-label="add"
+                onClick={handleAdd}
+                disabled={loadingInProgress || !preProductLoaded()}
+              >
+                <AddIcon />
+              </IconButton>
+              <IconButton
+                className={classes.iconButton}
                 aria-label="search"
-                onClick={handleClick}
+                onClick={handleSearch}
                 disabled={loadingInProgress || !isInputValid()}
               >
                 <SearchIcon />

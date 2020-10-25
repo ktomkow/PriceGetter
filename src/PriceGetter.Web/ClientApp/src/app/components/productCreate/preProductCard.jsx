@@ -50,11 +50,6 @@ const PreProductCard = (props) => {
     return formattedAmount;
   };
 
-  const handlePageChange = () => {
-    const url = productPage;
-    window.open(url);
-  };
-
   const getProductImage = () => {
     if(imageUrl && imageUrl.startsWith("http")) {
       return imageUrl;
@@ -68,9 +63,6 @@ const PreProductCard = (props) => {
       <CardHeader
         title={name}
         action={
-          // <IconButton aria-label="settings" onClick={handlePageChange}>
-          //   <LinkIcon />
-          // </IconButton>
           <IconLink link={productPage}/>
         }
       />

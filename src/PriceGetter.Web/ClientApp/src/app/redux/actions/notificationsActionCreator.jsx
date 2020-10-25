@@ -5,7 +5,6 @@ export const showSnack = (text) => {
   const notification = {
     message: text,
     options: {
-      key: key,
       variant: "warning",
     },
   };

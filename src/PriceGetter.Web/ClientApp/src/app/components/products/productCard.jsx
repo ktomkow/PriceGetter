@@ -15,7 +15,15 @@ import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 import strings from "../../localization/strings";
 import { mockImage } from "../../mocks/product/image";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  root: {
+    transition: ['background', 'color'],
+    transitionDuration: 500,
+    '&:hover':{
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.secondary.main
+    }
+  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -31,7 +39,7 @@ const useStyles = makeStyles({
     height: 0,
     paddingTop: "100%", // 56% would be 16:9
   },
-});
+}));
 
 const ProductCard = ({ product }) => {
   const classes = useStyles();
@@ -77,7 +85,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
         title={product.name}
         subheader={getLastPriceDate()}

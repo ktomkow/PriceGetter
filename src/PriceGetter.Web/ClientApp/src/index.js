@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./app/themes/theme";
-
+import { SnackbarProvider } from 'notistack';
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import store from "./app/redux/store/index";
@@ -14,7 +14,9 @@ import store from "./app/redux/store/index";
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
     </ThemeProvider>
   </Provider>,
   document.getElementById("root")

@@ -15,6 +15,8 @@ import { mockImage } from "../../mocks/product/image";
 import { isUrlValid } from "../../services/urlService";
 import { formatRawDate } from "../../services/dateServices";
 
+import { useSnackbar } from "notistack";
+
 const rows = [
   {
     id: 1,
@@ -59,11 +61,11 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleProduct = (props) => {
   const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { id } = useParams();
   const imageUrl = props.productsReducer.singleProduct.imageUrl;
 
   const productPrices = props.productsReducer.singleProduct.prices;
-
 
   useEffect(() => {
     // on mount
@@ -71,24 +73,28 @@ const SingleProduct = (props) => {
   }, []);
 
   const formattedPrices = () => {
-    if(!productPrices) {
-        return [];
+    if (!productPrices) {
+      return [];
     }
 
-    const prices = productPrices.map(x => ({
-        id: x.amount + x.at,
-        amount: x.amount,
-        at: formatRawDate(x.at)
+    const prices = productPrices.map((x) => ({
+      id: x.amount + x.at,
+      amount: x.amount,
+      at: formatRawDate(x.at),
     }));
 
     return prices;
-  }
+  };
 
   const gridLegend = {
     amountHeader: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_HEADER,
     amountDescription: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_DESCRIPTION,
     dateHeader: strings.SINGLE_PRODUCT.DATA_GRID.DATE_HEADER,
-    dateDescription: strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION
+    dateDescription: strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION,
+  };
+
+  const snack = () => {
+    enqueueSnackbar("I love hooks", {variant: "error"});
   };
 
   const getProductImage = () => {
@@ -116,6 +122,9 @@ const SingleProduct = (props) => {
             <Button component={Link} to="/products">
               {strings.SINGLE_PRODUCT.GO_BACK_BUTTON}
             </Button>
+          </Paper>
+          <Paper className={classes.paper}>
+            <Button onClick={snack}>SNACK</Button>
           </Paper>
           <Paper className={classes.paper}>
             <IconLink link={props.productsReducer.singleProduct.productPage} />
@@ -155,15 +164,17 @@ const SingleProduct = (props) => {
                   {
                     field: "amount",
                     headerName: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_HEADER,
-                    description: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_DESCRIPTION,
-                    width: 200
+                    description:
+                      strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_DESCRIPTION,
+                    width: 200,
                   },
-                  { 
-                      field: "at", 
-                      headerName: strings.SINGLE_PRODUCT.DATA_GRID.DATE_HEADER,
-                      description: strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION,
-                      width: 400
-                  }
+                  {
+                    field: "at",
+                    headerName: strings.SINGLE_PRODUCT.DATA_GRID.DATE_HEADER,
+                    description:
+                      strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION,
+                    width: 400,
+                  },
                 ]}
                 rows={formattedPrices()}
               />

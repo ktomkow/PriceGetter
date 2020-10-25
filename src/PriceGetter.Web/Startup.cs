@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PriceGetter.ApplicationServices.ProductServices;
+using PriceGetter.ApplicationServices.Interfaces;
+using PriceGetter.ApplicationServices.ServicesImplementation;
 using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
@@ -78,8 +79,6 @@ namespace PriceGetter.Web
             builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
-
-            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
 
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();

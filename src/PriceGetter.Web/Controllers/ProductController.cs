@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PriceGetter.ApplicationServices.ProductServices;
+using PriceGetter.ApplicationServices.Interfaces;
 using PriceGetter.Contracts.Products;
-using PriceGetter.Core.Interfaces.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Controllers

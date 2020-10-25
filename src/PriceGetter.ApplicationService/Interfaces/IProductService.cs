@@ -1,10 +1,9 @@
 ﻿using PriceGetter.Contracts.Products;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace PriceGetter.ApplicationServices.ProductServices
+namespace PriceGetter.ApplicationServices.Interfaces
 {
     [Obsolete]
     public interface IProductService : IApplicationService

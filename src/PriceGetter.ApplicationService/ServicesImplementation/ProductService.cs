@@ -1,13 +1,13 @@
-﻿using PriceGetter.Contracts.Products;
+﻿using PriceGetter.ApplicationServices.Interfaces;
+using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace PriceGetter.ApplicationServices.ProductServices
+namespace PriceGetter.ApplicationServices.ServicesImplementation
 {
     public class ProductService : IProductService
     {

@@ -9,6 +9,7 @@ namespace PriceGetter.Web.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<PreProductService>().As<IPreProductService>();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
         }
     }
 }

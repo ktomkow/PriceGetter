@@ -20,10 +20,12 @@ import ProductCreateForm from './app/components/productCreate/productCreateForm'
 
 import PageContent from "./app/components/layout/pageContent";
 import SingleProduct from './app/components/products/singleProduct';
+import Notifier from './app/services/notifier';
 
 function App() {
   return (
     <Router>
+      <Notifier/>
       <TopBar />
       <PageContent>
         <Switch>

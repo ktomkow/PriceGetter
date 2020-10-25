@@ -17,6 +17,8 @@ import { formatRawDate } from "../../services/dateServices";
 
 import { useSnackbar } from "notistack";
 
+import { showSnack } from "../../redux/actions/notificationsActionCreator";
+
 const rows = [
   {
     id: 1,
@@ -94,8 +96,15 @@ const SingleProduct = (props) => {
   };
 
   const snack = () => {
-    enqueueSnackbar("I love hooks", {variant: "error"});
+    enqueueSnackbar("I love hooks", {
+      variant: "error",
+      autoHideDuration: 2000,
+    });
   };
+
+  const snackRedux = () => {
+    props.showSnack("I love snacks and redux!");
+  }
 
   const getProductImage = () => {
     if (isUrlValid(imageUrl)) {
@@ -125,6 +134,9 @@ const SingleProduct = (props) => {
           </Paper>
           <Paper className={classes.paper}>
             <Button onClick={snack}>SNACK</Button>
+          </Paper>
+          <Paper className={classes.paper}>
+            <Button onClick={snackRedux}>SNACK REDUX</Button>
           </Paper>
           <Paper className={classes.paper}>
             <IconLink link={props.productsReducer.singleProduct.productPage} />
@@ -192,6 +204,7 @@ const SingleProduct = (props) => {
 function mapDispatchToProps(dispatch) {
   return {
     getProduct: (id) => getProduct(id, dispatch),
+    showSnack: (text) => dispatch(showSnack(text)),
   };
 }
 

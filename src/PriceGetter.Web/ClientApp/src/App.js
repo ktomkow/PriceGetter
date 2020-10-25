@@ -19,6 +19,7 @@ import Products from "./app/components/products/products";
 import ProductCreateForm from './app/components/productCreate/productCreateForm';
 
 import PageContent from "./app/components/layout/pageContent";
+import SingleProduct from './app/components/products/singleProduct';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/products" component={Products} />
           <Route exact path={["/list"]} component={List} />
           <Route exact path="/form" component={Form} />
+          <Route exact path="/product/:id" component={SingleProduct} />
           <Route exact path="/createProduct" component={ProductCreateForm} />
           <Route exact path={["/", "/tmp"]} component={Tmp} />
           <Route component={PageNotFound} />

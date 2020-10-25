@@ -24,6 +24,9 @@ const strings = new LocalizedStrings({
         LINK_INPUT_PLACEHOLDER: "Paste a link here",
         NAME_WILL_BE_HERE: "Product name will appear here"
       }
+    },
+    SINGLE_PRODUCT: {
+      GO_BACK_BUTTON: "Go back to products"
     }
   },
   pl: {

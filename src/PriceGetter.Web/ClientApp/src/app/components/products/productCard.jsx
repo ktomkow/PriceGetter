@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { CardHeader, CardMedia, IconButton } from "@material-ui/core";
 import LinkIcon from "@material-ui/icons/Link";
+import { Link } from "react-router-dom";
+
 
 import { formatRawDate } from "../../services/dateServices";
 import { formatMoneyAndAddPLN } from "../../services/moneyServices";
@@ -89,6 +91,7 @@ const ProductCard = ({ product }) => {
         className={classes.media}
         image={getProductImage()}
         title="Product image"
+        component={Link} to={`/product/${product.id}`}
       />
       <CardContent>
         <Typography

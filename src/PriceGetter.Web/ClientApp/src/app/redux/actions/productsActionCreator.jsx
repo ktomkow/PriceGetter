@@ -24,3 +24,22 @@ export function clearProducts() {
     dispatch({ type: PRODUCTS_ACTIONS.CLEAR_PRODUCTS });
   };
 }
+
+export const getProduct = (id, dispatch) => {
+  setTimeout(() => {
+    axios
+      .get(`/api/product/${id}`)
+      .then(function (response) {
+        const payload = response.data;
+        dispatch({
+          type: PRODUCTS_ACTIONS.GET_PRODUCT,
+          payload: payload,
+        });
+      })
+      .catch(function (error) {
+        console.error(error);
+      })
+      .then(function () {
+      });
+  }, 500);
+};

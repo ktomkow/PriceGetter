@@ -53,8 +53,9 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
         public async Task<ProductDto> Get(Guid productId)
         {
-            //Product product = await this.unitOfWork.ProductRepository.Get(productId);
-            throw new NotImplementedException();
+            Product product = await this.unitOfWork.ProductRepository.Get(productId);
+            ProductDto dto = this.Map(product);
+            return dto;
         }
 
         private ProductDto Map(Product product)

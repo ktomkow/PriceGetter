@@ -23,6 +23,16 @@ namespace PriceGetter.Web.Controllers
             return Ok(products);
         }
 
+        [HttpGet]
+        [Route("{idAsString}")]
+        public async Task<IActionResult> Get([FromRoute] string idAsString)
+        {
+            Guid id = Guid.Parse(idAsString);
+            var product = await this.productService.Get(id);
+
+            return Ok(product);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
         {

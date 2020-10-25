@@ -26,9 +26,9 @@ namespace PriceGetter.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
         {
-            var newIdentifier = await this.productService.Create(command);
+            Guid productId = await this.productService.Create(command);
 
-            return Created("http://dupa.pl",null);
+            return Created($"{Url.RouteUrl(productId)}/{productId}", null);
         }
     }
 }

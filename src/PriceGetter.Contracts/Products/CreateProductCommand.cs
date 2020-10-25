@@ -12,6 +12,6 @@ namespace PriceGetter.Contracts.Products
 
         public string ImageUrl { get; set; }
 
-        public string Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

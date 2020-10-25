@@ -3,6 +3,7 @@ using PriceGetter.Contracts.Products;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Core.SimpleTypesConverters.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
             Product product = new Product(productName, productPage);
 
+            product.AddPrice(new Money(command.Price));
+            product.ChangeImageUrl(Url.FromString(command.ImageUrl));
+
             await this.unitOfWork.ProductRepository.Add(product);
 
             await this.unitOfWork.CommitAsync();
@@ -39,31 +43,45 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
             foreach (var product in products)
             {
-                ProductDto productDto = new ProductDto
-                {
-                    Id = product.Id,
-                    Name = product.Name.ToString(),
-                    ImageUrl = product.ProductImage.ToString(),
-                    ProductPage = product.ProductPage.ToString()
-                };
+                ProductDto productDto = this.Map(product);
 
-                List<PriceDto> prices = new List<PriceDto>();
-                foreach (var price in product.Prices)
-                {
-                    PriceDto priceDto = new PriceDto()
-                    {
-                        At = price.At,
-                        Amount = price.Amount.ValueAsDecimal                    
-                    };
-
-                    prices.Add(priceDto);
-                }
-
-                productDto.Prices = prices;
                 productsDtos.Add(productDto);
             }
 
             return productsDtos;
+        }
+
+        public async Task<ProductDto> Get(Guid productId)
+        {
+            //Product product = await this.unitOfWork.ProductRepository.Get(productId);
+            throw new NotImplementedException();
+        }
+
+        private ProductDto Map(Product product)
+        {
+            ProductDto productDto = new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name.ToString(),
+                ImageUrl = product.ProductImage.ToString(),
+                ProductPage = product.ProductPage.ToString()
+            };
+
+            List<PriceDto> prices = new List<PriceDto>();
+            foreach (var price in product.Prices)
+            {
+                PriceDto priceDto = new PriceDto()
+                {
+                    At = price.At,
+                    Amount = price.Amount.ValueAsDecimal
+                };
+
+                prices.Add(priceDto);
+            }
+
+            productDto.Prices = prices;
+
+            return productDto;
         }
     }
 }

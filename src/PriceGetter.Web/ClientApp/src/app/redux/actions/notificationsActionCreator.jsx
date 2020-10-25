@@ -1,7 +1,7 @@
 import { NOTIFICATIONS } from "../constants/action-types";
 
 export const showSnack = (text) => {
-    const key = randomKey();
+  const key = randomKey();
   const notification = {
     message: text,
     options: {
@@ -13,7 +13,7 @@ export const showSnack = (text) => {
   return {
     type: NOTIFICATIONS.SHOW_SNACK_NOTIFICATION,
     notification: notification,
-    key: key
+    key: key,
   };
 };
 
@@ -23,5 +23,5 @@ export const hideSnack = (key) => ({
 });
 
 const randomKey = () => {
-    return new Date().getTime() + Math.random();
-}
+  return new Date().getTime() + Math.random();
+};

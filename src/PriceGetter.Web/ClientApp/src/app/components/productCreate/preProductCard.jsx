@@ -15,6 +15,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 
 import { mockImage } from "../../mocks/product/image";
+import IconLink from "../common/iconLink";
 
 const useStyles = makeStyles({
   root: {
@@ -67,9 +68,10 @@ const PreProductCard = (props) => {
       <CardHeader
         title={name}
         action={
-          <IconButton aria-label="settings" onClick={handlePageChange}>
-            <LinkIcon />
-          </IconButton>
+          // <IconButton aria-label="settings" onClick={handlePageChange}>
+          //   <LinkIcon />
+          // </IconButton>
+          <IconLink link={productPage}/>
         }
       />
 

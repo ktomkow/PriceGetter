@@ -18,6 +18,8 @@ import strings from "../../localization/strings";
 
 import { getPreproduct } from "../../redux/actions/preProductActionCreator";
 
+import { isUrlValid } from "../../services/urlService";
+
 import PreProductCard from "./preProductCard";
 
 const useStyles = makeStyles({
@@ -62,19 +64,7 @@ const ProductCreateForm = (props) => {
   };
 
   const isInputValid = () => {
-    if (!link) {
-      return false;
-    }
-
-    if (link.length < 1) {
-      return false;
-    }
-
-    if (link.startsWith("http")) {
-      return true;
-    }
-
-    return false;
+    return isUrlValid(link);
   };
 
   return (

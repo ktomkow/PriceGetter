@@ -20,9 +20,9 @@ export const getPreproduct = (link, dispatch) => {
       .catch(function (error) {
         console.error(error);
       })
-      .then(function() {
+      .then(function () {
         gettingDataCompletedOrFailed(dispatch);
-      })
+      });
   }, 500);
 };
 
@@ -32,4 +32,35 @@ export const gettingDataStarted = (dispatch) => {
 
 export const gettingDataCompletedOrFailed = (dispatch) => {
   dispatch({ type: PRE_PRODUCTS_ACTIONS.GETTING_PREPRODUCT_IN_PROGRESS_END });
+};
+
+export const createProduct = (preProduct, dispatch) => {
+  creatingProductStarted(dispatch);
+  axios
+    .post("/api/product", preProduct)
+    .then(function (response) {
+      console.log(response);
+      alert(response);
+      dispatch({
+        type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_SUCCESS
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert(error);
+      dispatch({
+        type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_FAIL
+      });
+    })
+    .then(function () {
+      creatingProductCompletedOrFailed(dispatch);
+    });
+};
+
+export const creatingProductStarted = (dispatch) => {
+  dispatch({ type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_IN_PROGRESS_START });
+};
+
+export const creatingProductCompletedOrFailed = (dispatch) => {
+  dispatch({ type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_IN_PROGRESS_END });
 };

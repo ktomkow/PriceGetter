@@ -11,13 +11,16 @@ import {
   Container,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import strings from "../../localization/strings";
 
-import { getPreproduct } from "../../redux/actions/preProductActionCreator";
+import {
+  getPreproduct,
+  createProduct,
+} from "../../redux/actions/preProductActionCreator";
 
 import { isUrlValid } from "../../services/urlService";
 
@@ -58,14 +61,14 @@ const ProductCreateForm = (props) => {
 
   const [link, setLink] = useState("");
 
-  const loadingInProgress = props.preProductReducer.gettingDataInProgress;
+  const loadingInProgress = props.preProductReducer.apiCommunicationInProgress;
 
   const handleSearch = () => {
     props.getPreproduct(link);
   };
 
   const handleAdd = () => {
-    // TODO
+    props.createProduct(props.preProductReducer.preProduct);
   };
 
   const isInputValid = () => {
@@ -130,6 +133,7 @@ const ProductCreateForm = (props) => {
 function mapDispatchToProps(dispatch) {
   return {
     getPreproduct: (link) => getPreproduct(link, dispatch),
+    createProduct: (preProduct) => createProduct(preProduct, dispatch),
   };
 }
 

@@ -6,10 +6,10 @@ const initialState = {
     name: strings.CREATE_FORM.PRODUCT_CREATE.NAME_WILL_BE_HERE,
     price: "0,0000",
     productPage: "",
-    imageUrl: ""
+    imageUrl: "",
   },
 
-  gettingDataInProgress: false,
+  apiCommunicationInProgress: false
 };
 
 function preProductReducer(state = initialState, action) {
@@ -24,13 +24,37 @@ function preProductReducer(state = initialState, action) {
   ) {
     return Object.assign({}, state, {
       preProduct: initialState.preProduct,
-      gettingDataInProgress: true,
+      apiCommunicationInProgress: true,
     });
   }
 
   if (action.type === PRE_PRODUCTS_ACTIONS.GETTING_PREPRODUCT_IN_PROGRESS_END) {
     return Object.assign({}, state, {
-      gettingDataInProgress: false,
+      apiCommunicationInProgress: false,
+    });
+  }
+
+  if (action.type === PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_IN_PROGRESS_START) {
+    return Object.assign({}, state, {
+      apiCommunicationInProgress: true,
+    });
+  }
+
+  if (action.type === PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_IN_PROGRESS_END) {
+    return Object.assign({}, state, {
+      apiCommunicationInProgress: false,
+    });
+  }
+
+  if (action.type === PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_SUCCESS) {
+    return Object.assign({}, state, {
+      apiCommunicationInProgress: false,
+    });
+  }
+
+  if (action.type === PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_FAIL) {
+    return Object.assign({}, state, {
+      apiCommunicationInProgress: false,
     });
   }
 

@@ -14,7 +14,7 @@ import store from "./app/redux/store/index";
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={10}>
         <App />
       </SnackbarProvider>
     </ThemeProvider>

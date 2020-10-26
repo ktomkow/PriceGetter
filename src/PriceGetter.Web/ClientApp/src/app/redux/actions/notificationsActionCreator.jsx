@@ -5,19 +5,23 @@ export const showInfoSnack = (text) => {
   return notification;
 };
 
-
 export const showWarningSnack = (text) => {
   const notification = createNotification(text, "warning");
   return notification;
 };
 
-export const createNotification = (text, option) => {
+export const showErrorSnack = (text) => {
+  const notification = createNotification(text, "error", 10000);
+  return notification;
+};
+
+export const createNotification = (text, option, persistTime = 5000) => {
   const key = randomKey();
   const notification = {
     message: text,
     options: {
       variant: option,
-      autoHideDuration: 2000,
+      autoHideDuration: persistTime,
     }
   };
 

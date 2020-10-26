@@ -17,7 +17,7 @@ import { formatRawDate } from "../../services/dateServices";
 
 import { useSnackbar } from "notistack";
 
-import { showSnack } from "../../redux/actions/notificationsActionCreator";
+import { showInfoSnack } from "../../redux/actions/notificationsActionCreator";
 
 const rows = [
   {
@@ -103,7 +103,7 @@ const SingleProduct = (props) => {
   };
 
   const snackRedux = () => {
-    props.showSnack("I love snacks and redux!");
+    props.showInfoSnack("I love snacks and redux!");
   }
 
   const getProductImage = () => {
@@ -204,7 +204,7 @@ const SingleProduct = (props) => {
 function mapDispatchToProps(dispatch) {
   return {
     getProduct: (id) => getProduct(id, dispatch),
-    showSnack: (text) => dispatch(showSnack(text)),
+    showInfoSnack: (text) => dispatch(showInfoSnack(text)),
   };
 }
 

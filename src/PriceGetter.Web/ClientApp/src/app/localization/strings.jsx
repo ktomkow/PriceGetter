@@ -27,6 +27,9 @@ const strings = new LocalizedStrings({
     },
     SINGLE_PRODUCT: {
       GO_BACK_BUTTON: "Go back to products",
+      CHART: {
+        TITLE: "Price ( zł )"
+      },
       DATA_GRID: {
         AMOUNT_HEADER: "Amount",
         AMOUNT_DESCRIPTION: "Product price",

@@ -189,7 +189,7 @@ const SingleProduct = (props) => {
               <Tooltip />
 
               <LineSeries valueField="amount" argumentField="at" />
-              <Title text="Title" />
+              <Title text={strings.SINGLE_PRODUCT.CHART.TITLE} />
             </Chart>
           </Paper>
         </Grid>

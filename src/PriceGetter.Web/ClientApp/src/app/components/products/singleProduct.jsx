@@ -18,6 +18,7 @@ import { formatRawDate } from "../../services/dateServices";
 import { useSnackbar } from "notistack";
 
 import { showInfoSnack } from "../../redux/actions/notificationsActionCreator";
+import { formatMoneyAndAddPLN } from "../../services/moneyServices";
 
 const rows = [
   {
@@ -81,7 +82,7 @@ const SingleProduct = (props) => {
 
     const prices = productPrices.map((x) => ({
       id: x.amount + x.at,
-      amount: x.amount,
+      amount: formatMoneyAndAddPLN(x.amount),
       at: formatRawDate(x.at),
     }));
 
@@ -117,7 +118,7 @@ const SingleProduct = (props) => {
   return (
     <>
       <Grid container className={classes.root} spacing={3}>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             <Box className={classes.imageContainer}>
               <img
@@ -167,7 +168,10 @@ const SingleProduct = (props) => {
             </List>
           </Paper>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+        <Grid item xs={2}>
           <Paper className={classes.paper}>
             <div className={classes.dataGridContainer}>
               <DataGrid
@@ -178,23 +182,20 @@ const SingleProduct = (props) => {
                     headerName: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_HEADER,
                     description:
                       strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_DESCRIPTION,
-                    width: 200,
+                    width: 100,
                   },
                   {
                     field: "at",
                     headerName: strings.SINGLE_PRODUCT.DATA_GRID.DATE_HEADER,
                     description:
                       strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION,
-                    width: 400,
+                    width: 150,
                   },
                 ]}
                 rows={formattedPrices()}
               />
             </div>
           </Paper>
-        </Grid>
-        <Grid item xs={2}>
-          <Paper className={classes.paper}></Paper>
         </Grid>
       </Grid>
     </>

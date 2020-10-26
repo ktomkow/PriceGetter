@@ -18,7 +18,23 @@ import { formatRawDate } from "../../services/dateServices";
 import { useSnackbar } from "notistack";
 
 import { showInfoSnack } from "../../redux/actions/notificationsActionCreator";
-import { formatMoneyAndAddPLN } from "../../services/moneyServices";
+import { round } from "../../services/moneyServices";
+
+import {
+  ArgumentAxis,
+  ValueAxis,
+  Chart,
+  LineSeries,
+  Title,
+  Tooltip
+} from "@devexpress/dx-react-chart-material-ui";
+import { Animation, EventTracker } from '@devexpress/dx-react-chart';
+
+const data = [
+  { argument: 1, value: 10 },
+  { argument: 2, value: 45 },
+  { argument: 3, value: 30 },
+];
 
 const rows = [
   {
@@ -68,32 +84,27 @@ const SingleProduct = (props) => {
   const { id } = useParams();
   const imageUrl = props.productsReducer.singleProduct.imageUrl;
 
-  const productPrices = props.productsReducer.singleProduct.prices;
-
   useEffect(() => {
     // on mount
     props.getProduct(id);
   }, []);
 
   const formattedPrices = () => {
-    if (!productPrices) {
+    if (!props.productsReducer.singleProduct.prices) {
       return [];
     }
 
-    const prices = productPrices.map((x) => ({
+    const prices = props.productsReducer.singleProduct.prices
+    .sort(function(a,b) { return new Date(a.at) - new  Date(b.at) })
+    .map((x) => ({
       id: x.amount + x.at,
-      amount: formatMoneyAndAddPLN(x.amount),
-      at: formatRawDate(x.at),
+      amount: round(x.amount),
+      at: formatRawDate(x.at)
     }));
 
-    return prices;
-  };
+    console.log(prices);
 
-  const gridLegend = {
-    amountHeader: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_HEADER,
-    amountDescription: strings.SINGLE_PRODUCT.DATA_GRID.AMOUNT_DESCRIPTION,
-    dateHeader: strings.SINGLE_PRODUCT.DATA_GRID.DATE_HEADER,
-    dateDescription: strings.SINGLE_PRODUCT.DATA_GRID.DATE_DESCRIPTION,
+    return prices;
   };
 
   const snack = () => {
@@ -105,7 +116,7 @@ const SingleProduct = (props) => {
 
   const snackRedux = () => {
     props.showInfoSnack("I love snacks and redux!");
-  }
+  };
 
   const getProductImage = () => {
     if (isUrlValid(imageUrl)) {
@@ -169,7 +180,18 @@ const SingleProduct = (props) => {
           </Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}></Paper>
+          <Paper className={classes.paper}>
+            <Chart data={formattedPrices()}>
+              <ArgumentAxis />
+              <ValueAxis />
+              <Animation duration={2500}/>
+              <EventTracker />
+              <Tooltip />
+
+              <LineSeries valueField="amount" argumentField="at" />
+              <Title text="Title" />
+            </Chart>
+          </Paper>
         </Grid>
         <Grid item xs={2}>
           <Paper className={classes.paper}>

@@ -41,5 +41,5 @@ export const getProduct = (id, dispatch) => {
       })
       .then(function () {
       });
-  }, 500);
+  }, 1500);
 };

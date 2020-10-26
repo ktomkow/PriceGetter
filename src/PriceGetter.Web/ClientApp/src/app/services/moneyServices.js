@@ -11,3 +11,8 @@ export const formatMoney = (money) => {
   const roundedAmountWithComa = roundedAmount.replace('.',',');
   return roundedAmountWithComa;
 };
+
+export const round = money => {
+  const roundedAmount = Math.round(money * 100) / 100
+  return roundedAmount;
+}

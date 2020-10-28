@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Hosting;
+using PriceGetter.Quartz;
 using Quartz;
 using Quartz.Spi;
 using System;
@@ -6,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static Quartz.MisfireInstruction;
 
 namespace PriceGetter.Web.QuartzConfig
 {
@@ -35,12 +38,14 @@ namespace PriceGetter.Web.QuartzConfig
             foreach (var jobSchedule in _jobSchedules)
             {
                 var job = CreateJob(jobSchedule);
-                var trigger = CreateTrigger(jobSchedule);
+                //var trigger = Dupa(jobSchedule);
+                var trigger = Dupa();
 
                 await Scheduler.ScheduleJob(job, trigger, cancellationToken);
             }
 
             await Scheduler.Start(cancellationToken);
+            SchedulerContainer.Scheduler = Scheduler;
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
@@ -66,6 +71,28 @@ namespace PriceGetter.Web.QuartzConfig
                 .WithCronSchedule(schedule.CronExpression)
                 .WithDescription(schedule.CronExpression)
                 .Build();
+        }
+
+        private ITrigger Dupa(JobSchedule schedule)
+        {
+            ISimpleTrigger trigger = (ISimpleTrigger)TriggerBuilder
+                .Create()
+                .WithIdentity($"{schedule.JobType.FullName}.trigger")
+                .StartAt(DateTime.Now.AddSeconds(5)) 
+                .Build();
+
+            return trigger;
+        }
+
+        public static ITrigger Dupa()
+        {
+            ISimpleTrigger trigger = (ISimpleTrigger)TriggerBuilder
+                .Create()
+                .WithIdentity("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger")
+                .StartAt(DateTime.Now.AddSeconds(2))
+                .Build();
+
+            return trigger;
         }
     }
 }

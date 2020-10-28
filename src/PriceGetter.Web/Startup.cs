@@ -16,6 +16,7 @@ using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
+using PriceGetter.Quartz;
 using PriceGetter.Quartz.Jobs;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Filters;

@@ -1,6 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using PriceGetter.Quartz;
+using PriceGetter.Quartz.Schedules;
 using Quartz;
 using Quartz.Spi;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PriceGetter.Web.QuartzConfig
+namespace PriceGetter.Quartz.Configuration
 {
     public class QuartzHostedService : IHostedService
     {

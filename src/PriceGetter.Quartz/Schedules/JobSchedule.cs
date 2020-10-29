@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using System;
 
-namespace PriceGetter.Web.QuartzConfig
+namespace PriceGetter.Quartz.Schedules
 {
     public abstract class JobSchedule
     {

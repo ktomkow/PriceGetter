@@ -10,24 +10,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PriceGetter.ApplicationServices.Interfaces;
-using PriceGetter.ApplicationServices.ServicesImplementation;
 using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
-using PriceGetter.Quartz;
+using PriceGetter.Quartz.Configuration;
 using PriceGetter.Quartz.Jobs;
+using PriceGetter.Quartz.Schedules;
 using PriceGetter.Web.ExtensionMethods;
 using PriceGetter.Web.Filters;
 using PriceGetter.Web.IoC;
 using PriceGetter.Web.Middleware;
-using PriceGetter.Web.QuartzConfig;
 using PriceGetter.Web.Tools.Unbaser;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using Quartz.Xml.JobSchedulingData20;
 
 namespace PriceGetter.Web
 {

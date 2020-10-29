@@ -27,6 +27,7 @@ using PriceGetter.Web.Tools.Unbaser;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
+using Quartz.Xml.JobSchedulingData20;
 
 namespace PriceGetter.Web
 {
@@ -85,10 +86,14 @@ namespace PriceGetter.Web
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();
 
             builder.RegisterType<HelloWorld>().SingleInstance();
+            builder.RegisterType<HelloWorldCroned>().SingleInstance();
 
-            builder.RegisterInstance(new JobSchedule(
-                jobType: typeof(HelloWorld),
-                cronExpression: "0/5 * * * * ?"));
+            builder.RegisterInstance(JobSchedule.Create(
+                typeof(HelloWorld)));
+
+            builder.RegisterInstance(JobSchedule.Create(
+                typeof(HelloWorldCroned),
+                "0/5 * * * * ?"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

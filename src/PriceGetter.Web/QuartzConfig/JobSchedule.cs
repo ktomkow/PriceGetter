@@ -14,7 +14,7 @@ namespace PriceGetter.Web.QuartzConfig
 
         public static JobSchedule Create(Type type)
         {
-            JobSchedule jobSchedule = new Schedule(type);
+            JobSchedule jobSchedule = new OnceSchedule(type);
 
             return jobSchedule;
         }

@@ -1,14 +1,11 @@
 ﻿using Quartz;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PriceGetter.Web.QuartzConfig
 {
-    public class Schedule : JobSchedule
+    public class OnceSchedule : JobSchedule
     {
-        public Schedule(Type jobType) : base(jobType)
+        public OnceSchedule(Type jobType) : base(jobType)
         {
         }
 

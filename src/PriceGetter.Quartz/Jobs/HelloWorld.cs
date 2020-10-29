@@ -1,6 +1,7 @@
 ﻿using PriceGetter.Infrastructure.Logging;
 using Quartz;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace PriceGetter.Quartz.Jobs
@@ -19,23 +20,23 @@ namespace PriceGetter.Quartz.Jobs
             await Task.Delay(100);
             this.logger.Information("Hello, World!");
 
-            var triggerKey = new TriggerKey("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger");
-            await SchedulerContainer.Scheduler.RescheduleJob(triggerKey, Dupa());
+            await this.Reschedule();
         }
 
-        private ITrigger Dupa()
+        private async Task Reschedule()
         {
             var random = new Random();
             int number = random.Next(5) + 1;
             this.logger.Information($"Random number: {number}");
 
-            ISimpleTrigger trigger = (ISimpleTrigger)TriggerBuilder
+            ITrigger trigger = TriggerBuilder
                 .Create()
                 .WithIdentity("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger")
                 .StartAt(DateTime.Now.AddSeconds(number))
                 .Build();
 
-            return trigger;
+            var triggerKey = new TriggerKey("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger");
+            await SchedulerContainer.Scheduler.RescheduleJob(triggerKey, trigger);
         }
     }
 }

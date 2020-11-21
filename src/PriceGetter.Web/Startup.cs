@@ -14,6 +14,7 @@ using PriceGetter.Infrastructure.Cache;
 using PriceGetter.Infrastructure.IpBlackList;
 using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
+using PriceGetter.Quartz;
 using PriceGetter.Quartz.Configuration;
 using PriceGetter.Quartz.Jobs;
 using PriceGetter.Quartz.Schedules;
@@ -84,6 +85,7 @@ namespace PriceGetter.Web
 
             builder.RegisterType<HelloWorld>().SingleInstance();
             builder.RegisterType<HelloWorldCroned>().SingleInstance();
+            builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
 
             builder.RegisterInstance(JobSchedule.Create(
                 typeof(HelloWorld)));

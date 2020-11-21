@@ -16,17 +16,20 @@ namespace PriceGetter.Quartz.Configuration
         private readonly ISchedulerFactory schedulerFactory;
         private readonly IJobFactory jobFactory;
         private readonly IEnumerable<JobSchedule> jobSchedules;
+        private readonly IPeriodActionScheduler periodActionScheduler;
 
         public IScheduler Scheduler { get; set; }
 
         public QuartzHostedService(
             ISchedulerFactory schedulerFactory,
             IJobFactory jobFactory,
-            IEnumerable<JobSchedule> jobSchedules)
+            IEnumerable<JobSchedule> jobSchedules,
+            IPeriodActionScheduler periodActionScheduler)
         {
             this.schedulerFactory = schedulerFactory ?? throw new ArgumentNullException(nameof(schedulerFactory));
             this.jobFactory = jobFactory ?? throw new ArgumentNullException(nameof(jobFactory));
             this.jobSchedules = jobSchedules ?? throw new ArgumentNullException(nameof(jobSchedules));
+            this.periodActionScheduler = periodActionScheduler ?? throw new ArgumentNullException(nameof(periodActionScheduler));
         }
         
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -44,6 +47,7 @@ namespace PriceGetter.Quartz.Configuration
 
             await Scheduler.Start(cancellationToken);
             SchedulerContainer.Scheduler = Scheduler;
+            this.periodActionScheduler.Initialize(Scheduler);
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)

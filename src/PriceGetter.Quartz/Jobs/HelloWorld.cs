@@ -11,7 +11,7 @@ namespace PriceGetter.Quartz.Jobs
     {
         private readonly IPriceGetterLogger logger;
         private readonly IScheduler scheduler;
-        private int counter;
+        private int counter = 10;
 
         public HelloWorld(IPriceGetterLogger logger, IPeriodActionScheduler scheduler)
         {
@@ -21,14 +21,17 @@ namespace PriceGetter.Quartz.Jobs
 
         public async Task Execute(IJobExecutionContext context)
         {
-            await this.Execute();
+            if(await this.ShouldBeExecutedToday())
+            {
+                await this.Execute();
+            }
 
             await this.Reschedule();
         }
 
         public override async Task Execute()
         {
-            this.logger.Information($"Execution {counter++}");
+            this.logger.Information($"EXECUTION {counter++}");
             await Task.CompletedTask;
         }
 
@@ -39,7 +42,12 @@ namespace PriceGetter.Quartz.Jobs
                 return await Task.FromResult(true);
             }
 
-            counter = 0;
+            var random = new Random();
+            if(random.NextDouble() > 0.75)
+            {
+                counter = 0;
+            }
+
             return await Task.FromResult(false);
         }
 

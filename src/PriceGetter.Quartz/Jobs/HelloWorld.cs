@@ -10,10 +10,13 @@ namespace PriceGetter.Quartz.Jobs
     public class HelloWorld : SelfReschedulingAction, IJob
     {
         private readonly IPriceGetterLogger logger;
+        private readonly IScheduler scheduler;
+        private int counter;
 
-        public HelloWorld(IPriceGetterLogger logger)
+        public HelloWorld(IPriceGetterLogger logger, IPeriodActionScheduler scheduler)
         {
             this.logger = logger;
+            this.scheduler = scheduler.Scheduler();
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -25,40 +28,52 @@ namespace PriceGetter.Quartz.Jobs
 
         public override async Task Execute()
         {
-            this.logger.Information("Execution");
+            this.logger.Information($"Execution {counter++}");
             await Task.CompletedTask;
         }
 
         public override async Task<bool> ShouldBeExecutedToday()
         {
-            var random = new Random();
+            if(counter < 5)
+            {
+                return await Task.FromResult(true);
+            }
 
-            return random.NextDouble() < 0.90;
+            counter = 0;
+            return await Task.FromResult(false);
         }
 
         protected override async Task Reschedule()
-        {
-            if(await this.ShouldBeExecutedToday())
-            {
-                var random = new Random();
-                int number = random.Next(1) + 1;
+        {             
+            ITrigger trigger = await this.GetTrigger();
 
-                ITrigger trigger = TriggerBuilder
+            var triggerKey = new TriggerKey("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger");
+            await this.scheduler.RescheduleJob(triggerKey, trigger);   
+        }
+
+        private async Task<ITrigger> GetTrigger()
+        {
+            ITrigger trigger = TriggerBuilder
                 .Create()
                 .WithIdentity("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger")
-                .StartAt(DateTime.Now.AddSeconds(number))
+                .StartAt(await this.NextExecutionTime())
                 .Build();
 
-                var triggerKey = new TriggerKey("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger");
-                await SchedulerContainer.Scheduler.RescheduleJob(triggerKey, trigger);
+            return trigger;
+        }
 
-                this.logger.Information($"Rescheduling.. {number}");
-            }
-            else
+        private async Task<DateTime> NextExecutionTime()
+        {
+            var random = new Random();
+            int number = random.Next(3) + 1;
+
+            if (await this.ShouldBeExecutedToday())
             {
-                this.logger.Information("Job is done");
-                this.logger.Information("GOODNIGHT!");
+                return DateTime.Now.AddSeconds(number);
             }
+
+            this.logger.Information("See you soon!\n\n\n");
+            return DateTime.Now.AddSeconds(60);
         }
     }
 }

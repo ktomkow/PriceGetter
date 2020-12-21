@@ -90,9 +90,9 @@ namespace PriceGetter.Web
             builder.RegisterInstance(JobSchedule.Create(
                 typeof(HelloWorld)));
 
-            builder.RegisterInstance(JobSchedule.Create(
-                typeof(HelloWorldCroned),
-                "0/5 * * * * ?"));
+            //    builder.RegisterInstance(JobSchedule.Create(
+            //        typeof(HelloWorldCroned),
+            //        "0/5 * * * * ?"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

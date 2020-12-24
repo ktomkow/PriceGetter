@@ -1,0 +1,35 @@
+2020-12-24 11:24:54.811 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:24:55.261 +01:00 [DBG] Calling Execute on job DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld
+2020-12-24 11:24:55.269 +01:00 [INF] See you soon!
+
+
+
+2020-12-24 11:24:55.285 +01:00 [DBG] Trigger instruction : DeleteTrigger
+2020-12-24 11:25:33.885 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:33.933 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:33.968 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:35.532 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:35.809 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:35.819 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:39.200 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:25:39.568 +01:00 [INF] Incoming ip: 127.0.0.1
+2020-12-24 11:25:55.271 +01:00 [DBG] Calling Execute on job DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld
+2020-12-24 11:25:55.273 +01:00 [INF] See you soon!
+
+
+
+2020-12-24 11:25:55.276 +01:00 [DBG] Trigger instruction : DeleteTrigger
+2020-12-24 11:26:55.277 +01:00 [DBG] Calling Execute on job DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld
+2020-12-24 11:26:55.288 +01:00 [INF] See you soon!
+
+
+
+2020-12-24 11:26:55.290 +01:00 [DBG] Trigger instruction : DeleteTrigger
+2020-12-24 11:27:55.290 +01:00 [DBG] Calling Execute on job DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld
+2020-12-24 11:27:55.293 +01:00 [INF] See you soon!
+
+
+
+2020-12-24 11:27:55.296 +01:00 [DBG] Trigger instruction : DeleteTrigger
+2020-12-24 11:28:17.135 +01:00 [INF] PriceGetter.Web.Middleware.IpBlackListMiddleware Incoming ip: 127.0.0.1
+2020-12-24 11:28:17.142 +01:00 [INF] Incoming ip: 127.0.0.1

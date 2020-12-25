@@ -6,15 +6,12 @@ namespace PriceGetter.Quartz.Jobs
 {
     public class HelloWorld : QuartzSelfRescheduleAction
     {
-        private readonly IPriceGetterLogger logger;
         private int counter = 0;
 
         public HelloWorld(
             IPriceGetterLogger logger,
-            IPeriodActionScheduler scheduler) : base(scheduler)
-        {
-            this.logger = logger;
-        }
+            IPeriodActionScheduler scheduler) : base(scheduler, logger)
+        {}
 
         public override async Task Execute()
         {

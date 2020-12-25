@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using PriceGetter.Core.Interfaces.PeriodActions;
+using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Quartz.Configuration;
 using Quartz;
 
@@ -12,16 +13,28 @@ namespace PriceGetter.Quartz.Jobs
 
         private readonly IScheduler scheduler;
 
-        protected QuartzSelfRescheduleAction(IPeriodActionScheduler scheduler)
+        protected readonly IPriceGetterLogger logger;
+
+        protected QuartzSelfRescheduleAction(
+            IPeriodActionScheduler scheduler,
+            IPriceGetterLogger logger)
         {
             this.scheduler = scheduler.Scheduler;
+            this.logger = logger;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            if (await this.ShouldBeExecuted())
+            try
             {
-                await this.Execute();
+                if (await this.ShouldBeExecuted())
+                {
+                    await this.Execute();
+                }
+            }
+            catch(Exception e)
+            {
+                this.logger.Error($"{e.Message} \n\n {e.StackTrace}");
             }
 
             await this.Reschedule();

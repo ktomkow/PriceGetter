@@ -9,15 +9,14 @@ namespace PriceGetter.Quartz.Jobs
     {
         private readonly IServiceProvider serviceProvider;
 
-        private readonly IScheduler scheduler;
-
         public ProductPriceReader(
             IServiceProvider serviceProvider,
-            IPeriodActionScheduler scheduler) : base(scheduler)
+            IPeriodActionScheduler scheduler,
+            IPriceGetterLogger logger) : base(scheduler, logger)
         {
             this.serviceProvider = serviceProvider;
         }
-            
+
         public override async Task Execute()
         {
             var logger = this.serviceProvider.GetService(typeof(IPriceGetterLogger)) as IPriceGetterLogger;

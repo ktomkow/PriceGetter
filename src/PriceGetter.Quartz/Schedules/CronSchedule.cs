@@ -19,11 +19,9 @@ namespace PriceGetter.Quartz.Schedules
 
         public override ITrigger CreateTrigger()
         {
-            string triggerIdentity = $"{this.JobType.FullName}.trigger";
-
             var trigger = TriggerBuilder
                 .Create()
-                .WithIdentity(triggerIdentity)
+                .WithIdentity(this.triggerIdentity)
                 .WithCronSchedule(CronExpression)
                 .WithDescription(CronExpression)
                 .Build();

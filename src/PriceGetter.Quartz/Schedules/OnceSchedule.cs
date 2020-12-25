@@ -14,7 +14,7 @@ namespace PriceGetter.Quartz.Schedules
         {
             ISimpleTrigger trigger = (ISimpleTrigger)TriggerBuilder
                 .Create()
-                .WithIdentity(this.JobType.TriggerKey())
+                .WithIdentity(this.triggerIdentity)
                 .StartAt(DateTime.Now.AddSeconds(3))
                 .Build();
 

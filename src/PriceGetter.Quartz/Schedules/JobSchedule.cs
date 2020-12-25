@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using PriceGetter.Quartz.Configuration;
+using Quartz;
 using System;
 
 namespace PriceGetter.Quartz.Schedules
@@ -6,6 +7,8 @@ namespace PriceGetter.Quartz.Schedules
     public abstract class JobSchedule
     {
         protected Type JobType { get; }
+
+        protected string triggerIdentity => this.JobType.TriggerKey();
 
         protected JobSchedule(Type jobType)
         {

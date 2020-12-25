@@ -1,21 +1,22 @@
 ﻿using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Tools.Unbaser
 {
+    /// <inheritdoc/>
     public class UrlUnbaser : IUrlUnbaser
     {
         private readonly IUnbaser unbaser;
 
+        /// <summary>
+        /// Public constructor using dependency injection
+        /// </summary>
+        /// <param name="unbaser">Implementation of IUnbaser class</param>
         public UrlUnbaser(IUnbaser unbaser)
         {
             this.unbaser = unbaser;
         }
 
+        /// <inheritdoc/>
         public Url Unbase(string urlInBase64)
         {
             string unbased = this.unbaser.Unbase(urlInBase64);

@@ -79,6 +79,7 @@ namespace PriceGetter.Web
             builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
 
             builder.RegisterType<IpBlackListFilter>().SingleInstance();
+            builder.RegisterType<ExecutionTimeFilter>().InstancePerLifetimeScope();
 
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();

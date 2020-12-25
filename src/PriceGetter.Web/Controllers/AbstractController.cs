@@ -9,6 +9,7 @@ namespace PriceGetter.Web.Controllers
 {
     [ApiController]
     [ServiceFilter(typeof(IpBlackListFilter))]
+    [ServiceFilter(typeof(ExecutionTimeFilter))]
     [Route("api/[controller]")]
     public abstract class AbstractController : ControllerBase
     {

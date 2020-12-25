@@ -7,7 +7,7 @@ namespace PriceGetter.Quartz
 {
     public interface IPeriodActionScheduler
     {
-        IScheduler Scheduler();
+        IScheduler Scheduler { get; }
 
         void Initialize(IScheduler scheduler);
     }

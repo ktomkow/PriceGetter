@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using System;
+using Quartz;
 
 namespace PriceGetter.Quartz
 {
@@ -6,14 +7,17 @@ namespace PriceGetter.Quartz
     {
         private IScheduler scheduler;
 
+        IScheduler IPeriodActionScheduler.Scheduler => this.scheduler;
+
         public void Initialize(IScheduler scheduler)
         {
-            this.scheduler = scheduler;
-        }
+            if(this.scheduler is null)
+            {
+                this.scheduler = scheduler;
+                return;
+            }
 
-        public IScheduler Scheduler()
-        {
-            return scheduler;
+            throw new InvalidOperationException("Scheduler is already initialized!");
         }
     }
 }

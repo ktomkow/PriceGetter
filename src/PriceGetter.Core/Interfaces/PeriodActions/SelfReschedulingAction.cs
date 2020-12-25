@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace PriceGetter.Core.Interfaces.PeriodActions
 {
@@ -6,10 +7,6 @@ namespace PriceGetter.Core.Interfaces.PeriodActions
     {
         public abstract Task Execute();
 
-        public abstract Task<bool> ShouldBeExecutedToday();
-
         protected abstract Task Reschedule();
-
-        public abstract string TriggerKey { get; }
     }
 }

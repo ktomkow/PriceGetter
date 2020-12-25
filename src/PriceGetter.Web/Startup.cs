@@ -90,8 +90,8 @@ namespace PriceGetter.Web
             builder.RegisterType<HelloWorldCroned>().SingleInstance();
             builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
 
-            // builder.RegisterInstance(JobSchedule.Create(
-            //     typeof(HelloWorld)));
+            builder.RegisterInstance(JobSchedule.Create(
+                typeof(HelloWorld)));
 
             builder.RegisterInstance(JobSchedule.Create(
                 typeof(ProductPriceReader)));

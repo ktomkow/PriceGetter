@@ -1,35 +1,19 @@
-﻿using PriceGetter.Core.Interfaces.PeriodActions;
-using PriceGetter.Infrastructure.Logging;
-using PriceGetter.Quartz.Configuration;
-using Quartz;
+﻿using PriceGetter.Infrastructure.Logging;
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace PriceGetter.Quartz.Jobs
 {
-    public class HelloWorld : SelfReschedulingAction, IJob
+    public class HelloWorld : QuartzSelfRescheduleAction
     {
         private readonly IPriceGetterLogger logger;
-        private readonly IScheduler scheduler;
-        private int counter = 10;
+        private int counter = 0;
 
-        public HelloWorld(IPriceGetterLogger logger, IPeriodActionScheduler scheduler)
+        public HelloWorld(
+            IPriceGetterLogger logger,
+            IPeriodActionScheduler scheduler) : base(scheduler)
         {
             this.logger = logger;
-            this.scheduler = scheduler.Scheduler();
-        }
-
-        public override string TriggerKey => this.GetType().TriggerKey();
-
-        public async Task Execute(IJobExecutionContext context)
-        {
-            if(await this.ShouldBeExecutedToday())
-            {
-                await this.Execute();
-            }
-
-            await this.Reschedule();
         }
 
         public override async Task Execute()
@@ -38,52 +22,23 @@ namespace PriceGetter.Quartz.Jobs
             await Task.CompletedTask;
         }
 
-        public override async Task<bool> ShouldBeExecutedToday()
+        protected override async Task<bool> ShouldBeExecuted()
         {
-            if(counter < 5)
-            {
-                return await Task.FromResult(true);
-            }
-
-            var random = new Random();
-            if(random.NextDouble() > 0.75)
-            {
-                counter = 0;
-            }
-
-            return await Task.FromResult(false);
+            return await Task.FromResult(counter < 5);
         }
 
-        protected override async Task Reschedule()
-        {             
-            ITrigger trigger = await this.GetTrigger();
-
-            var triggerKey = new TriggerKey(this.TriggerKey);
-            await this.scheduler.RescheduleJob(triggerKey, trigger);   
-        }
-
-        private async Task<ITrigger> GetTrigger()
-        {
-            ITrigger trigger = TriggerBuilder
-                .Create()
-                .WithIdentity(this.TriggerKey)
-                .StartAt(await this.NextExecutionTime())
-                .Build();
-
-            return trigger;
-        }
-
-        private async Task<DateTime> NextExecutionTime()
+        protected override async Task<DateTime> NextExecutionTime()
         {
             var random = new Random();
             int number = random.Next(3) + 1;
 
-            if (await this.ShouldBeExecutedToday())
+            if (await this.ShouldBeExecuted())
             {
                 return DateTime.Now.AddSeconds(number);
             }
 
             this.logger.Information("See you soon!\n\n\n");
+            counter = 0;
             return DateTime.Now.AddSeconds(60);
         }
     }

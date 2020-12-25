@@ -1,42 +1,23 @@
 using System;
 using System.Threading.Tasks;
-using PriceGetter.Core.Interfaces.PeriodActions;
 using PriceGetter.Infrastructure.Logging;
-using PriceGetter.Quartz.Configuration;
 using Quartz;
 
 namespace PriceGetter.Quartz.Jobs
 {
-    public class ProductPriceReader : SelfReschedulingAction, IJob
+    public class ProductPriceReader : QuartzSelfRescheduleAction
     {
         private readonly IServiceProvider serviceProvider;
 
-        // private readonly IPriceGetterLogger logger;
-
         private readonly IScheduler scheduler;
-
-        public override string TriggerKey => this.GetType().TriggerKey();
 
         public ProductPriceReader(
             IServiceProvider serviceProvider,
-            // IPriceGetterLogger logger,
-            IPeriodActionScheduler scheduler)
+            IPeriodActionScheduler scheduler) : base(scheduler)
         {
             this.serviceProvider = serviceProvider;
-            // this.logger = logger;
-            this.scheduler = scheduler.Scheduler();
         }
-
-        public async Task Execute(IJobExecutionContext context)
-        {
-            if(await this.ShouldBeExecutedToday())
-            {
-                await this.Execute();
-            }
-
-            await this.Reschedule();
-        }
-
+            
         public override async Task Execute()
         {
             var logger = this.serviceProvider.GetService(typeof(IPriceGetterLogger)) as IPriceGetterLogger;
@@ -48,36 +29,9 @@ namespace PriceGetter.Quartz.Jobs
             await Task.CompletedTask;
         }
 
-        public override async Task<bool> ShouldBeExecutedToday()
+        protected override async Task<DateTime> NextExecutionTime()
         {
-            return await Task.FromResult(true);
-        }
-
-        protected async override Task Reschedule()
-        {
-            ITrigger trigger = this.GetTrigger();
-
-            var triggerKey = new TriggerKey(this.TriggerKey);
-            await this.scheduler.RescheduleJob(triggerKey, trigger);
-        }
-
-        private ITrigger GetTrigger()
-        {
-            var nextExecutionTime = this.GetNextExecutionTime();
-            // this.logger.Debug($"Next execution time: {nextExecutionTime}");
-
-            ITrigger trigger = TriggerBuilder
-                .Create()
-                .WithIdentity(this.TriggerKey)
-                .StartAt(nextExecutionTime)
-                .Build();
-
-            return trigger;
-        }
-
-        private DateTimeOffset GetNextExecutionTime()
-        {
-            return DateTime.Now.AddSeconds(5);
+            return await Task.FromResult(DateTime.Now.AddSeconds(5));
         }
     }
 }

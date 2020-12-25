@@ -72,6 +72,7 @@ namespace PriceGetter.Web
             builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();
 
             builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
+            builder.RegisterType<Ex>().As<IEx>().InstancePerDependency();
             builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
             builder.RegisterType<PriceGetterLogger>().As<IPriceGetterLogger>().SingleInstance();
             builder.RegisterInstance(this.Configuration.GetSettings<SqlSettings>());
@@ -85,11 +86,15 @@ namespace PriceGetter.Web
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();
 
             builder.RegisterType<HelloWorld>().SingleInstance();
+            builder.RegisterType<ProductPriceReader>().SingleInstance();
             builder.RegisterType<HelloWorldCroned>().SingleInstance();
             builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
 
+            // builder.RegisterInstance(JobSchedule.Create(
+            //     typeof(HelloWorld)));
+
             builder.RegisterInstance(JobSchedule.Create(
-                typeof(HelloWorld)));
+                typeof(ProductPriceReader)));
 
             //    builder.RegisterInstance(JobSchedule.Create(
             //        typeof(HelloWorldCroned),
@@ -121,15 +126,15 @@ namespace PriceGetter.Web
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
+            // app.UseSpa(spa =>
+            // {
+            //     spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            //     if (env.IsDevelopment())
+            //     {
+            //         spa.UseReactDevelopmentServer(npmScript: "start");
+            //     }
+            // });
         }
     }
 }

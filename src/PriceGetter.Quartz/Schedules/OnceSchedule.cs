@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using PriceGetter.Quartz.Configuration;
+using Quartz;
 using System;
 
 namespace PriceGetter.Quartz.Schedules
@@ -13,8 +14,8 @@ namespace PriceGetter.Quartz.Schedules
         {
             ISimpleTrigger trigger = (ISimpleTrigger)TriggerBuilder
                 .Create()
-                .WithIdentity("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger")
-                .StartAt(DateTime.Now.AddSeconds(2))
+                .WithIdentity(this.JobType.TriggerKey())
+                .StartAt(DateTime.Now.AddSeconds(3))
                 .Build();
 
             return trigger;

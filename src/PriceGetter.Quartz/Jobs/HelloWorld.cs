@@ -1,5 +1,6 @@
 ﻿using PriceGetter.Core.Interfaces.PeriodActions;
 using PriceGetter.Infrastructure.Logging;
+using PriceGetter.Quartz.Configuration;
 using Quartz;
 using System;
 using System.Runtime.CompilerServices;
@@ -18,6 +19,8 @@ namespace PriceGetter.Quartz.Jobs
             this.logger = logger;
             this.scheduler = scheduler.Scheduler();
         }
+
+        public override string TriggerKey => this.GetType().TriggerKey();
 
         public async Task Execute(IJobExecutionContext context)
         {
@@ -55,7 +58,7 @@ namespace PriceGetter.Quartz.Jobs
         {             
             ITrigger trigger = await this.GetTrigger();
 
-            var triggerKey = new TriggerKey("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger");
+            var triggerKey = new TriggerKey(this.TriggerKey);
             await this.scheduler.RescheduleJob(triggerKey, trigger);   
         }
 
@@ -63,7 +66,7 @@ namespace PriceGetter.Quartz.Jobs
         {
             ITrigger trigger = TriggerBuilder
                 .Create()
-                .WithIdentity("DEFAULT.PriceGetter.Quartz.Jobs.HelloWorld.trigger")
+                .WithIdentity(this.TriggerKey)
                 .StartAt(await this.NextExecutionTime())
                 .Build();
 

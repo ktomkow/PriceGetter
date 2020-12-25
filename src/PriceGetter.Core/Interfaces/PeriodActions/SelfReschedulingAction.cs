@@ -9,5 +9,7 @@ namespace PriceGetter.Core.Interfaces.PeriodActions
         public abstract Task<bool> ShouldBeExecutedToday();
 
         protected abstract Task Reschedule();
+
+        public abstract string TriggerKey { get; }
     }
 }

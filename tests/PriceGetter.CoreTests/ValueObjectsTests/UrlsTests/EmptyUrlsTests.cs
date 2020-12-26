@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
 {
-#pragma warning disable 1718
+    #pragma warning disable 1718
     public class EmptyUrlsTests
     {
         #region Equals

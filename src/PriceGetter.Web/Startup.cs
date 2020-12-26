@@ -90,11 +90,11 @@ namespace PriceGetter.Web
             builder.RegisterType<HelloWorldCroned>().SingleInstance();
             builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
 
-            builder.RegisterInstance(JobSchedule.Create(
-                typeof(HelloWorld)));
+            // builder.RegisterInstance(JobSchedule.Create(
+            //     typeof(HelloWorld)));
 
-            builder.RegisterInstance(JobSchedule.Create(
-                typeof(ProductPriceReader)));
+            // builder.RegisterInstance(JobSchedule.Create(
+            //     typeof(ProductPriceReader)));
 
             //    builder.RegisterInstance(JobSchedule.Create(
             //        typeof(HelloWorldCroned),
@@ -106,7 +106,7 @@ namespace PriceGetter.Web
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
             app.UseMiddleware<IpBlackListMiddleware>();
-
+ 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

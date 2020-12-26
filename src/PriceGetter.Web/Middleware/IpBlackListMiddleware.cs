@@ -36,7 +36,7 @@ namespace PriceGetter.Web.Middleware
 
             this.logger.Information($"{this.GetType()} Incoming ip: {ip.ToString()}");
 
-            if (this.ipBlacklist.IsAllowed(ip) == true)
+            if (this.ipBlacklist.IsAllowed(ip) == false)
             {
                 context.Response.StatusCode = StatusCodes.Status403Forbidden;
                 await Task.CompletedTask;

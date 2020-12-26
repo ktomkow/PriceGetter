@@ -1,12 +1,10 @@
 ﻿using FluentAssertions;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
 {
+#pragma warning disable 1718
     public class EmptyUrlsTests
     {
         #region Equals
@@ -79,4 +77,6 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
 
         #endregion
     }
+
+    #pragma warning restore 1718
 }

@@ -40,6 +40,7 @@ namespace PriceGetter.Web.Middleware
             {
                 context.Response.StatusCode = StatusCodes.Status403Forbidden;
                 await Task.CompletedTask;
+                throw new System.Exception();
             }
         }
     }

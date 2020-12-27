@@ -1,15 +1,16 @@
-﻿using Autofac;
-using PriceGetter.ApplicationServices.Interfaces;
-using PriceGetter.ApplicationServices.ServicesImplementation;
+using Autofac;
 
 namespace PriceGetter.Web.IoC
 {
+    /// <summary>
+    /// Installs application services.
+    /// </summary>
     public class ApplicationServicesInstaller : Module
     {
+        /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<PreProductService>().As<IPreProductService>();
-            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+
         }
     }
 }

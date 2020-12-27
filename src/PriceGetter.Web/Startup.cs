@@ -5,27 +5,13 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PriceGetter.Infrastructure.Cache;
-using PriceGetter.Infrastructure.IpBlackList;
-using PriceGetter.Infrastructure.Logging;
-using PriceGetter.Infrastructure.Settings;
-using PriceGetter.Quartz;
 using PriceGetter.Quartz.Configuration;
-using PriceGetter.Quartz.Jobs;
-using PriceGetter.Quartz.Schedules;
-using PriceGetter.Web.ExtensionMethods;
-using PriceGetter.Web.Filters;
 using PriceGetter.Web.IoC;
 using PriceGetter.Web.Middleware;
-using PriceGetter.Web.Tools.Unbaser;
-using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
 
 namespace PriceGetter.Web
 {
@@ -67,38 +53,7 @@ namespace PriceGetter.Web
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new MainInstaller());
-
-            builder.RegisterType<UrlUnbaser>().As<IUrlUnbaser>().InstancePerLifetimeScope();
-            builder.RegisterType<Unbaser>().As<IUnbaser>().InstancePerLifetimeScope();
-
-            builder.RegisterType<CacheFacade>().As<ICacheFacade>().SingleInstance();
-            builder.RegisterType<Ex>().As<IEx>().InstancePerDependency();
-            builder.RegisterType<IpBlackListService>().As<IIpBlackListService>().SingleInstance();
-            builder.RegisterType<PriceGetterLogger>().As<IPriceGetterLogger>().SingleInstance();
-            builder.RegisterInstance(this.Configuration.GetSettings<SqlSettings>());
-            builder.RegisterInstance(this.Configuration.GetSettings<MongoSettings>());
-            builder.RegisterInstance(this.Configuration.GetSettings<LoggerSettings>());
-
-            builder.RegisterType<IpBlackListFilter>().SingleInstance();
-            builder.RegisterType<ExecutionTimeFilter>().InstancePerLifetimeScope();
-
-            builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
-            builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();
-
-            builder.RegisterType<HelloWorld>().SingleInstance();
-            builder.RegisterType<ProductPriceReader>().SingleInstance();
-            builder.RegisterType<HelloWorldCroned>().SingleInstance();
-            builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
-
-            // builder.RegisterInstance(JobSchedule.Create(
-            //     typeof(HelloWorld)));
-
-            // builder.RegisterInstance(JobSchedule.Create(
-            //     typeof(ProductPriceReader)));
-
-            //    builder.RegisterInstance(JobSchedule.Create(
-            //        typeof(HelloWorldCroned),
-            //        "0/5 * * * * ?"));
+            builder.RegisterModule(new SettingsInstaller(this.Configuration));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -106,7 +61,7 @@ namespace PriceGetter.Web
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
             app.UseMiddleware<IpBlackListMiddleware>();
- 
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

@@ -5,8 +5,12 @@ using PriceGetter.PersistenceEntityFramework;
 
 namespace PriceGetter.Web.IoC
 {
+    /// <summary>
+    /// Installs persistence layer objects using entity framework in implementation.
+    /// </summary>
     public class PersistenceEntityFrameworkInstaller : Module
     {
+        /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
             //builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();

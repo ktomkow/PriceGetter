@@ -14,8 +14,12 @@ using System.Reflection;
 
 namespace PriceGetter.Web.IoC
 {
+    /// <summary>
+    /// Installs content providers.
+    /// </summary>
     public class ContentProvidersInstaller : Autofac.Module
     {
+        /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
             var assembly = typeof(BasicCssExtractor)

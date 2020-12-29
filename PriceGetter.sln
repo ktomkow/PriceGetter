@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.CoreTests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ContentProvider", "src\PriceGetter.ContentProvider\PriceGetter.ContentProvider.csproj", "{E2E45802-48E7-4F98-A3B5-D680E07D7D15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ApplicationServices", "src\PriceGetter.ApplicationService\PriceGetter.ApplicationServices.csproj", "{D4F303F2-08F1-4E7B-8AD4-7869BE850610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ApplicationServices", "src\PriceGetter.ApplicationServices\PriceGetter.ApplicationServices.csproj", "{D4F303F2-08F1-4E7B-8AD4-7869BE850610}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Contracts", "src\PriceGetter.Contracts\PriceGetter.Contracts.csproj", "{A384254D-B156-4A9F-AA31-FCC1C326785A}"
 EndProject

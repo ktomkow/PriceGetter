@@ -15,8 +15,15 @@ using PriceGetter.Web.Middleware;
 
 namespace PriceGetter.Web
 {
+    /// <summary>
+    /// Startup. Pretty important class.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Public constructor.
+        /// </summary>
+        /// <param name="env">Environment options.</param>
         public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -27,10 +34,20 @@ namespace PriceGetter.Web
             this.Configuration = builder.Build();
         }
 
+        /// <summary>
+        /// Configuration root. Used during app start.
+        /// </summary>
         public IConfigurationRoot Configuration { get; private set; }
 
+        /// <summary>
+        /// IoC container - in this case Autofac.
+        /// </summary>
         public ILifetimeScope AutofacContainer { get; private set; }
 
+        /// <summary>
+        /// Starts configuring services in application.
+        /// </summary>
+        /// <param name="services">Injected collection of services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -50,12 +67,21 @@ namespace PriceGetter.Web
             services.AddHostedService<QuartzHostedService>();
         }
 
+        /// <summary>
+        /// Registed dependencies directly to Autofac.
+        /// </summary>
+        /// <param name="builder">Injected Autofac container builder.</param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new MainInstaller());
             builder.RegisterModule(new SettingsInstaller(this.Configuration));
         }
 
+        /// <summary>
+        /// Additional configuration like routing, using SPA, etc.
+        /// </summary>
+        /// <param name="app">Injected application builder.</param>
+        /// <param name="env">Injected application environment options.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();

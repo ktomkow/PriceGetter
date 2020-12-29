@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PriceGetter.Web.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Controllers
 {
+    /// <summary>
+    /// Base controller of API. Other controllers should inherit from this one.
+    /// </summary>
     [ApiController]
     [ServiceFilter(typeof(IpBlackListFilter))]
     [ServiceFilter(typeof(ExecutionTimeFilter))]

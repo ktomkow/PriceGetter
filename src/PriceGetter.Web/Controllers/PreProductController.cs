@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace PriceGetter.Web.Controllers
 {
+    /// <summary>
+    /// Preproduct related operations controller.
+    /// </summary>
     public class PreProductController : AbstractController
     {
         private readonly IPreProductService preProductService;
         private readonly IUnbaser unbaser;
 
+        /// <summary>
+        /// Public constructor of the object. Has some dependencies to be satisfied.
+        /// </summary>
+        /// <param name="preProductService">Preproduct service.</param>
+        /// <param name="unbaser">Unbaser tool to unbase urls.</param>
         public PreProductController(IPreProductService preProductService, IUnbaser unbaser)
         {
             this.preProductService = preProductService;

@@ -12,7 +12,7 @@ namespace PriceGetter.Web.IoC
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
+            // builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
             builder.RegisterType<FakeGetterUseFile>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
         }
     }

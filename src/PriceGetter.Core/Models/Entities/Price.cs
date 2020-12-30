@@ -22,8 +22,8 @@ namespace PriceGetter.Core.Models.Entities
 
         public Price(Money amount, Product product) : this()
         {
-            this.Amount = amount;
-            this.Product = product;
+            this.Amount = amount ?? throw new ArgumentNullException(nameof(amount));
+            this.Product = product ?? throw new ArgumentNullException(nameof(product));
         }
 
         public override int GetHashCode()

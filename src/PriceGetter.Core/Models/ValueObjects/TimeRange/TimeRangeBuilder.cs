@@ -1,4 +1,5 @@
 ﻿using System;
+using PriceGetter.Core.DateTimeAbstraction;
 
 namespace PriceGetter.Core.Models.ValueObjects.TimeRange
 {
@@ -44,7 +45,7 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
 
         public TimeRangeBuilder FromNow()
         {
-            this.from = DateTime.UtcNow;
+            this.from = DateTimeMethods.UtcNow();
             return this;
         }
 
@@ -56,7 +57,7 @@ namespace PriceGetter.Core.Models.ValueObjects.TimeRange
 
         public TimeRangeBuilder ToNow()
         {
-            this.to = DateTime.UtcNow;
+            this.to = DateTimeMethods.UtcNow();
             return this;
         }
     }

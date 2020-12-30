@@ -1,5 +1,6 @@
 ﻿using PriceGetter.ApplicationServices.Interfaces;
 using PriceGetter.Contracts.Products;
+using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
@@ -67,11 +68,11 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
                 Id = Guid.NewGuid(),
                 Prices = new List<PriceDto>() 
                 { 
-                    new PriceDto() { Amount = randomPrice(random), At = DateTime.UtcNow },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTime.UtcNow.AddDays(-1) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTime.UtcNow.AddDays(-2) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTime.UtcNow.AddDays(-3) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTime.UtcNow.AddDays(-4) }
+                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow() },
+                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-1) },
+                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-2) },
+                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-3) },
+                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-4) }
                 }
             };
 

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Models.ValueObjects.TimeRange;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.TimeRangesTests
         {
             TimeRange range = TimeRange.GetBuilder().Build();
 
-            DateTime dateTime = DateTime.Now;
+            DateTime dateTime = DateTimeMethods.UtcNow();
 
             bool result = range.IsInRange(dateTime);
 
@@ -38,7 +39,7 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.TimeRangesTests
         {
             TimeRange range = TimeRange.GetBuilder().Build();
 
-            DateTime dateTime = DateTime.UtcNow;
+            DateTime dateTime = DateTimeMethods.UtcNow();
 
             bool result = range.IsInRange(dateTime);
 

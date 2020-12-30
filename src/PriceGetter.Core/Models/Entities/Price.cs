@@ -5,17 +5,17 @@ using System;
 
 namespace PriceGetter.Core.Models.Entities
 {
-    public class Price : EntityBase
+    public class Price : EntityBase, IEquatable<Price>
     {
         public Money Amount { get; }
-        
+
         public DateTime At { get; }
 
         public Product Product { get; }
 
         public decimal AmountAsDecimal { get => this.Amount.ValueAsDecimal; }
 
-        protected Price() 
+        protected Price()
         {
             this.At = DateTimeMethods.UtcNow();
         }
@@ -42,7 +42,35 @@ namespace PriceGetter.Core.Models.Entities
 
         public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+            {
+                return false;
+            }
+
+            Price priceInstance = obj as Price;
+            if (priceInstance == null)
+            {
+                return false;
+            }
+
+            return Equals(priceInstance);
+        }
+
+        public bool Equals(Price other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if(other == this)
+            {
+                return true;
+            }
+
+            return this.Product.Equals(other.Product)
+                   && this.At.Equals(other.At)
+                   && this.Amount.Equals(other.Amount);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace PriceGetter.Core.Models.Entities
 
                 hash = hash * 476981 + this.At.GetHashCode();
                 hash = hash * 476981 + this.Amount.GetHashCode();
+                hash = hash * 476981 + this.Product.Name.GetHashCode();
 
                 return hash;
             }

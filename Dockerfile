@@ -1,4 +1,4 @@
-FROM 172.17.0.1:9997/dotnet3p1sdk-node14 as build
+FROM 192.168.0.133:9997/dotnet3p1sdk-node14:latest as build
 WORKDIR /app
 COPY . ./
 WORKDIR ./src/PriceGetter.Web

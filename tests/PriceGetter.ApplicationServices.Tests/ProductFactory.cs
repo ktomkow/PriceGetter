@@ -20,6 +20,8 @@ namespace PriceGetter.ApplicationServices.Tests
                 product.AddPrice(this.RandomAmount());
             }
 
+            DateTimeMethods.Reset();
+
             return product;
         }
 

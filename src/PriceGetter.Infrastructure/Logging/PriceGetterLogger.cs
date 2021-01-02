@@ -1,8 +1,6 @@
 ﻿using PriceGetter.Infrastructure.Settings;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PriceGetter.Infrastructure.Logging
 {
@@ -10,10 +8,28 @@ namespace PriceGetter.Infrastructure.Logging
     {
         public PriceGetterLogger(LoggerSettings settings)
         {
-            Log.Logger = new LoggerConfiguration()
+            if (settings.IsInitialized())
+            {
+                Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
                 .WriteTo.File(settings.LogFilepath, rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            }
+            else
+            {
+                Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .CreateLogger();
+            }
+        }
+
+        public PriceGetterLogger()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
                 .CreateLogger();
         }
 

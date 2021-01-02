@@ -17,12 +17,14 @@ namespace PriceGetter.ApplicationServices.Tests
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IProductsRepository productsRepository;
+        private readonly ProductFactory productFactory;
         private readonly PricesWatcher watcher;
 
         public PricesWatcherTests()
         {
             this.unitOfWork = Substitute.For<IUnitOfWork>();
             this.productsRepository = Substitute.For<IProductsRepository>();
+            this.productFactory = new ProductFactory();
 
             this.unitOfWork.ProductRepository.Returns(this.productsRepository);
 
@@ -43,12 +45,10 @@ namespace PriceGetter.ApplicationServices.Tests
         public async Task AnyWorkLeft_IfOnlyMonitoredProductAlreadyCheckedToday_ShouldBeFalse()
         {
             IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
-            dateTimeProvider.UtcNow().Returns(new DateTime(2020, 10, 10, 6, 45, 30));
             DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
+
             List<Product> productsToBeReturned = new List<Product>();
-            Product alreadyCheckedProduct = new Product(new Name("Product"), Url.FromString(string.Empty));
-            alreadyCheckedProduct.ActivateMonitoring();
-            alreadyCheckedProduct.AddPrice(new Money(10.0m));
+            Product alreadyCheckedProduct = this.productFactory.Create(new DateTime(2020, 10, 10, 6, 45, 30));
             productsToBeReturned.Add(alreadyCheckedProduct);
             this.productsRepository.GetMonitored().Returns(Task.FromResult(productsToBeReturned as IEnumerable<Product>));
 
@@ -63,10 +63,10 @@ namespace PriceGetter.ApplicationServices.Tests
         {
             IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
             DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
+
             List<Product> productsToBeReturned = new List<Product>();
-            Product alreadyCheckedProduct = new Product(new Name("Product"), Url.FromString(string.Empty));
-            alreadyCheckedProduct.ActivateMonitoring();
-            productsToBeReturned.Add(alreadyCheckedProduct);
+            Product neverCheckedProduct = this.productFactory.Create();
+            productsToBeReturned.Add(neverCheckedProduct);
             this.productsRepository.GetMonitored().Returns(Task.FromResult(productsToBeReturned as IEnumerable<Product>));
 
             dateTimeProvider.UtcNow().Returns(new DateTime(2020, 10, 10, 10, 50, 30));

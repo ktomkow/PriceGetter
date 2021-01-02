@@ -30,7 +30,7 @@ namespace PriceGetter.PersistenceEntityFramework
             if(this.settings is null)
             {
                 optionsBuilder
-                .UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=PriceGetter;Trusted_Connection=True;")
+                .UseSqlServer(@"Server=192.168.0.133,6900;Database=PriceGetter;User Id=app;Password=pgApplication123!;")
                 .UseLoggerFactory(MyLoggerFactory);
             }
             else

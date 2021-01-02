@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using PriceGetter.PersistenceEntityFramework.ExtensionMethods;
 
 namespace PriceGetter.PersistenceEntityFramework.TypesConfigurations
 {
@@ -17,13 +15,13 @@ namespace PriceGetter.PersistenceEntityFramework.TypesConfigurations
 
             builder.Property(x => x.ProductPage)
                 .HasConversion(
-                x => x.ToString(),
+                x => x.ToStringNullIfEmpty(),
                 x => Url.FromString(x))
                 .HasColumnName("PageUrl");
 
             builder.Property(x => x.ProductImage)
                 .HasConversion(
-                x => x.ToString(),
+                x => x.ToStringNullIfEmpty(),
                 x => Url.FromString(x))
                 .HasColumnName("ImageUrl");
 

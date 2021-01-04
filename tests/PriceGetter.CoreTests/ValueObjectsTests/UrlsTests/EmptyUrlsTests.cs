@@ -75,6 +75,17 @@ namespace PriceGetter.CoreTests.ValueObjectsTests.UrlsTests
             result.Should().BeFalse();
         }
 
+        [Fact]
+        public void EqualsOperator_BothNull_ShouldBeFalse()
+        {
+            EmptyUrl url1 = null;
+            EmptyUrl url2 = null;
+
+            bool result = url1 == url2;
+
+            result.Should().BeFalse();
+        }
+
         #endregion
     }
 

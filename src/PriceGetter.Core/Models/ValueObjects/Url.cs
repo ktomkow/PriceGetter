@@ -61,11 +61,21 @@ namespace PriceGetter.Core.Models.ValueObjects
 
         public static bool operator ==(Url left, Url right)
         {
+            if(left is null)
+            {
+                return false;
+            }
+
             return left.Equals(right);
         }
 
         public static bool operator !=(Url left, Url right)
         {
+            if(left is null)
+            {
+                return false;
+            }
+
             return !left.Equals(right);
         }
 

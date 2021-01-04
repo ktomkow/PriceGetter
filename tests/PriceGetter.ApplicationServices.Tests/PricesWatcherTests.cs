@@ -5,6 +5,7 @@ using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.TestHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace PriceGetter.ApplicationServices.Tests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public async Task AnyWorkLeft_IfNoMonitoredProducts_ShouldBeFalse()
         {
             this.productsRepository.GetMonitored().Returns(Task.FromResult(Enumerable.Empty<Product>()));
@@ -42,13 +44,14 @@ namespace PriceGetter.ApplicationServices.Tests
         }
 
         [Fact]
-        public async Task AnyWorkLeft_IfOnlyMonitoredProductAlreadyCheckedToday_ShouldBeFalse()
+        [ResetDateTimeAbstractions]
+        public async Task AnyWorkLeft_IfTheOnlyMonitoredProductAlreadyCheckedToday_ShouldBeFalse()
         {
+            Product alreadyCheckedProduct = this.productFactory.Create(new DateTime(2020, 10, 10, 6, 45, 30));
             IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
             DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
 
             List<Product> productsToBeReturned = new List<Product>();
-            Product alreadyCheckedProduct = this.productFactory.Create(new DateTime(2020, 10, 10, 6, 45, 30));
             productsToBeReturned.Add(alreadyCheckedProduct);
             this.productsRepository.GetMonitored().Returns(Task.FromResult(productsToBeReturned as IEnumerable<Product>));
 
@@ -59,13 +62,14 @@ namespace PriceGetter.ApplicationServices.Tests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public async Task AnyWorkLeft_IfOnlyMonitoredProductNeverCheckeed_ShouldBeTrue()
         {
+            Product neverCheckedProduct = this.productFactory.Create();
             IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
             DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
 
             List<Product> productsToBeReturned = new List<Product>();
-            Product neverCheckedProduct = this.productFactory.Create();
             productsToBeReturned.Add(neverCheckedProduct);
             this.productsRepository.GetMonitored().Returns(Task.FromResult(productsToBeReturned as IEnumerable<Product>));
 

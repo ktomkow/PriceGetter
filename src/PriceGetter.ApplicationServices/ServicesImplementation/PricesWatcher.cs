@@ -1,6 +1,7 @@
 ﻿using PriceGetter.ApplicationServices.Interfaces;
 using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Interfaces.Repositories;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,7 +26,9 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
                 return true;
             }
 
-            return products.Any(x => x.GetLastPrice().At.Date != DateTimeMethods.UtcNow().Date);
+            DateTime today = DateTimeMethods.UtcNow().Date;
+            bool result = products.Any(x => x.GetLastPrice().At.Date != today);
+            return result;
         }
 
         public Task CheckPriceOfRandomProduct()

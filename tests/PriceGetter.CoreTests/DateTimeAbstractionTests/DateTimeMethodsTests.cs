@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using NSubstitute;
 using PriceGetter.Core.DateTimeAbstraction;
+using PriceGetter.TestHelpers;
 using System;
 using Xunit;
 
@@ -9,6 +10,7 @@ namespace PriceGetter.CoreTests.DateTimeAbstractionTests
     public class DateTimeMethodsTests
     {
         [Fact]
+        [ResetDateTimeAbstractions]
         public void UtcNow_OverrideProviderShouldBePossible()
         {
             IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
@@ -21,6 +23,7 @@ namespace PriceGetter.CoreTests.DateTimeAbstractionTests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void UtcNow_IfNothingChanged_ShouldActAsCommmonDateTimeUtcNow()
         {
             var now = DateTime.UtcNow.Date;

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
+    <ProjectReference Include="..\PriceGetter.TestHelpers\PriceGetter.TestHelpers.csproj" />
   </ItemGroup>
 
 </Project>

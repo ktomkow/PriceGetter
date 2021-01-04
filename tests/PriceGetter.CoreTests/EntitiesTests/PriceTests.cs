@@ -4,6 +4,7 @@ using NSubstitute;
 using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.TestHelpers;
 using Xunit;
 
 namespace PriceGetter.CoreTests.EntitiesTests
@@ -20,14 +21,13 @@ namespace PriceGetter.CoreTests.EntitiesTests
         {
             this.product = GetProduct();
             this.dateTimeProvider = Substitute.For<IDateTimeProvider>();
-            this.dateTimeProvider.UtcNow().Returns(sampleDateTime);
-
-            DateTimeMethods.OverrideDateTimeProvider(this.dateTimeProvider);
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Ctor_IfProductIsNull_ShouldThrowException()
         {
+            this.SetDateTime();
             Action act = () =>
             {
                 Price price = new Price(new Money(10.0m), null);
@@ -37,8 +37,10 @@ namespace PriceGetter.CoreTests.EntitiesTests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Ctor_IfAmountIsNull_ShouldThrowException()
         {
+            this.SetDateTime();
             Action act = () =>
             {
                 Price price = new Price(null, this.product);
@@ -48,8 +50,12 @@ namespace PriceGetter.CoreTests.EntitiesTests
         }
 
         [Fact]
-        public void Ctor_At_ShouldBeUtcNow()
+        [ResetDateTimeAbstractions]
+        public void Ctor_At_ShouldBeCreatedUsingDateTimeAbstractionUtcNow()
         {
+            this.SetDateTime();
+            DateTimeMethods.OverrideDateTimeProvider(this.dateTimeProvider);
+
             DateTime expectedAt = this.sampleDateTime;
 
             Price price = new Price(new Money(10.25m), this.product);
@@ -58,16 +64,20 @@ namespace PriceGetter.CoreTests.EntitiesTests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Ctor_Id_ShouldBeInitialized()
         {
+            this.SetDateTime();
             Price price = new Price(new Money(10.25m), this.product);
             
             price.Id.Should().NotBe(Guid.Empty);
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Ctor_IfTwoPricesWithTheSameArgumentsCreated_ShouldHaveDifferentId()
-        {            
+        {
+            this.SetDateTime();
             Price price1 = new Price(new Money(10.25m), this.product);
             Price price2 = new Price(new Money(10.25m), this.product);
 
@@ -75,8 +85,10 @@ namespace PriceGetter.CoreTests.EntitiesTests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Equals_IfTwoPricesWithTheSameArgumentsCreated_ShouldBeTrue()
         {
+            this.SetDateTime();
             Price price1 = new Price(new Money(10.25m), this.product);
             Price price2 = new Price(new Money(10.25m), this.product);
 
@@ -86,8 +98,10 @@ namespace PriceGetter.CoreTests.EntitiesTests
         }
 
         [Fact]
+        [ResetDateTimeAbstractions]
         public void Equals_IfTwoPricesAlmostSame_OtherProduct_ShouldBeFalse()
         {
+            this.SetDateTime();
             Product otherProduct = new Product(new Name("Other one"), Url.FromString(string.Empty));
             Price price1 = new Price(new Money(10.25m), this.product);
             Price price2 = new Price(new Money(10.25m), otherProduct);
@@ -105,6 +119,13 @@ namespace PriceGetter.CoreTests.EntitiesTests
             Product product = new Product(name, productPage);
 
             return product;
+        }
+
+        private void SetDateTime()
+        {
+            this.dateTimeProvider.UtcNow().Returns(sampleDateTime);
+
+            DateTimeMethods.OverrideDateTimeProvider(this.dateTimeProvider);
         }
     }
 }

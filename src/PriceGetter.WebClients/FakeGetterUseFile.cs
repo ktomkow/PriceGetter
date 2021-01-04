@@ -9,7 +9,7 @@ namespace PriceGetter.WebClients
     {
         public async Task<Html> GetAsync(Url url)
         {
-            string htmlAsString = File.ReadAllText("/home/krzysztof/data/PriceGetter/content.html");
+            string htmlAsString = File.ReadAllText("D:\\data\\content.html");
 
             Html html = new Html(htmlAsString);
 

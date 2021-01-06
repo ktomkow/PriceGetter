@@ -2,6 +2,7 @@
 using NSubstitute;
 using PriceGetter.ApplicationServices.ServicesImplementation;
 using PriceGetter.Core.DateTimeAbstraction;
+using PriceGetter.Core.Interfaces.Factories.DataProviders;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
@@ -18,6 +19,7 @@ namespace PriceGetter.ApplicationServices.Tests
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IProductsRepository productsRepository;
+        private readonly IDataProviderFactory dataProviderFactory;
         private readonly ProductFactory productFactory;
         private readonly PricesWatcher watcher;
 
@@ -25,11 +27,12 @@ namespace PriceGetter.ApplicationServices.Tests
         {
             this.unitOfWork = Substitute.For<IUnitOfWork>();
             this.productsRepository = Substitute.For<IProductsRepository>();
+            this.dataProviderFactory = Substitute.For<IDataProviderFactory>();
             this.productFactory = new ProductFactory();
 
             this.unitOfWork.ProductRepository.Returns(this.productsRepository);
 
-            this.watcher = new PricesWatcher(unitOfWork);
+            this.watcher = new PricesWatcher(this.unitOfWork, this.dataProviderFactory);
         }
 
         [Fact]

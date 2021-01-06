@@ -60,5 +60,39 @@ namespace PriceGetter.CoreTests.DateTimeAbstractionTests
 
             result.Should().Be(expectedResult);
         }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(24)]
+        [InlineData(25)]
+        [InlineData(-100)]
+        [InlineData(1248)]
+        [InlineData(-125619)]
+        public void TommorowAt_IfArgumentOutOfRange_ShouldThrowArgumentException(int hour)
+        {
+            Action act = () =>
+            {
+                DateTime result = DateTimeMethods.TommorowAt(hour);
+            };
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(23)]
+        [InlineData(15)]
+        [InlineData(11)]
+        [InlineData(12)]
+        [InlineData(5)]
+        public void TommorowAt_IfArgumentInRange_ShouldNotThrow(int hour)
+        {
+            Action act = () =>
+            {
+                DateTime result = DateTimeMethods.TommorowAt(hour);
+            };
+
+            act.Should().NotThrow<ArgumentException>();
+        }
     }
 }

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PriceGetter.ApplicationServices\PriceGetter.ApplicationServices.csproj" />
     <ProjectReference Include="..\PriceGetter.Core\PriceGetter.Core.csproj" />
     <ProjectReference Include="..\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
   </ItemGroup>

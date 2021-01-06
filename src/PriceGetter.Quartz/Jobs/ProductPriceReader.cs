@@ -22,13 +22,11 @@ namespace PriceGetter.Quartz.Jobs
 
         public override async Task Execute()
         {
-            var logger = this.serviceProvider.GetService(typeof(IPriceGetterLogger)) as IPriceGetterLogger;
-            logger.Debug($"Hello, it's me, {this.GetType().ToString()}!");
-
-            IEx ex = this.serviceProvider.GetService(typeof(IEx)) as IEx;
-            ex.Work();
-
-            await Task.CompletedTask;
+            var watcher = this.GetWatcher();
+            if(await watcher.AnyWorkLeft())
+            {
+                await watcher.CheckPriceOfRandomProduct();
+            }
         }
 
         protected override async Task<DateTime> NextExecutionTime()

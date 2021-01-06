@@ -30,5 +30,35 @@ namespace PriceGetter.CoreTests.DateTimeAbstractionTests
 
             DateTimeMethods.UtcNow().Date.Should().Be(now);
         }
+
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void TommorowAt_WhenCurrentHourIsAfterDesiredHour()
+        {
+            IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
+            dateTimeProvider.UtcNow().Returns(new DateTime(2020, 12, 19, 10, 34, 20));
+            DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
+
+            DateTime expectedResult = new DateTime(2020, 12, 20, 8, 0, 0);
+
+            DateTime result = DateTimeMethods.TommorowAt(8);
+
+            result.Should().Be(expectedResult);
+        }
+
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void TommorowAt_WhenCurrentHourIsBeforeDesiredHour()
+        {
+            IDateTimeProvider dateTimeProvider = Substitute.For<IDateTimeProvider>();
+            dateTimeProvider.UtcNow().Returns(new DateTime(2020, 12, 19, 5, 34, 20));
+            DateTimeMethods.OverrideDateTimeProvider(dateTimeProvider);
+
+            DateTime expectedResult = new DateTime(2020, 12, 20, 8, 0, 0);
+
+            DateTime result = DateTimeMethods.TommorowAt(8);
+
+            result.Should().Be(expectedResult);
+        }
     }
 }

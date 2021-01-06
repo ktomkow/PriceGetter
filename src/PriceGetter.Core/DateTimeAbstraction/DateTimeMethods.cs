@@ -11,6 +11,16 @@ namespace PriceGetter.Core.DateTimeAbstraction
             return DateTimeProvider.UtcNow();
         }
 
+        public static DateTime TommorowAt(int hour)
+        {
+            if(hour < 0 || hour > 23)
+            {
+                throw new ArgumentOutOfRangeException(nameof(hour));
+            }
+
+            return UtcNow().AddDays(1).Date.AddHours(hour);
+        }
+
         public static void OverrideDateTimeProvider(IDateTimeProvider newProvider)
         {
             DateTimeProvider = newProvider;

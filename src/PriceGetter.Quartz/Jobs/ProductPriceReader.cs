@@ -23,21 +23,25 @@ namespace PriceGetter.Quartz.Jobs
         public override async Task Execute()
         {
             var watcher = this.GetWatcher();
-            if(await watcher.AnyWorkLeft())
-            {
-                await watcher.CheckPriceOfRandomProduct();
-            }
+
+            await watcher.CheckPriceOfRandomProduct();
         }
 
         protected override async Task<DateTime> NextExecutionTime()
         {
             IPricesWatcher pricesWatcher = this.GetWatcher();
-            if(await pricesWatcher.AnyWorkLeft())
+            if (await this.ShouldBeExecuted())
             {
                 return DateTime.Now.AddSeconds(this.GetRandomSeconds());
             }
 
             return DateTimeMethods.TommorowAt(8);
+        }
+
+        protected override async Task<bool> ShouldBeExecuted()
+        {
+            var watcher = this.GetWatcher();
+            return await watcher.AnyWorkLeft();
         }
 
         private int GetRandomSeconds()

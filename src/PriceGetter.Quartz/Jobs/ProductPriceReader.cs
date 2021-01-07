@@ -29,7 +29,6 @@ namespace PriceGetter.Quartz.Jobs
 
         protected override async Task<DateTime> NextExecutionTime()
         {
-            IPricesWatcher pricesWatcher = this.GetWatcher();
             if (await this.ShouldBeExecuted())
             {
                 return DateTime.Now.AddSeconds(this.GetRandomSeconds());

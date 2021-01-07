@@ -1,4 +1,6 @@
 using Autofac;
+using PriceGetter.ApplicationServices.Interfaces;
+using PriceGetter.ApplicationServices.ServicesImplementation;
 
 namespace PriceGetter.Web.IoC
 {
@@ -10,7 +12,9 @@ namespace PriceGetter.Web.IoC
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-
+            builder.RegisterType<PreProductService>().As<IPreProductService>();
+            builder.RegisterType<ProductService>().As<IProductService>();
+            builder.RegisterType<PricesWatcher>().As<IPricesWatcher>();
         }
     }
 }

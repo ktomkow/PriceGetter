@@ -7,23 +7,24 @@ namespace PriceGetter.Core.Models.Entities
 {
     public class Price : EntityBase, IEquatable<Price>
     {
-        public Money Amount { get; }
+        public Money Amount { get; private set; }
 
-        public DateTime At { get; }
+        public DateTime At { get; private set; }
 
-        public Product Product { get; }
+        public Product Product { get; private set; }
 
         public decimal AmountAsDecimal { get => this.Amount.ValueAsDecimal; }
 
         protected Price()
         {
-            this.At = DateTimeMethods.UtcNow();
+            
         }
 
-        public Price(Money amount, Product product) : this()
+        public Price(Money amount, Product product)
         {
             this.Amount = amount ?? throw new ArgumentNullException(nameof(amount));
             this.Product = product ?? throw new ArgumentNullException(nameof(product));
+            this.At = DateTimeMethods.UtcNow();
         }
 
         public override int GetHashCode()

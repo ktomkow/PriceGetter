@@ -46,15 +46,8 @@ namespace PriceGetter.PersistenceEntityFramework
         {
             modelBuilder.Ignore<EntityBase>();
 
-            modelBuilder.Entity<Price>().ToTable("Prices");
-            modelBuilder.Entity<Price>().HasKey(x => x.Id);
-            modelBuilder.Entity<Price>().Property(x => x.At);
-            modelBuilder.Entity<Price>().OwnsOne(x => x.Amount)
-                .Property(x => x.ValueAsDecimal)
-                .HasColumnName("Amount")
-                .HasColumnType("decimal(19,4");
-
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new PriceConfiguration());
         }
     }
 }

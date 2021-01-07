@@ -14,8 +14,8 @@ namespace PriceGetter.Web.IoC
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
+            builder.RegisterType<ProductsRepository>().As<IProductsRepository>().InstancePerLifetimeScope();
+            //builder.RegisterType<InMemoryProductRepository>().As<IProductsRepository>().SingleInstance();
 
             builder.RegisterType<PriceGetterDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();

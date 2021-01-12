@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PriceGetter.ContentProvider\PriceGetter.ContentProvider.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.ContentProvider\PriceGetter.ContentProvider.csproj" />
   </ItemGroup>
 
 </Project>

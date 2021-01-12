@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PriceGetter.WebClients\PriceGetter.WebClients.csproj" />
-    <ProjectReference Include="..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.WebClients\PriceGetter.WebClients.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
-    <ProjectReference Include="..\src\PriceGetter.PersistenceEntityFramework\PriceGetter.PersistenceEntityFramework.csproj" />
-    <ProjectReference Include="..\src\PriceGetter.Web\PriceGetter.Web.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.PersistenceEntityFramework\PriceGetter.PersistenceEntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.Web\PriceGetter.Web.csproj" />
   </ItemGroup>
 
 </Project>

@@ -43,13 +43,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMong
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Quartz", "src\PriceGetter.Quartz\PriceGetter.Quartz.csproj", "{BEE21997-67E9-4391-BA6D-D813C1AC94B0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration-tests", "integration-tests", "{4A67BCBC-4D95-471D-BBA5-B5751912DDCB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceEntityFramework.IntegrationTests", "PriceGetter.PersistenceEntityFramework.IntegrationTests\PriceGetter.PersistenceEntityFramework.IntegrationTests.csproj", "{D324023E-EEB6-4A9B-99E7-375D329C2883}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.ApplicationServices.Tests", "tests\PriceGetter.ApplicationServices.Tests\PriceGetter.ApplicationServices.Tests.csproj", "{5CD7CBD4-55ED-457D-ACE8-D356408494FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.TestHelpers", "tests\PriceGetter.TestHelpers\PriceGetter.TestHelpers.csproj", "{E784554D-48C0-4641-B04E-FA94F6AF20DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration-tests", "integration-tests", "{DF5F25B0-7EC2-48F2-A060-29C9515FCEAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceEntityFramework.IntegrationTests", "tests\integration-tests\PriceGetter.PersistenceEntityFramework.IntegrationTests\PriceGetter.PersistenceEntityFramework.IntegrationTests.csproj", "{64601F4A-5E6A-4284-90C3-93CBF1218E4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,10 +129,6 @@ Global
 		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEE21997-67E9-4391-BA6D-D813C1AC94B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D324023E-EEB6-4A9B-99E7-375D329C2883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D324023E-EEB6-4A9B-99E7-375D329C2883}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D324023E-EEB6-4A9B-99E7-375D329C2883}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D324023E-EEB6-4A9B-99E7-375D329C2883}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CD7CBD4-55ED-457D-ACE8-D356408494FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CD7CBD4-55ED-457D-ACE8-D356408494FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD7CBD4-55ED-457D-ACE8-D356408494FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -141,6 +137,10 @@ Global
 		{E784554D-48C0-4641-B04E-FA94F6AF20DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E784554D-48C0-4641-B04E-FA94F6AF20DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E784554D-48C0-4641-B04E-FA94F6AF20DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64601F4A-5E6A-4284-90C3-93CBF1218E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64601F4A-5E6A-4284-90C3-93CBF1218E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64601F4A-5E6A-4284-90C3-93CBF1218E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64601F4A-5E6A-4284-90C3-93CBF1218E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,10 +164,10 @@ Global
 		{994519FC-116E-4E57-AF9C-1AD0CA8F4FB1} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
 		{AE13DCFE-4342-49C1-B07B-39D57B839DC1} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
 		{BEE21997-67E9-4391-BA6D-D813C1AC94B0} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
-		{4A67BCBC-4D95-471D-BBA5-B5751912DDCB} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
-		{D324023E-EEB6-4A9B-99E7-375D329C2883} = {4A67BCBC-4D95-471D-BBA5-B5751912DDCB}
 		{5CD7CBD4-55ED-457D-ACE8-D356408494FF} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
 		{E784554D-48C0-4641-B04E-FA94F6AF20DC} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
+		{DF5F25B0-7EC2-48F2-A060-29C9515FCEAD} = {B187AF94-40CF-40C8-88A0-3DF3F39B3425}
+		{64601F4A-5E6A-4284-90C3-93CBF1218E4B} = {DF5F25B0-7EC2-48F2-A060-29C9515FCEAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

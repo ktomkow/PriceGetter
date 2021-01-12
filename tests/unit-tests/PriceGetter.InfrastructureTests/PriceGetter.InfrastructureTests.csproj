@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
-    <ProjectReference Include="..\PriceGetter.TestHelpers\PriceGetter.TestHelpers.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.Core\PriceGetter.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\PriceGetter.Infrastructure\PriceGetter.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

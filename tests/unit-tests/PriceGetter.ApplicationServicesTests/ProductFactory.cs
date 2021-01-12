@@ -4,7 +4,7 @@ using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
 using System;
 
-namespace PriceGetter.ApplicationServices.Tests
+namespace PriceGetter.ApplicationServicesTests
 {
     internal class ProductFactory
     {

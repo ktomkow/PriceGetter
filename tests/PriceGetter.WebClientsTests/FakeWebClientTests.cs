@@ -28,7 +28,7 @@ namespace PriceGetter.WebClientsTests
             return this.webClient.GetAsync(this.emptyUrl).Result;
         }
 
-        [Fact]
+        [Fact(Skip = "Only to manual run")]
         public void GetAsync_ShouldNotThrow()
         {
             Action act = () => 
@@ -39,7 +39,7 @@ namespace PriceGetter.WebClientsTests
             act.Should().NotThrow();
         }
 
-        [Fact]
+        [Fact(Skip = "Only to manual run")]
         public void GetAsync_ShouldNotReturnNull()
         {
             Html result;
@@ -49,7 +49,7 @@ namespace PriceGetter.WebClientsTests
             result.Should().NotBeNull();
         }
 
-        [Fact]
+        [Fact(Skip = "Only to manual run")]
         public void GetAsync_ShouldNotReturnNullContent()
         {
             Html result;
@@ -59,7 +59,7 @@ namespace PriceGetter.WebClientsTests
             result.RawContent.Should().NotBeNull();
         }
 
-        [Fact]
+        [Fact(Skip = "Only to manual run")]
         public void GetAsync_ShouldNotReturnEmptyObject()
         {
             Html result;
@@ -69,7 +69,7 @@ namespace PriceGetter.WebClientsTests
             result.RawContent.Should().NotBeEmpty();
         }
 
-        [Fact]
+        [Fact(Skip = "Only to manual run")]
         public void GetAsync_ResultRawContent_ShouldNotBeNullOrWhitespace()
         {
             string rawContent = this.Execute().RawContent;

@@ -17,13 +17,21 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "PriceGetter.Web": {
+    "Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Staging": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     }
   }

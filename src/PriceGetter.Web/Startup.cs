@@ -76,6 +76,7 @@ namespace PriceGetter.Web
         {
             builder.RegisterModule(new MainInstaller());
             builder.RegisterModule(new SettingsInstaller(this.Configuration));
+            builder.RegisterModule(new QuartzInstaller());
         }
 
         /// <summary>

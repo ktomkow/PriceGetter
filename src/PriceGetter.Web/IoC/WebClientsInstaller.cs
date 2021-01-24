@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using PriceGetter.Core.Interfaces;
 using PriceGetter.WebClients;
 
@@ -9,11 +11,28 @@ namespace PriceGetter.Web.IoC
     /// </summary>
     public class WebClientsInstaller : Module
     {
+        private readonly IWebHostEnvironment env;
+
+        /// <summary>
+        /// Public constructor with dependencies
+        /// </summary>
+        /// <param name="env">Hosting enironment</param>
+        public WebClientsInstaller(IWebHostEnvironment env)
+        {
+            this.env = env;
+        }
+
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            // builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
-            builder.RegisterType<FakeGetterUseFile>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
+            if(this.env.IsDevelopment())
+            {
+                builder.RegisterType<FakeGetterUseFile>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
+            }
+            else
+            {
+                builder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
+            }
         }
     }
 }

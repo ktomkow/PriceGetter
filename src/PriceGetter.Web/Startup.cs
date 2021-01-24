@@ -27,11 +27,14 @@ namespace PriceGetter.Web
         /// <param name="env">Environment options.</param>
         public Startup(IWebHostEnvironment env)
         {
+            this.Env = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+            
             this.Configuration = builder.Build();
         }
 
@@ -44,6 +47,11 @@ namespace PriceGetter.Web
         /// IoC container - in this case Autofac.
         /// </summary>
         public ILifetimeScope AutofacContainer { get; private set; }
+
+        /// <summary>
+        /// Hosting environment properties
+        /// </summary>
+        public IWebHostEnvironment Env { get; }
 
         /// <summary>
         /// Starts configuring services in application.
@@ -74,7 +82,7 @@ namespace PriceGetter.Web
         /// <param name="builder">Injected Autofac container builder.</param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new MainInstaller());
+            builder.RegisterModule(new MainInstaller(this.Env));
             builder.RegisterModule(new SettingsInstaller(this.Configuration));
             builder.RegisterModule(new QuartzInstaller());
         }
@@ -109,15 +117,15 @@ namespace PriceGetter.Web
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }

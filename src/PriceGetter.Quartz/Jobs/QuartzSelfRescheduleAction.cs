@@ -65,7 +65,7 @@ namespace PriceGetter.Quartz.Jobs
 
         protected virtual async Task<DateTime> NextExecutionTime()
         {
-            return await Task.FromResult(DateTime.UtcNow.Date.AddDays(1).AddHours(7));
+            return await Task.FromResult(DateTime.UtcNow.Date.AddDays(1).AddHours(7)); // TODO: Test it
         }
     }
 }

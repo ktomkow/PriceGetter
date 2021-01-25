@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Microsoft.AspNetCore.Hosting;
+using NSubstitute;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Web.IoC;
 
@@ -11,7 +13,7 @@ namespace PriceGetter.PersistenceEntityFramework.IntegrationTests
         internal ServicesResolverCreator()
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new MainInstaller());
+            containerBuilder.RegisterModule(new MainInstaller(Substitute.For<IWebHostEnvironment>()));
 
             SqlSettings sqlSettings = new SqlSettings()
             {

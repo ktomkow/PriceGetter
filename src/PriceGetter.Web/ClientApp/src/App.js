@@ -29,7 +29,7 @@ function App() {
       <TopBar />
       <PageContent>
         <Switch>
-          <Route exact path={["/clientapp", "/home"]} component={Home} />
+          <Route exact path={["/clientapp", "/home", "/index", "/index.html"]} component={Home} />
           <Route exact path="/products" component={Products} />
           <Route exact path={["/list"]} component={List} />
           <Route exact path="/form" component={Form} />

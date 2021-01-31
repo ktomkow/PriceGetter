@@ -1,9 +1,7 @@
 FROM 192.168.0.133:9997/dotnet3p1sdk-node14:latest as build
 WORKDIR /app
 COPY . ./
-RUN dotnet restore
-RUN dotnet build
-RUN dotnet test
+
 WORKDIR ./src/PriceGetter.Web
 RUN dotnet publish -c Debug -o out
 

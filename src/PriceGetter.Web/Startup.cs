@@ -105,7 +105,7 @@ namespace PriceGetter.Web
                 c.RoutePrefix = "swagger";
             });
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsStaging())
             {
                 app.UseDeveloperExceptionPage();
             }

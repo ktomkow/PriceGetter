@@ -18,6 +18,7 @@ namespace PriceGetter.Web.Controllers
             this.loggerSettings = loggerSettings;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var configuration = new

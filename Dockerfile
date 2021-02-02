@@ -4,8 +4,9 @@ COPY . ./
 
 RUN dotnet publish PriceGetter.sln -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
+FROM 192.168.0.133:9997/dotnet3p1runtime-node14:latest
 COPY --from=build /app/out /app
 WORKDIR /app
 ENV ASPNETCORE_ENVIRONMENT="Development"
 CMD ["dotnet","PriceGetter.Web.dll"]
+

@@ -19,9 +19,7 @@
     },
     "Development": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "",
-      "applicationUrl": "http://localhost:5000",
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -29,7 +27,6 @@
     "Staging": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging"
       }
@@ -37,7 +34,6 @@
     "Production": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:8090",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

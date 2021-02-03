@@ -8,5 +8,6 @@ FROM 192.168.0.133:9997/dotnet3p1runtime-node14:latest
 COPY --from=build /app/out /app
 WORKDIR /app
 ENV ASPNETCORE_ENVIRONMENT="Development"
+EXPOSE 7789
 CMD ["dotnet","PriceGetter.Web.dll"]
 

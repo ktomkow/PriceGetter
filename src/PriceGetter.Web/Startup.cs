@@ -110,6 +110,9 @@ namespace PriceGetter.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

@@ -1,5 +1,4 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -8,35 +7,37 @@
       "sslPort": 0
     }
   },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "",
       "environmentVariables": {
+        "SCHEDULER_MODE": "Stop",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Development": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
+        "SCHEDULER_MODE": "Stop",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Staging": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
+        "SCHEDULER_MODE": "Stop",
         "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
     "Production": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
+        "SCHEDULER_MODE": "Start",
         "ASPNETCORE_ENVIRONMENT": "Production"
-      }
+      },
+      "sqlDebugging": false
     }
   }
 }

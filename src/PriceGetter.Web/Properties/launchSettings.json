@@ -34,7 +34,7 @@
     "Production": {
       "commandName": "Project",
       "environmentVariables": {
-        "SCHEDULER_MODE": "Start",
+        "SCHEDULER_MODE": "Stop",
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
       "sqlDebugging": false

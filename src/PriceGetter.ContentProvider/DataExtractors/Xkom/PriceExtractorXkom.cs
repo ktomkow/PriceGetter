@@ -19,7 +19,7 @@ namespace PriceGetter.ContentProvider.DataExtractors.Xkom
         {
             try
             {
-                CssClass cssClass = new CssClass("u7xnnm-4 iVazGO");
+                CssClass cssClass = new CssClass("u7xnnm-4 jFbqvs");
 
                 Money productPrice = this.cssExtractor.Extract(html, cssClass);
 

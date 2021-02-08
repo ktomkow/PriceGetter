@@ -73,7 +73,10 @@ namespace PriceGetter.Web
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddHostedService<QuartzHostedService>();
+            if (Environment.GetEnvironmentVariable("SCHEDULER_MODE").ToLowerInvariant().Trim() == "start")
+            {
+                services.AddHostedService<QuartzHostedService>();
+            }
         }
 
         /// <summary>

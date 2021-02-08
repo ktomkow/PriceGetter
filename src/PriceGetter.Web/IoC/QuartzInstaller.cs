@@ -17,11 +17,6 @@ namespace PriceGetter.Web.IoC
         /// <inheritdoc/>
         protected override void Load(ContainerBuilder builder)
         {
-            if(Environment.GetEnvironmentVariable("SCHEDULER_MODE").ToLowerInvariant().Trim() != "start")
-            {
-                return;
-            }
-
             builder.RegisterType<JobFactory>().As<IJobFactory>().SingleInstance();
             builder.RegisterType<StdSchedulerFactory>().As<ISchedulerFactory>().SingleInstance();
             builder.RegisterType<HelloWorld>().SingleInstance();

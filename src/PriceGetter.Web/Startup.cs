@@ -100,6 +100,7 @@ namespace PriceGetter.Web
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
             app.UseMiddleware<IpBlackListMiddleware>();
+            app.UseMiddleware<UncaughtExceptionMiddleware>();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

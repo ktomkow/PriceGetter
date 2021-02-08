@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 
 namespace PriceGetter.Web.Controllers
@@ -10,12 +11,14 @@ namespace PriceGetter.Web.Controllers
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly SqlSettings sqlSettings;
         private readonly LoggerSettings loggerSettings;
+        private readonly IPriceGetterLogger logger;
 
-        public TechController(IWebHostEnvironment webHostEnvironment, SqlSettings sqlSettings, LoggerSettings loggerSettings)
+        public TechController(IWebHostEnvironment webHostEnvironment, SqlSettings sqlSettings, LoggerSettings loggerSettings, IPriceGetterLogger logger)
         {
             this.webHostEnvironment = webHostEnvironment;
             this.sqlSettings = sqlSettings;
             this.loggerSettings = loggerSettings;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -28,6 +31,11 @@ namespace PriceGetter.Web.Controllers
                 SqlConnectionString = this.sqlSettings.ConnectionString,
                 LoggerPath = this.loggerSettings.LogFilepath
             };
+
+            this.logger.Information("info");
+            this.logger.Debug("debug");
+            this.logger.Error("error");
+            this.logger.Fatal("critical");
 
 
             return Ok(configuration);

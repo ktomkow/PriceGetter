@@ -13,7 +13,10 @@ namespace PriceGetter.Infrastructure.Logging
                 Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
-                .WriteTo.File(settings.LogFilepath, rollingInterval: RollingInterval.Day)
+                //.WriteTo.File(settings.LogFilepath, rollingInterval: RollingInterval.Day)
+                .WriteTo.Map(
+                    @event => @event.Level,
+                    (level, wt) => wt.RollingFile($"{settings.LogFilepath}{level}.txt"))
                 .CreateLogger();
             }
             else
@@ -23,14 +26,6 @@ namespace PriceGetter.Infrastructure.Logging
                 .WriteTo.Console()
                 .CreateLogger();
             }
-        }
-
-        public PriceGetterLogger()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .CreateLogger();
         }
 
         public void Debug(string text)
@@ -56,6 +51,16 @@ namespace PriceGetter.Infrastructure.Logging
         public void Information(string text)
         {
             Log.Information(text);
+        }
+
+        public void Fatal(string text)
+        {
+            Log.Fatal(text);
+        }
+
+        public void Fatal(Exception exception, string text)
+        {
+            Log.Fatal(exception, text);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace PriceGetter.Web.Middleware
 
             if (this.next != null)
             {
-                await this.next.Invoke(context);
+                await this.next.Invoke(context).ConfigureAwait(false);
             }
 
             await this.ExecuteAfter(context);

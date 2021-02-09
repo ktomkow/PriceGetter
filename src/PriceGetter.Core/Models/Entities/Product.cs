@@ -83,9 +83,9 @@ namespace PriceGetter.Core.Models.Entities
             Product instance = obj as Product;
 
             bool isNameSame = this.Name == instance.Name;
-            bool isIdSame = this.Id == instance.Id;
+            bool isProductPageSame = this.ProductPage == instance.ProductPage;
 
-            return isNameSame && isIdSame;
+            return isNameSame && isProductPageSame;
         }
 
         public override int GetHashCode()
@@ -94,9 +94,8 @@ namespace PriceGetter.Core.Models.Entities
             {
                 int hash = 8627;
 
-                hash = hash * 12413 + this.Id.GetHashCode();
                 hash = hash * 12413 + this.Name.GetHashCode();
-                hash = hash * 12413 + this.Prices.GetHashCode();
+                hash = hash * 12413 + this.ProductPage.GetHashCode();
 
                 return hash;
             }

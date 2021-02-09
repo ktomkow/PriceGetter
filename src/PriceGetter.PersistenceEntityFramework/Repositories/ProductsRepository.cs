@@ -20,7 +20,11 @@ namespace PriceGetter.PersistenceEntityFramework.Repositories
 
         public async Task Add(Product product)
         {
-            await db.AddAsync(product);
+            IEnumerable<Product> allProducts = await this.Get();
+            if (allProducts.Contains(product) == false)
+            {
+                await db.AddAsync(product);
+            }
         }
 
         public async Task<IEnumerable<Product>> Get()

@@ -89,6 +89,7 @@ namespace PriceGetter.WebTests.Controllers
                 .Where(x => x.IsClass)
                 .Where(x => x.IsPublic)
                 .Where(x => x.IsAbstract == false)
+                .Where(x => !x.Equals(typeof(TechController)))
                 .Where(x => x.Namespace.StartsWith("PriceGetter.Web.Controllers"));
 
             return controllers.Select(x => new object[] { x });

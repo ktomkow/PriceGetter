@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Quartz;
 using PriceGetter.Quartz.Schedules;
 using Quartz;
@@ -17,6 +18,7 @@ namespace PriceGetter.Quartz.Configuration
         private readonly IJobFactory jobFactory;
         private readonly IEnumerable<JobSchedule> jobSchedules;
         private readonly IPeriodActionScheduler periodActionScheduler;
+        private readonly IPriceGetterLogger logger;
 
         public IScheduler Scheduler { get; set; }
 
@@ -24,12 +26,14 @@ namespace PriceGetter.Quartz.Configuration
             ISchedulerFactory schedulerFactory,
             IJobFactory jobFactory,
             IEnumerable<JobSchedule> jobSchedules,
-            IPeriodActionScheduler periodActionScheduler)
+            IPeriodActionScheduler periodActionScheduler,
+            IPriceGetterLogger logger)
         {
             this.schedulerFactory = schedulerFactory ?? throw new ArgumentNullException(nameof(schedulerFactory));
             this.jobFactory = jobFactory ?? throw new ArgumentNullException(nameof(jobFactory));
             this.jobSchedules = jobSchedules ?? throw new ArgumentNullException(nameof(jobSchedules));
             this.periodActionScheduler = periodActionScheduler ?? throw new ArgumentNullException(nameof(periodActionScheduler));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -39,6 +43,7 @@ namespace PriceGetter.Quartz.Configuration
 
             foreach (var jobSchedule in jobSchedules)
             {
+                this.logger.Fatal($"Starting job {jobSchedule.PayloadJob}");
                 var job = jobSchedule.CreateJob();
                 var trigger = jobSchedule.CreateTrigger();
 

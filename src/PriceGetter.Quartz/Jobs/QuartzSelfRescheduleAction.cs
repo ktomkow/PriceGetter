@@ -34,7 +34,7 @@ namespace PriceGetter.Quartz.Jobs
             }
             catch(Exception e)
             {
-                this.logger.Error($"{e.Message} \n\n {e.StackTrace}");
+                this.logger.Fatal($"{e.Message} \n\n {e.StackTrace}");
             }
 
             await this.Reschedule();

@@ -2,6 +2,7 @@ using Autofac;
 using PriceGetter.Quartz;
 using PriceGetter.Quartz.Configuration;
 using PriceGetter.Quartz.Jobs;
+using PriceGetter.Quartz.Schedules;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
@@ -24,11 +25,8 @@ namespace PriceGetter.Web.IoC
             builder.RegisterType<HelloWorldCroned>().SingleInstance();
             builder.RegisterType<PeriodActionScheduler>().As<IPeriodActionScheduler>().SingleInstance();
 
-            // builder.RegisterInstance(JobSchedule.Create(
-            //     typeof(HelloWorld)));
-
-            // builder.RegisterInstance(JobSchedule.Create(
-            //     typeof(ProductPriceReader)));
+            builder.RegisterInstance(JobSchedule.Create(
+                typeof(ProductPriceReader)));
 
             //    builder.RegisterInstance(JobSchedule.Create(
             //        typeof(HelloWorldCroned),

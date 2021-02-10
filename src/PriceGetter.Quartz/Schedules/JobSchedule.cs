@@ -10,6 +10,8 @@ namespace PriceGetter.Quartz.Schedules
 
         protected string triggerIdentity => this.JobType.TriggerKey();
 
+        public string PayloadJob => this.JobType.Name;
+
         protected JobSchedule(Type jobType)
         {
             this.JobType = jobType ?? throw new ArgumentNullException(nameof(jobType));

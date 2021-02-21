@@ -8,7 +8,14 @@ namespace PriceGetter.Core.Interfaces.Repositories
     public interface IUnitOfWork : IDisposable
     {
         Task CommitAsync();
+
         void Commit();
+
+        void OpenTransaction();
+
+        void Rollback();
+
+        Task RollbackAsync();
 
         IProductsRepository ProductRepository { get; }
     }

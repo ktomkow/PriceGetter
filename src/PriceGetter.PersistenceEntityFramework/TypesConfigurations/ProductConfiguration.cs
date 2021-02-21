@@ -11,7 +11,7 @@ namespace PriceGetter.PersistenceEntityFramework.TypesConfigurations
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasMany(x => x.Prices);
+            builder.HasMany(x => x.Prices).WithOne(x => x.Product).OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(x => x.ProductPage)
                 .HasConversion(

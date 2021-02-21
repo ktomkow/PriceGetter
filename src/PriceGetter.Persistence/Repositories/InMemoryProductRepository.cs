@@ -65,5 +65,10 @@ namespace PriceGetter.Persistence.Repositories
 
             return product;
         }
+
+        void IProductsRepository.Remove(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

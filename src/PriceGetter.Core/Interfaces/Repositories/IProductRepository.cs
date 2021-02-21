@@ -14,5 +14,6 @@ namespace PriceGetter.Core.Interfaces.Repositories
         Task<Product> Get(Guid productId);
         Task<Product> Get(Name name);
         Task Add(Product product);
+        void Remove(Product product);
     }
 }

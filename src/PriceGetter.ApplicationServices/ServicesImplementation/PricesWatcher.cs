@@ -44,11 +44,16 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
             Product product = await this.GetRandomProduct();
 
+            var repository = this.unitOfWork.ProductRepository;
+            repository.Remove(product);
+            await this.unitOfWork.CommitAsync();
+
             var dataProvider = this.dataProviderFactory.Create(product.ProductPage);
             var price = await dataProvider.GetPrice(product.ProductPage);
 
             product.AddPrice(price);
 
+            await repository.Add(product);
             await this.unitOfWork.CommitAsync();
         }
 

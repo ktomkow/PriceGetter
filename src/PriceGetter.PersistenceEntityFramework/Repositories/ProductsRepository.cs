@@ -56,5 +56,10 @@ namespace PriceGetter.PersistenceEntityFramework.Repositories
 
             return allProducts.Where(x => x.MonitoringActive).ToList();
         }
+
+        public void Remove(Product product)
+        {
+            this.db.Products.Remove(product);
+        }
     }
 }

@@ -31,27 +31,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMong
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.Quartz", "src\PriceGetter.Quartz\PriceGetter.Quartz.csproj", "{BEE21997-67E9-4391-BA6D-D813C1AC94B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.TestHelpers", "tests\PriceGetter.TestHelpers\PriceGetter.TestHelpers.csproj", "{E784554D-48C0-4641-B04E-FA94F6AF20DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.TestHelpers", "tests\PriceGetter.TestHelpers\PriceGetter.TestHelpers.csproj", "{E784554D-48C0-4641-B04E-FA94F6AF20DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "integration-tests", "integration-tests", "{DF5F25B0-7EC2-48F2-A060-29C9515FCEAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceEntityFramework.IntegrationTests", "tests\integration-tests\PriceGetter.PersistenceEntityFramework.IntegrationTests\PriceGetter.PersistenceEntityFramework.IntegrationTests.csproj", "{64601F4A-5E6A-4284-90C3-93CBF1218E4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceEntityFramework.IntegrationTests", "tests\integration-tests\PriceGetter.PersistenceEntityFramework.IntegrationTests\PriceGetter.PersistenceEntityFramework.IntegrationTests.csproj", "{64601F4A-5E6A-4284-90C3-93CBF1218E4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit-tests", "unit-tests", "{4D8A84F7-302E-411F-B144-13A52157EA77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.WebClientsTests", "tests\unit-tests\PriceGetter.WebClientsTests\PriceGetter.WebClientsTests.csproj", "{2D67D076-E8E8-4D5D-9664-AAC16703A257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebClientsTests", "tests\unit-tests\PriceGetter.WebClientsTests\PriceGetter.WebClientsTests.csproj", "{2D67D076-E8E8-4D5D-9664-AAC16703A257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.WebTests", "tests\unit-tests\PriceGetter.WebTests\PriceGetter.WebTests.csproj", "{EA9E97EC-EA78-4F94-8CB3-7008D3CAA05A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.WebTests", "tests\unit-tests\PriceGetter.WebTests\PriceGetter.WebTests.csproj", "{EA9E97EC-EA78-4F94-8CB3-7008D3CAA05A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.ApplicationServicesTests", "tests\unit-tests\PriceGetter.ApplicationServicesTests\PriceGetter.ApplicationServicesTests.csproj", "{92EA013A-6BF2-42A1-9DB5-1E7EA5813B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ApplicationServicesTests", "tests\unit-tests\PriceGetter.ApplicationServicesTests\PriceGetter.ApplicationServicesTests.csproj", "{92EA013A-6BF2-42A1-9DB5-1E7EA5813B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.ContentProvidersTests", "tests\unit-tests\PriceGetter.ContentProvidersTests\PriceGetter.ContentProvidersTests.csproj", "{4A97062C-0AA2-44AA-81C7-B909BB685AAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.ContentProvidersTests", "tests\unit-tests\PriceGetter.ContentProvidersTests\PriceGetter.ContentProvidersTests.csproj", "{4A97062C-0AA2-44AA-81C7-B909BB685AAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.CoreTests", "tests\unit-tests\PriceGetter.CoreTests\PriceGetter.CoreTests.csproj", "{160F238B-221E-4CAF-BFEB-CAF026D16694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.CoreTests", "tests\unit-tests\PriceGetter.CoreTests\PriceGetter.CoreTests.csproj", "{160F238B-221E-4CAF-BFEB-CAF026D16694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.InfrastructureTests", "tests\unit-tests\PriceGetter.InfrastructureTests\PriceGetter.InfrastructureTests.csproj", "{0AA184C7-FDB0-4796-A486-8A8A41294518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.InfrastructureTests", "tests\unit-tests\PriceGetter.InfrastructureTests\PriceGetter.InfrastructureTests.csproj", "{0AA184C7-FDB0-4796-A486-8A8A41294518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.PersistenceMongoTests", "tests\unit-tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMongoTests", "tests\unit-tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.SampleServer.Integration.Tests", "tests\integration-tests\PriceGetter.SampleServer.Integration.Tests\PriceGetter.SampleServer.Integration.Tests.csproj", "{82DF34D0-3129-49D4-97E6-6AA285C31FAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +145,10 @@ Global
 		{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{160F238B-221E-4CAF-BFEB-CAF026D16694} = {4D8A84F7-302E-411F-B144-13A52157EA77}
 		{0AA184C7-FDB0-4796-A486-8A8A41294518} = {4D8A84F7-302E-411F-B144-13A52157EA77}
 		{84FE285B-9387-4F34-9F61-BF2BCE0ACC30} = {4D8A84F7-302E-411F-B144-13A52157EA77}
+		{82DF34D0-3129-49D4-97E6-6AA285C31FAB} = {DF5F25B0-7EC2-48F2-A060-29C9515FCEAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

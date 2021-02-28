@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using NSubstitute;
+using PriceGetter.Core.Interfaces;
+using PriceGetter.Infrastructure.Logging;
 using PriceGetter.Infrastructure.Settings;
 using PriceGetter.Web.IoC;
+using PriceGetter.WebClients;
 
 namespace PriceGetter.SampleServer.Integration.Tests
 {
@@ -14,17 +17,16 @@ namespace PriceGetter.SampleServer.Integration.Tests
         internal ServicesResolverCreator()
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
-            IWebHostEnvironment webHostEnvironment = Substitute.For<IWebHostEnvironment>();
-            webHostEnvironment.IsProduction().Returns(true);
 
-            containerBuilder.RegisterModule(new MainInstaller(webHostEnvironment));
+            containerBuilder.RegisterModule(new ContentProvidersInstaller());
+            containerBuilder.RegisterModule(new DomainServicesInstaller());
+            containerBuilder.RegisterModule(new ApplicationServicesInstaller());
+            containerBuilder.RegisterModule(new InfrastructureInstaller());
 
-            SqlSettings sqlSettings = new SqlSettings()
-            {
-                ConnectionString = @"Server=192.168.0.133,6900;Database=PriceGetter;User Id=app;Password=pgApplication123!;"
-            };
+            containerBuilder.RegisterType<HtmlGetter>().As<IHtmlContentGetter>().InstancePerLifetimeScope();
 
-            containerBuilder.RegisterInstance(sqlSettings);
+            IPriceGetterLogger mockLogger = Substitute.For<IPriceGetterLogger>();
+            containerBuilder.RegisterInstance(mockLogger);
 
             this.serviceProvider = containerBuilder.Build();
         }

@@ -18,7 +18,7 @@ namespace PriceGetter.ContentProvider.DataExtractors
 
             Regex innerRegex = new Regex(">.*<");
 
-            Match outerMatch = outerRegex.Match(html.RawContent);
+            Match outerMatch = outerRegex.Match(html.RawContent.Replace("&quot;", "special_qutoation"));
 
             if(outerMatch.Success == false)
             {
@@ -32,7 +32,9 @@ namespace PriceGetter.ContentProvider.DataExtractors
                 return string.Empty;
             }
 
-            return innerMatch.Value.Substring(1, innerMatch.Value.Length -2);
+            string result = innerMatch.Value.Substring(1, innerMatch.Value.Length -2);
+
+            return result.Replace("special_qutoation", "\"");
         }
     }
 }

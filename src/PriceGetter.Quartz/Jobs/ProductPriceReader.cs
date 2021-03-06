@@ -34,7 +34,7 @@ namespace PriceGetter.Quartz.Jobs
                 return DateTime.Now.AddSeconds(this.GetRandomSeconds());
             }
 
-            return DateTimeMethods.TommorowAt(8);
+            return DateTimeMethods.TommorowAt(6);
         }
 
         protected override async Task<bool> ShouldBeExecuted()

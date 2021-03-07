@@ -50,6 +50,21 @@ namespace PriceGetter.Web.Controllers
         }
 
         /// <summary>
+        /// Gets a specific product by its identifier.
+        /// </summary>
+        /// <param name="idAsString">Product identifier, guid as string.</param>
+        /// <returns>Product dto.</returns>
+        [HttpGet]
+        [Route("uniquePrices/{idAsString}")]
+        public async Task<IActionResult> GetUniquePrices([FromRoute] string idAsString)
+        {
+            Guid id = Guid.Parse(idAsString);
+            var product = await this.productService.GetUniquePrices(id);
+
+            return Ok(product);
+        }
+
+        /// <summary>
         /// Created a new product using some input parameters (probably returned by other endpoint).
         /// </summary>
         /// <param name="command">Set of parameters to create product.</param>

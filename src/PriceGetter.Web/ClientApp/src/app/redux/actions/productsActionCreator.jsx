@@ -28,7 +28,7 @@ export function clearProducts() {
 export const getProduct = (id, dispatch) => {
   setTimeout(() => {
     axios
-      .get(`/api/product/${id}`)
+      .get(`/api/product/uniquePrices/${id}`)
       .then(function (response) {
         const payload = response.data;
         dispatch({

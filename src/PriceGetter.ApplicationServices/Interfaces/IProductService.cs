@@ -11,6 +11,8 @@ namespace PriceGetter.ApplicationServices.Interfaces
 
         Task<ProductDto> Get(Guid productId);
 
+        Task<ProductDto> GetUniquePrices(Guid productId);
+
         Task<Guid> Create(CreateProductCommand command);
     }
 }

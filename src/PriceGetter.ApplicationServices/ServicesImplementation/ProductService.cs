@@ -1,12 +1,11 @@
 ﻿using PriceGetter.ApplicationServices.Interfaces;
 using PriceGetter.Contracts.Products;
-using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Interfaces.Repositories;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
-using PriceGetter.Core.SimpleTypesConverters.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PriceGetter.ApplicationServices.ServicesImplementation
@@ -54,32 +53,26 @@ namespace PriceGetter.ApplicationServices.ServicesImplementation
 
         public async Task<ProductDto> Get(Guid productId)
         {
-            Random random = new Random();
-            Func<Random, decimal> randomPrice = (rng) => 
-            {
-                return (decimal)rng.NextDouble() * 10 + 20;
-            };
+            Product product = await this.unitOfWork.ProductRepository.Get(productId);
+            ProductDto productDto = this.Map(product);
 
-            ProductDto dto = new ProductDto()
-            {
-                Name = "Random product",
-                ImageUrl = string.Empty,
-                ProductPage = string.Empty,
-                Id = Guid.NewGuid(),
-                Prices = new List<PriceDto>() 
-                { 
-                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow() },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-1) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-2) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-3) },
-                    new PriceDto() { Amount = randomPrice(random), At = DateTimeMethods.UtcNow().AddDays(-4) }
-                }
-            };
+            return productDto;
+        }
 
-            return await Task.FromResult(dto);
-            //Product product = await this.unitOfWork.ProductRepository.Get(productId);
-            //ProductDto dto = this.Map(product);
-            //return dto;
+        public async Task<ProductDto> GetUniquePrices(Guid productId)
+        {
+            ProductDto productDto = await this.Get(productId);
+
+            productDto.Prices = productDto.Prices
+                .GroupBy(x => x.Amount)
+                .Select(x => new PriceDto()
+                {
+                    Amount = x.Key,
+                    At = x.OrderByDescending(y => y.At).First().At
+                })
+                .OrderByDescending(x => x.At);
+
+            return productDto;
         }
 
         private ProductDto Map(Product product)

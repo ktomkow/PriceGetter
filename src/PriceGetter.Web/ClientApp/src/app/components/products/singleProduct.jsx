@@ -129,7 +129,7 @@ const SingleProduct = (props) => {
   return (
     <>
       <Grid container className={classes.root} spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             <Box className={classes.imageContainer}>
               <img
@@ -193,7 +193,7 @@ const SingleProduct = (props) => {
             </Chart>
           </Paper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             <div className={classes.dataGridContainer}>
               <DataGrid

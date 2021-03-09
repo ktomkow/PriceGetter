@@ -1,13 +1,15 @@
-import { PRODUCTS_ACTIONS } from "../constants/action-types";
+import { PRODUCTS_ACTIONS } from '../constants/action-types';
 
 const initialState = {
   products: [],
+  filteredProducts: [],
   singleProduct: {
-    id: "",
-    name: "",
-    productImage: "",
-    prices: []
-  }
+    id: '',
+    name: '',
+    productImage: '',
+    prices: [],
+  },
+  searchExpression: '',
 };
 
 function productsReducer(state = initialState, action) {
@@ -18,19 +20,32 @@ function productsReducer(state = initialState, action) {
       //     ...state.products,
       //     action.payload
       // ]
-      products: action.payload
+      products: action.payload,
+      filteredProducts: action.payload.filter((x) =>
+        x.name.toUpperCase().includes(state.searchExpression.toUpperCase())
+      ),
     });
   }
 
   if (action.type === PRODUCTS_ACTIONS.CLEAR_PRODUCTS) {
     return Object.assign({}, state, {
-      products: []
+      products: [],
+      filteredProducts: [],
     });
   }
 
   if (action.type === PRODUCTS_ACTIONS.GET_PRODUCT) {
     return Object.assign({}, state, {
-      singleProduct: action.payload
+      singleProduct: action.payload,
+    });
+  }
+
+  if (action.type === PRODUCTS_ACTIONS.UPDATE_PRODUCTS_SEARCHBOX) {
+    return Object.assign({}, state, {
+      searchExpression: action.payload.searchExpression,
+      filteredProducts: state.products.filter((x) =>
+        x.name.toUpperCase().includes(action.payload.searchExpression.toUpperCase())
+      ),
     });
   }
 

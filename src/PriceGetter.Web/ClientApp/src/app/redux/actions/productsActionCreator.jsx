@@ -1,21 +1,24 @@
-import { PRODUCTS_ACTIONS } from "../constants/action-types";
+import { PRODUCTS_ACTIONS } from '../constants/action-types';
 
-import axios from "axios";
+import axios from 'axios';
 
 export function getProducts() {
   return function (dispatch) {
-    console.log("Request");
+    console.log('Request');
     setTimeout(() => {
       axios
-      .get("/api/product")
-      .then(function (response) {
-        const payload = response.data;
-        dispatch({ type: PRODUCTS_ACTIONS.GET_ALL_PRODUCTS, payload: payload });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    }, 2500);
+        .get('/api/product')
+        .then(function (response) {
+          const payload = response.data;
+          dispatch({
+            type: PRODUCTS_ACTIONS.GET_ALL_PRODUCTS,
+            payload: payload,
+          });
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }, 500);
   };
 }
 
@@ -39,7 +42,13 @@ export const getProduct = (id, dispatch) => {
       .catch(function (error) {
         console.error(error);
       })
-      .then(function () {
-      });
-  }, 1500);
+      .then(function () {});
+  }, 100);
+};
+
+export const updateSearchBox = (searchExpression) => (dispatch, getState) => {
+  return dispatch({
+    type: PRODUCTS_ACTIONS.UPDATE_PRODUCTS_SEARCHBOX,
+    payload: { searchExpression: searchExpression },
+  });
 };

@@ -37,5 +37,17 @@ namespace PriceGetter.ContentProvidersTests.NameExtraction
 
             result.Should().Be("Super disk 2,5\" turbo");
         }
+
+        [Fact]
+        public void NameWithBrackets()
+        {
+            string expectedName = "Super RAM 9GB (3x3GB) 90x67MHz CL1666";
+            string cssClass = "cc-d01 a38";
+            string html = $"<div class=\"d0-c 12\"><h1 class=\"{cssClass}\">{expectedName}</h1></div>";
+
+            string result = extractor.Extract(new Html(html), new CssClass(cssClass));
+
+            result.Should().Be("Super RAM 9GB (3x3GB) 90x67MHz CL1666");
+        }
     }
 }

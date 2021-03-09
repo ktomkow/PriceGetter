@@ -48,5 +48,16 @@ namespace PriceGetter.SampleServer.Integration.Tests.FromPageExtractTests
             result.Price.Should().NotBe(default(decimal));
             result.Name.Should().NotBe(default(string));
         }
+
+        [Fact]
+        public async Task Product4()
+        {
+            string url = this.samplesServerAddress + "product/4";
+            PreProductDto result = await this.service.Get(url);
+
+            result.Should().NotBeNull();
+            result.Price.Should().NotBe(default(decimal));
+            result.Name.Should().NotBe(default(string));
+        }
     }
 }

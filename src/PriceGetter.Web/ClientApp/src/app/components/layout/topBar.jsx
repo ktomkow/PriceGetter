@@ -35,12 +35,6 @@ const TopBar = () => {
         <Button component={Link} to="/createProduct" color="secondary" className={classes.topBarNavButton}>
           Create Product
         </Button>
-        <Button component={Link} to="/list" color="secondary" className={classes.topBarNavButton}>
-          list
-        </Button>
-        <Button component={Link} to="/tmp" color="secondary" className={classes.topBarNavButton}>
-          tmp
-        </Button>
         <Button component={Link} to="/products" color="secondary" className={classes.topBarNavButton}>
           products
         </Button>

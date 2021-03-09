@@ -30,12 +30,12 @@ function App() {
       <PageContent>
         <Switch>
           <Route exact path={["/clientapp", "/home", "/index", "/index.html"]} component={Home} />
-          <Route exact path="/products" component={Products} />
+          <Route exact path={["/", "/products"]} component={Products} />
           <Route exact path={["/list"]} component={List} />
           <Route exact path="/form" component={Form} />
           <Route exact path="/product/:id" component={SingleProduct} />
           <Route exact path="/createProduct" component={ProductCreateForm} />
-          <Route exact path={["/", "/tmp"]} component={Tmp} />
+          <Route exact path={["/tmp"]} component={Tmp} />
           <Route component={PageNotFound} />
         </Switch>
       </PageContent>

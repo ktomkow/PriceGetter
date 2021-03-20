@@ -3,6 +3,7 @@ import { PRE_PRODUCTS_ACTIONS } from "../constants/action-types";
 import { toBase64 } from "../../services/encodingService";
 
 import axios from "axios";
+import { showInfoSnack, showErrorSnack } from "./notificationsActionCreator";
 
 export const getPreproduct = (link, dispatch) => {
   const encodedUrl = toBase64(link);
@@ -39,15 +40,14 @@ export const createProduct = (preProduct, dispatch) => {
   axios
     .post("/api/product", preProduct)
     .then(function (response) {
-      console.log(response);
-      alert(response);
+      dispatch(showInfoSnack('Product was added to list'));
       dispatch({
         type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_SUCCESS
       });
     })
     .catch(function (error) {
-      console.log(error);
       alert(error);
+      dispatch(showErrorSnack('Something gone wrong :('));
       dispatch({
         type: PRE_PRODUCTS_ACTIONS.CREATE_PRODUCT_FAIL
       });

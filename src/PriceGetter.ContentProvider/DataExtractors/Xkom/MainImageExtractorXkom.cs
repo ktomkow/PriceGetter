@@ -26,7 +26,7 @@ namespace PriceGetter.ContentProvider.DataExtractors.Xkom
 
         private string ExtractElementWithImage(Html html)
         {
-            string pattern = "<span class=\"sc-1tblmgq-0 jiiyfe-2 eCXtNN sc-1tblmgq-2 jZEsEq\"><img src=\"[^>]*\" class=\"sc-1tblmgq-1 hencDY\"\\/>";
+            string pattern = "<span class=\"sc-1tblmgq-0 jiiyfe-2 ldEQXA sc-1tblmgq-3 fHoITM\"><img src=\"[^>]*\" class=\"sc-1tblmgq-1 hiJJtI\"\\/>";
             Regex regex = new Regex(pattern);
             Match match = regex.Match(html.RawContent);
             string dirtyResult = match.Value;

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PriceGetter.Core.Models.ValueObjects
 {
-    public class Money : ValueObjectBase
+    public class Money : ValueObjectBase, IComparable<Money>
     {
         private static readonly int decimalPlaces = 2;
 
@@ -66,6 +66,21 @@ namespace PriceGetter.Core.Models.ValueObjects
         public override string ToString()
         {
             return this.ValueAsDecimal.ToString("F", CultureInfo.InvariantCulture);
+        }
+
+        public int CompareTo(Money other)
+        {
+            if (other is null)
+            {
+                return 1;
+            }
+
+            if(this.Equals(other))
+            {
+                return 0;
+            }
+
+            return this < other ? 1 : -1;
         }
 
         #region Operators

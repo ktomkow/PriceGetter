@@ -4,6 +4,7 @@ using PriceGetter.Core.Models.ValueObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Xunit;
 
@@ -118,6 +119,33 @@ namespace PriceGetter.CoreTests.ValueObjectsTests
             };
 
             act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Comparable_When2SameAmounts_TakeAny()
+        {
+            Money first = new Money(10m);
+            Money second = new Money(10m);
+            List<Money> list = new List<Money> { first, second };
+
+            Money max = list.Max();
+
+            max.Should().Be(new Money(10m));
+        }
+
+        [Fact]
+        public void Comparable_When3DifferentElements_ChooseCorrectly()
+        {
+            Money min = new Money(10.99m);
+            Money average = new Money(100.99m);
+            Money max = new Money(500.00m);
+            List<Money> list = new List<Money> { min, average, max };
+
+            Money maxAmount = list.Max();
+            Money minAmount = list.Min();
+
+            maxAmount.Should().Be(max);
+            minAmount.Should().Be(min);
         }
 
         # region Rounding

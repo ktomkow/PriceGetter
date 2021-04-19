@@ -78,7 +78,7 @@ namespace PriceGetter.Core.Models.ValueObjects
                 return 0;
             }
 
-            return this < other ? 1 : -1;
+            return this > other ? 1 : -1;
         }
 
         #region Operators

@@ -81,6 +81,33 @@ namespace PriceGetter.Statistics.Tests
             result.First().Month.Should().Be(2);
         }
 
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void Create_WhenThreePricesSameMonth_ThenOneObjectButCorrectPrices()
+        {
+            Product product = this.GetSampleProduct();
+            Money minPrice = new Money(10m);
+            Money averagePrice = new Money(11.95m);
+            Money maxPrice = new Money(19.99m);
+
+            this.SetDateTime(new DateTime(2019, 2, 23));
+            product.AddPrice(minPrice);
+
+            this.SetDateTime(new DateTime(2019, 2, 26));
+            product.AddPrice(averagePrice);
+
+            this.SetDateTime(new DateTime(2019, 2, 27));
+            product.AddPrice(maxPrice);
+
+            IEnumerable<MonthStatistics> result = this.creator.Create(product);
+
+            result.Should().HaveCount(1);
+            result.First().MinPrice.Should().Be(minPrice);
+            result.First().MaxPrice.Should().Be(maxPrice);
+            result.First().Year.Should().Be(2019);
+            result.First().Month.Should().Be(2);
+        }
+
         private Product GetSampleProduct()
         {
             return new Product(new Name("SampleName"), new EmptyUrl());

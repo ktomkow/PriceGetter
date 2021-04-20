@@ -18,21 +18,17 @@ namespace PriceGetter.Statistics.Products.DefaultImplementation
                 return Enumerable.Empty<MonthStatistics>();
             }
 
-            if (product.Prices.Count() == 1)
-            {
-                Price price = product.GetLastPrice();
-                return new[] { new MonthStatistics(price.Amount, price.Amount, price.At.Month, price.At.Year) };
-            }
-
-            List<MonthStatistics> list = new List<MonthStatistics>();
-
-            Money maxPrice = product.Prices.Max(x => x.Amount);
-            Money minPrice = product.Prices.Min(x => x.Amount);
-            DateTime date = product.Prices.First().At;
-
-            list.Add(new MonthStatistics(minPrice, maxPrice, date.Month, date.Year));
-
-            return list;
+            IEnumerable<MonthStatistics> statistics = product.Prices
+                .Select(x => new
+                {
+                    month = x.At.Month,
+                    year = x.At.Year,
+                    amount = x.Amount
+                })
+                .ToLookup(x => (x.year, x.month))
+                .Select(x => new MonthStatistics(x.Min(z => z.amount), x.Max(z => z.amount), x.Key.month, x.Key.year));
+            
+            return statistics;
         }
 
         private void EnsureProductNotNull(Product product)

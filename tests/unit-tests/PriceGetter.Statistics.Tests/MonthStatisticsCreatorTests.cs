@@ -108,6 +108,93 @@ namespace PriceGetter.Statistics.Tests
             result.First().Month.Should().Be(2);
         }
 
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void Create_WhenTwoPricesOtherMonth_ThenTwoElementsCollection()
+        {
+            Product product = this.GetSampleProduct();
+            Money firstPrice = new Money(10m);
+            Money secondPrice = new Money(11.95m);
+
+            this.SetDateTime(new DateTime(2019, 2, 23));
+            product.AddPrice(firstPrice);
+
+            this.SetDateTime(new DateTime(2019, 3, 9));
+            product.AddPrice(secondPrice);
+
+            IEnumerable<MonthStatistics> result = this.creator.Create(product);
+
+            result.Should().HaveCount(2);
+
+            result.Single(x => x.Month == 2).MinPrice.Should().Be(firstPrice);
+            result.Single(x => x.Month == 2).MaxPrice.Should().Be(firstPrice);
+
+            result.Single(x => x.Month == 3).MinPrice.Should().Be(secondPrice);
+            result.Single(x => x.Month == 3).MaxPrice.Should().Be(secondPrice);
+        }
+
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void Create_WhenThreePricesTwoMonths_ThenTwoElementsCollection()
+        {
+            Product product = this.GetSampleProduct();
+            Money firstPrice = new Money(10m);
+            Money secondPrice = new Money(11.95m);
+            Money thirdPrice = new Money(13.95m);
+
+            this.SetDateTime(new DateTime(2019, 2, 23));
+            product.AddPrice(firstPrice);
+
+            this.SetDateTime(new DateTime(2019, 2, 25));
+            product.AddPrice(secondPrice);
+
+            this.SetDateTime(new DateTime(2019, 3, 9));
+            product.AddPrice(thirdPrice);
+
+            IEnumerable<MonthStatistics> result = this.creator.Create(product);
+
+            result.Should().HaveCount(2);
+
+            result.Single(x => x.Month == 2).MinPrice.Should().Be(firstPrice);
+            result.Single(x => x.Month == 2).MaxPrice.Should().Be(secondPrice);
+
+            result.Single(x => x.Month == 3).MinPrice.Should().Be(thirdPrice);
+            result.Single(x => x.Month == 3).MaxPrice.Should().Be(thirdPrice);
+        }
+
+        [Fact]
+        [ResetDateTimeAbstractions]
+        public void Create_WhenFourPricesTwoMonthsThreePricesSameMonth_ThenTwoElementsCollection()
+        {
+            Product product = this.GetSampleProduct();
+            Money firstPrice = new Money(10m);
+            Money secondPrice = new Money(11.95m);
+            Money thirdPrice = new Money(13.95m);
+            Money fourthPrice = new Money(28.3m);
+
+            this.SetDateTime(new DateTime(2019, 2, 23));
+            product.AddPrice(firstPrice);
+
+            this.SetDateTime(new DateTime(2019, 2, 25));
+            product.AddPrice(secondPrice);
+
+            this.SetDateTime(new DateTime(2019, 2, 26));
+            product.AddPrice(thirdPrice);
+
+            this.SetDateTime(new DateTime(2019, 3, 9));
+            product.AddPrice(fourthPrice);
+
+            IEnumerable<MonthStatistics> result = this.creator.Create(product);
+
+            result.Should().HaveCount(2);
+
+            result.Single(x => x.Month == 2).MinPrice.Should().Be(firstPrice);
+            result.Single(x => x.Month == 2).MaxPrice.Should().Be(thirdPrice);
+
+            result.Single(x => x.Month == 3).MinPrice.Should().Be(fourthPrice);
+            result.Single(x => x.Month == 3).MaxPrice.Should().Be(fourthPrice);
+        }
+
         private Product GetSampleProduct()
         {
             return new Product(new Name("SampleName"), new EmptyUrl());

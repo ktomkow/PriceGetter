@@ -26,8 +26,27 @@ namespace PriceGetter.Statistics.Domain
                 this.MinPrice = maxPrice ?? throw new ArgumentNullException(nameof(minPrice));
             }
 
+            this.EnsureMonthIsValid(month);
+            this.EnsureYearIsValid(year);
+
             this.Month = month;
             this.Year = year;
+        }
+
+        private void EnsureMonthIsValid(int month)
+        {
+            if (month > 12 || month < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(month), month, "Month ouf of range 1..12");
+            }
+        }
+
+        private void EnsureYearIsValid(int year)
+        {
+            if (year > 2099 || year < 2000)
+            {
+                throw new ArgumentOutOfRangeException(nameof(year), year, "Month ouf of range 2000..2099");
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using PriceGetter.Core.Models.Entities;
-using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Statistics.Domain;
 using PriceGetter.Statistics.Products.Interfaces;
 using System;
 using System.Collections.Generic;

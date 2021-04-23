@@ -28,6 +28,7 @@
     <ProjectReference Include="..\PriceGetter.PersistenceMongo\PriceGetter.PersistenceMongo.csproj" />
     <ProjectReference Include="..\PriceGetter.Persistence\PriceGetter.Persistence.csproj" />
     <ProjectReference Include="..\PriceGetter.Quartz\PriceGetter.Quartz.csproj" />
+    <ProjectReference Include="..\PriceGetter.Statistics\PriceGetter.Statistics.csproj" />
   </ItemGroup>
 
   <ItemGroup>

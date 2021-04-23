@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Statistics.Domain;
 using System;
 using Xunit;
 

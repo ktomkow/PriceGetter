@@ -3,6 +3,7 @@ using NSubstitute;
 using PriceGetter.Core.DateTimeAbstraction;
 using PriceGetter.Core.Models.Entities;
 using PriceGetter.Core.Models.ValueObjects;
+using PriceGetter.Statistics.Domain;
 using PriceGetter.Statistics.Products.DefaultImplementation;
 using PriceGetter.TestHelpers;
 using System;

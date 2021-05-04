@@ -9,6 +9,9 @@ const initialState = {
     productImage: '',
     prices: [],
   },
+  statistics: {
+    months: [],
+  },
   searchExpression: '',
 };
 
@@ -40,11 +43,19 @@ function productsReducer(state = initialState, action) {
     });
   }
 
+  if (action.type === PRODUCTS_ACTIONS.GET_MONTH_STATISTICS) {
+    return Object.assign({}, state, {
+      statistics: { months: action.payload },
+    });
+  }
+
   if (action.type === PRODUCTS_ACTIONS.UPDATE_PRODUCTS_SEARCHBOX) {
     return Object.assign({}, state, {
       searchExpression: action.payload.searchExpression,
       filteredProducts: state.products.filter((x) =>
-        x.name.toUpperCase().includes(action.payload.searchExpression.toUpperCase())
+        x.name
+          .toUpperCase()
+          .includes(action.payload.searchExpression.toUpperCase())
       ),
     });
   }

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getProduct } from '../../redux/actions/productsActionCreator';
+import {
+  getProduct,
+  getMonthStatistics,
+} from '../../redux/actions/productsActionCreator';
 import { Link, useParams } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +16,7 @@ import IconLink from './../common/iconLink';
 
 import { mockImage } from '../../mocks/product/image';
 import { isUrlValid } from '../../services/urlService';
-import { formatRawDate } from '../../services/dateServices';
+import { formatRawDate, formatDate } from '../../services/dateServices';
 
 import { useSnackbar } from 'notistack';
 
@@ -67,6 +70,7 @@ const SingleProduct = (props) => {
   useEffect(() => {
     // on mount
     props.getProduct(id);
+    props.getMonthStatistics(id);
   }, []);
 
   const formattedPrices = () => {
@@ -85,6 +89,26 @@ const SingleProduct = (props) => {
       }));
 
     return prices;
+  };
+
+  const formattedMonthStatistics = () => {
+    if (!props.productsReducer.statistics.months) {
+      return [];
+    }
+
+    const monthStats = props.productsReducer.statistics.months;
+
+    const formattedStats = monthStats
+      .sort((a, b) => {
+        return new Date(a.year, a.month, 1) - new Date(b.year, b.month, 1);
+      })
+      .map((x) => ({
+        month: formatDate(x.month, x.year),
+        minPrice: round(x.minPrice),
+        maxPrice: round(x.maxPrice),
+      }));
+
+    return formattedStats;
   };
 
   const snack = () => {
@@ -112,7 +136,7 @@ const SingleProduct = (props) => {
         <Grid container item xs={12} sm={4}>
           <Grid item>
             <Paper className={classes.paper}>
-            <Typography variant="h6">{productName}</Typography>
+              <Typography variant='h6'>{productName}</Typography>
               <Box className={classes.imageContainer}>
                 <img
                   src={getProductImage()}
@@ -120,7 +144,6 @@ const SingleProduct = (props) => {
                   className={classes.image}
                 />
               </Box>
-              
             </Paper>
             <Paper className={classes.paper}>
               <Button component={Link} to='/products'>
@@ -164,6 +187,28 @@ const SingleProduct = (props) => {
             </Paper>
           </Grid>
           <Grid item xs={12}>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Chart data={formattedMonthStatistics()}>
+                  <ArgumentAxis />
+                  <ValueAxis />
+                  <EventTracker />
+                  <Tooltip />
+
+                  <LineSeries
+                    name='maxPrice'
+                    valueField='maxPrice'
+                    argumentField='month'
+                  />
+                  <LineSeries
+                    name='minPrice'
+                    valueField='minPrice'
+                    argumentField='month'
+                  />
+                  <Title text={strings.SINGLE_PRODUCT.STATISTICS.CHART.TITLE} />
+                </Chart>
+              </Paper>
+            </Grid>
             <Paper className={classes.paper}>
               <div className={classes.dataGridContainer}>
                 <DataGrid
@@ -199,6 +244,7 @@ const SingleProduct = (props) => {
 function mapDispatchToProps(dispatch) {
   return {
     getProduct: (id) => getProduct(id, dispatch),
+    getMonthStatistics: (id) => getMonthStatistics(id, dispatch),
     showInfoSnack: (text) => dispatch(showInfoSnack(text)),
   };
 }

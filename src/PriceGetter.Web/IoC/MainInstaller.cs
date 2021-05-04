@@ -31,6 +31,7 @@ namespace PriceGetter.Web.IoC
             builder.RegisterModule(new ApplicationServicesInstaller());
             builder.RegisterModule(new WebAppComponentsInstaller());
             builder.RegisterModule(new InfrastructureInstaller());
+            builder.RegisterModule(new StatisticsInstaller());
         }
     }
 }

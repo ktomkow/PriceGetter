@@ -53,7 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.InfrastructureT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.PersistenceMongoTests", "tests\unit-tests\PriceGetter.PersistenceMongoTests\PriceGetter.PersistenceMongoTests.csproj", "{84FE285B-9387-4F34-9F61-BF2BCE0ACC30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.SampleServer.Integration.Tests", "tests\integration-tests\PriceGetter.SampleServer.Integration.Tests\PriceGetter.SampleServer.Integration.Tests.csproj", "{82DF34D0-3129-49D4-97E6-6AA285C31FAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceGetter.SampleServer.Integration.Tests", "tests\integration-tests\PriceGetter.SampleServer.Integration.Tests\PriceGetter.SampleServer.Integration.Tests.csproj", "{82DF34D0-3129-49D4-97E6-6AA285C31FAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Statistics", "src\PriceGetter.Statistics\PriceGetter.Statistics.csproj", "{21BA29EC-0107-441D-A99F-5A2011963A5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceGetter.Statistics.Tests", "tests\unit-tests\PriceGetter.Statistics.Tests\PriceGetter.Statistics.Tests.csproj", "{7DFB7171-D28B-46D8-8D93-670BD7091E5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +153,14 @@ Global
 		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82DF34D0-3129-49D4-97E6-6AA285C31FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BA29EC-0107-441D-A99F-5A2011963A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BA29EC-0107-441D-A99F-5A2011963A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BA29EC-0107-441D-A99F-5A2011963A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BA29EC-0107-441D-A99F-5A2011963A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFB7171-D28B-46D8-8D93-670BD7091E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFB7171-D28B-46D8-8D93-670BD7091E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFB7171-D28B-46D8-8D93-670BD7091E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFB7171-D28B-46D8-8D93-670BD7091E5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,6 +190,8 @@ Global
 		{0AA184C7-FDB0-4796-A486-8A8A41294518} = {4D8A84F7-302E-411F-B144-13A52157EA77}
 		{84FE285B-9387-4F34-9F61-BF2BCE0ACC30} = {4D8A84F7-302E-411F-B144-13A52157EA77}
 		{82DF34D0-3129-49D4-97E6-6AA285C31FAB} = {DF5F25B0-7EC2-48F2-A060-29C9515FCEAD}
+		{21BA29EC-0107-441D-A99F-5A2011963A5B} = {67DE0A3E-E482-491F-BBFF-2C22E643B2A2}
+		{7DFB7171-D28B-46D8-8D93-670BD7091E5C} = {4D8A84F7-302E-411F-B144-13A52157EA77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B96D14DF-D35E-499A-A192-C731B18AFF8A}

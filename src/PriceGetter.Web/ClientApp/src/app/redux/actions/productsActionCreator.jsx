@@ -28,10 +28,10 @@ export function clearProducts() {
   };
 }
 
-export const getProduct = (id, dispatch) => {
+export const getProduct = (productId, dispatch) => {
   setTimeout(() => {
     axios
-      .get(`/api/product/uniquePrices/${id}`)
+      .get(`/api/product/uniquePrices/${productId}`)
       .then(function (response) {
         const payload = response.data;
         dispatch({
@@ -51,4 +51,19 @@ export const updateSearchBox = (searchExpression) => (dispatch, getState) => {
     type: PRODUCTS_ACTIONS.UPDATE_PRODUCTS_SEARCHBOX,
     payload: { searchExpression: searchExpression },
   });
+};
+
+export const getMonthStatistics = (productId, dispatch) => {
+  axios
+    .get(`/api/statistics/months/${productId}`)
+    .then(function (response) {
+      const payload = response.data;
+      dispatch({
+        type: PRODUCTS_ACTIONS.GET_MONTH_STATISTICS,
+        payload: payload,
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 };

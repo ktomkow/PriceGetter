@@ -29,7 +29,8 @@ namespace PriceGetter.Web.Controllers
         /// <param name="productId"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetMonthsStatistics(Guid productId)
+        [Route("months/{productId}")]
+        public async Task<IActionResult> GetMonthsStatistics([FromRoute]Guid productId)
         {
             IEnumerable<MonthStatisticsDto> statistics = await this.statisticsService.PrepareMonthStatistics(productId);
 

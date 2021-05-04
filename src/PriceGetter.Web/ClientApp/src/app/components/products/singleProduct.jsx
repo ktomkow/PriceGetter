@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getProduct } from '../../redux/actions/productsActionCreator';
+import { getProduct, getMonthStatistics } from '../../redux/actions/productsActionCreator';
 import { Link, useParams } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -67,6 +67,7 @@ const SingleProduct = (props) => {
   useEffect(() => {
     // on mount
     props.getProduct(id);
+    props.getMonthStatistics(id);
   }, []);
 
   const formattedPrices = () => {
@@ -112,7 +113,7 @@ const SingleProduct = (props) => {
         <Grid container item xs={12} sm={4}>
           <Grid item>
             <Paper className={classes.paper}>
-            <Typography variant="h6">{productName}</Typography>
+              <Typography variant='h6'>{productName}</Typography>
               <Box className={classes.imageContainer}>
                 <img
                   src={getProductImage()}
@@ -120,7 +121,6 @@ const SingleProduct = (props) => {
                   className={classes.image}
                 />
               </Box>
-              
             </Paper>
             <Paper className={classes.paper}>
               <Button component={Link} to='/products'>
@@ -190,6 +190,15 @@ const SingleProduct = (props) => {
               </div>
             </Paper>
           </Grid>
+          <Grid item xs={12}>
+            <div>
+              {props.productsReducer.statistics.months.map((x) => (
+                <ul key={`${x.month}.${x.year}`}>
+                  <li>{x.month}.{x.year}: min: {x.minPrice} zł, max: {x.maxPrice} zł</li>
+                </ul>
+              ))}
+            </div>
+          </Grid>
         </Grid>
       </Grid>
     </>
@@ -199,6 +208,7 @@ const SingleProduct = (props) => {
 function mapDispatchToProps(dispatch) {
   return {
     getProduct: (id) => getProduct(id, dispatch),
+    getMonthStatistics: (id) => getMonthStatistics(id, dispatch),
     showInfoSnack: (text) => dispatch(showInfoSnack(text)),
   };
 }

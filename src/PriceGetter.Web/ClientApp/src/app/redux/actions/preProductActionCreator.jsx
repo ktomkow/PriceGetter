@@ -19,6 +19,7 @@ export const getPreproduct = (link, dispatch) => {
         });
       })
       .catch(function (error) {
+        dispatch(showErrorSnack(error.response.data));
         console.error(error);
       })
       .then(function () {
